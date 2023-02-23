@@ -1,0 +1,19 @@
+.NavBar {
+    background-color: #ededed;
+    border: 1px solid #e0a9a9;
+    font-family: 'Poiret One', cursive;
+}
+
+.NavbarBrand {
+    font-family: 'Poiret One', cursive;
+    background-color: rgb(255, 101, 5);
+    font-size: 45px;
+}
+
+.NavLink {
+    padding: 5px;
+}
+
+.Active i{
+    color: #620000;
+}
