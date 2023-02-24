@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
@@ -12,8 +11,11 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import axios from "axios";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
+  const setCurrentUser = useSetCurrentUser();
+
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -30,15 +32,16 @@ function SignInForm() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     try{
-        await axios.post('/dj-rest-auth/login/', signInData);
-        history.push("/")
-    }catch(err){
+        const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+        setCurrentUser(data.user);
+        history.push("/");
+    }catch (err) {
         setErrors(err.response?.data);
-    };
+    }
   };
-
+  
   return (
     <Row className={styles.Row}>
       <Col className="my-auto p-0 p-md-2" md={6}>
@@ -53,8 +56,7 @@ function SignInForm() {
                 name="username"
                 className={styles.Input}
                 value={username}
-                onChange={handleChange}
-              />
+                onChange={handleChange} />
             </Form.Group>
             {errors.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
@@ -70,8 +72,7 @@ function SignInForm() {
                 name="password"
                 className={styles.Input}
                 value={password}
-                onChange={handleChange}
-              />
+                onChange={handleChange} />
             </Form.Group>
             {errors.password?.map((message, idx) => (
               <Alert key={idx} variant="warning">
@@ -89,6 +90,7 @@ function SignInForm() {
                 {message}
               </Alert>
             ))}
+            
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
