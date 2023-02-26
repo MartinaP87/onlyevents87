@@ -29,6 +29,8 @@ function EventCreateForm() {
   const { title, date, category, location, address, content, image } =
     eventData;
 
+  // const { onlydate, time} = date
+
   const imageInput = useRef(null);
 
   const handleChange = (event) => {
@@ -54,12 +56,12 @@ function EventCreateForm() {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("category", category);
-    formData.append("dete", date);
+    formData.append("date", date);
     formData.append("location", location);
     formData.append("address", address);
     formData.append("image", imageInput.current.files[0]);
     try {
-      const { data } = await axiosReq.post("/events/", formData);
+      const { data } = await axiosReq.post("/events/", formData);     
       history.push(`/events/${data.id}/`);
     } catch (err) {
       console.log(err);
@@ -87,12 +89,11 @@ function EventCreateForm() {
           {message}
         </Alert>
       ))}
-
+      
       <Form.Group controlId="date">
         <Form.Label className="d-none">Event date</Form.Label>
         <Form.Control
           type="datetime-local"
-          placeholder="Event date"
           name="date"
           className={styles.Input}
           value={date}
