@@ -7,6 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import EventCreateForm from "./pages/events/EventCreateForm";
 import CategoryCreateForm from "./pages/categories/CategoryCreateForm";
+import EventPage from "./pages/events/EventPage";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
               <Route exact path="/" render={() => <h1>Home</h1>} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
-              <Route exact path="/event/create" render={() => <EventCreateForm />} />
+              <Route exact path="/events/create" render={() => <EventCreateForm />} />
+              <Route exact path="/events/:id" render={() => <EventPage />} />
               <Route exact path="/category/create" render={() => <CategoryCreateForm />} />
               <Route render={() => <p>Page Not Found</p>} />
             </Switch>

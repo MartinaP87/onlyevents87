@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -29,9 +29,22 @@ function EventCreateForm() {
   const { title, date, category, location, address, content, image } =
     eventData;
 
-  // const { onlydate, time} = date
-
+  const [categoryToGet, setCategoryToGet] = useState({results: []});
   const imageInput = useRef(null);
+
+  useEffect(() =>{
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get('/categories/')
+        console.log(data)
+        setCategoryToGet({results: [data]})
+        console.log("CAT", categoryToGet)
+      } catch(err) {
+        console.log(err)
+      }
+    }
+    handleMount();
+  }, [])
 
   const handleChange = (event) => {
     setEventData({
@@ -107,6 +120,7 @@ function EventCreateForm() {
       ))}
 
       <Form.Group controlId="category">
+        {/* <Form.Label className="d-none">{categoryToGet}</Form.Label> */}
         <Form.Label className="d-none">Category</Form.Label>
         <Form.Control
           type="text"
@@ -241,7 +255,9 @@ function EventCreateForm() {
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>
+      {/* <div>{categoryToGet}</div> */}
     </Form>
+    
   );
 }
 
