@@ -81,7 +81,7 @@ const Event = (props) => {
             : posted_event;
         }),
       }));
-    } catch (err) {
+    } catch(err) {
       console.log(err);
     }
   };
