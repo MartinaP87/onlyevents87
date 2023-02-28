@@ -8,6 +8,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Event from "./Event";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Comment from "../comments/Comment";
 
 function EventPage() {
   const { id } = useParams();
@@ -19,11 +20,12 @@ function EventPage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: event }] = await Promise.all([
+        const [{ data: event }, {data: comments}] = await Promise.all([
           axiosReq.get(`/events/${id}`),
+          axiosReq.get(`/comments/?event=${id}`)
         ]);
         setEvent({ results: [event] });
-        console.log(event);
+        setComments(comments);
       } catch (err) {
         console.log(err);
       }
@@ -48,6 +50,15 @@ function EventPage() {
           ) : comments.results.length ? (
             "Comments"
           ) : null}
+          {comments.results.length ? (
+            comments.results.map((comment) => (
+              <Comment key={comment.id} {...comment}
+              setEvent={setEvent}
+              setComments={setComments} />
+            ))
+          ) : currentUser? (
+            <span>No comments yet, be the first to comment!</span>
+          ) : (<span>No comments...yet</span>)}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
