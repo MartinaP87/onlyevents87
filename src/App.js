@@ -60,13 +60,13 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route
             exact
-            path="/event/create"
+            path="/events/create"
             render={() => <EventCreateForm />}
           />
-          <Route exact path="/event/:id" render={() => <EventPage />} />
+          <Route exact path="/events/:id" render={() => <EventPage />} />
           <Route
             exact
-            path="/category/create"
+            path="/categories/create"
             render={() => <CategoryCreateForm />}
           />
           <Route render={() => <p>Page Not Found</p>} />

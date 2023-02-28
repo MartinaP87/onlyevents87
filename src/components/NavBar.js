@@ -25,7 +25,7 @@ const NavBar = () => {
 
   const addEventIcon = (
     <NavLink
-      to="/event/create"
+      to="/events/create"
       className={styles.NavLink}
       activeClassName={styles.Active}>
       <i className="fas fa-plus-square"></i>Add Event
@@ -44,11 +44,11 @@ const NavBar = () => {
       </NavLink>
 
       <NavLink
-        to="/preferres"
+        to="/favourites"
         className={styles.NavLink}
         activeClassName={styles.Active}>
         <i className="fas fa-heart"></i>
-        Preferred
+        Favourites
       </NavLink>
 
       <NavLink

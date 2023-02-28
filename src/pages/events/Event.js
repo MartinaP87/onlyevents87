@@ -3,11 +3,12 @@ import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Event.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown"
 
 const Event = (props) => {
   const {
@@ -36,6 +37,20 @@ const Event = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/events/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/events/${id}/`);
+      history.goBack();
+    } catch (err) {
+      // console.log(err);
+    }
+  };
 
   const handleInterested = async () => {
     try {
@@ -110,7 +125,9 @@ const Event = (props) => {
           </Link>
           <div className="d-flex align-item-center">
             <span>{updated_at}</span>
-            {is_owner && eventPage && "..."}
+            {is_owner && eventPage && <MoreDropdown 
+            handleEdit={handleEdit}
+            handleDelete={handleDelete}/>}
           </div>
         </Media>
       </Card.Body>
