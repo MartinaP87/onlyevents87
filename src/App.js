@@ -10,6 +10,7 @@ import CategoryCreateForm from "./pages/categories/CategoryCreateForm";
 import EventPage from "./pages/events/EventPage";
 import EventsPage from "./pages/events/EventsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import EventEditForm from "./pages/events/EventEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -62,6 +63,11 @@ function App() {
             exact
             path="/events/create"
             render={() => <EventCreateForm />}
+          />
+          <Route
+            exact
+            path="/events/:id/edit"
+            render={() => <EventEditForm />}
           />
           <Route exact path="/events/:id" render={() => <EventPage />} />
           <Route
