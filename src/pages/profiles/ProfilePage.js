@@ -5,17 +5,19 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import Asset from "../../components/Asset";
-
+import NoResults from "../../assets/no-results.png";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
+import { fetchMoreData } from '../../utils/utils';
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router-dom";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Image } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Event from "../events/Event";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -25,17 +27,22 @@ function ProfilePage() {
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
   const is_owner = currentUser?.username === profile?.owner;
+  const [profileEvents, setProfileEvents] = useState({
+    results: []
+  })
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }] = await Promise.all([
+        const [{ data: pageProfile }, { data: profileEvents }] = await Promise.all([
           axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/events/?owner__profile=${id}`)
         ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
+        setProfileEvents(profileEvents);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -48,19 +55,29 @@ function ProfilePage() {
     <>
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
-          <Image className={styles.ProfileImage} roundedCircle src={profile?.image} />
+          <Image 
+          className={styles.ProfileImage} 
+          roundedCircle 
+          src={profile?.image} />
         </Col>
         <Col lg={6}>
-          <h3 className="m-2">{profile?.username}</h3>
+          <h3 className="m-2">{profile?.owner}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
                 <div>{profile?.events_count}</div>
-                <div>{profile?.events}</div>
+                <div>Events</div>
+            </Col>
+            <Col xs={3} className="my-2">
+                <div>{profile?.followers_count}</div>
+                <div>Followers</div>
+            </Col>
+            <Col xs={3} className="my-2">
+                <div>{profile?.following_count}</div>
+                <div>Following</div>
             </Col>
           </Row>
         </Col>
         <Col lg={3} className="text-lg-right">
-          <p>Follow button</p>
           {currentUser && !is_owner && (
             profile?.following_id ? (
                 <Button 
@@ -80,11 +97,24 @@ function ProfilePage() {
     </>
   );
 
-  const mainProfilePosts = (
+  const mainProfileEvents = (
     <>
       <hr />
-      <p className="text-center">Profile owner's posts</p>
+      <p className="text-center">{profile?.owner}'s events</p>
       <hr />
+      {profileEvents.results.length ? (
+        <InfiniteScroll
+        children={profileEvents.results.map((event) => (
+          <Event key={event.id} {...event} setEvents={setProfileEvents}/>
+        ))}
+        dataLength={profileEvents.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!profileEvents.next}
+            next={() => fetchMoreData(profileEvents, setProfileEvents)}
+        />
+      ) : (
+        <Asset src={NoResults} message={`No results found, ${profile?.owner} hasn't posted any events yet.`}/>
+      )}
     </>
   );
 
@@ -96,7 +126,7 @@ function ProfilePage() {
           {hasLoaded ? (
             <>
               {mainProfile}
-              {mainProfilePosts}
+              {mainProfileEvents}
             </>
           ) : (
             <Asset spinner />
