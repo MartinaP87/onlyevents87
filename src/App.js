@@ -11,6 +11,7 @@ import EventPage from "./pages/events/EventPage";
 import EventsPage from "./pages/events/EventsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import EventEditForm from "./pages/events/EventEditForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -75,6 +76,7 @@ function App() {
             path="/categories/create"
             render={() => <CategoryCreateForm />}
           />
+          <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route render={() => <p>Page Not Found</p>} />
         </Switch>
       </Container>

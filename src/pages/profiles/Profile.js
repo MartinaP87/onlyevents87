@@ -25,11 +25,13 @@ const Profile = (props) => {
             {!mobile && currentUser && ! is_owner && (
                 following_id ? (
                     <Button 
-                    className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}>
+                    className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                    onClick={()=>{}}>
                         Unfollow</Button>
                 ) : (
                     <Button 
-                    className={`${btnStyles.Button} ${btnStyles.Black}`}>
+                    className={`${btnStyles.Button} ${btnStyles.Black}`}
+                    onClick={()=>{}}>
                         Follow</Button>
                 )
             )}
