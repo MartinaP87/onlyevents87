@@ -16,7 +16,7 @@ const Event = (props) => {
     title,
     owner,
     date,
-    // category,
+    category,
     location,
     address,
     content,
@@ -137,6 +137,7 @@ const Event = (props) => {
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {date && <Card.Subtitle>{date}</Card.Subtitle>}
+        {category && <Card.Subtitle>{category}</Card.Subtitle>}
         {event_genres && <Card.Text>{event_genres}</Card.Text>}
         {location && <Card.Text>{location}</Card.Text>}
         {address && <Card.Text>{address}</Card.Text>}

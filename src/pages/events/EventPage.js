@@ -26,7 +26,7 @@ function EventPage() {
       try {
         const [{ data: event }, {data: comments}] = await Promise.all([
           axiosReq.get(`/events/${id}`),
-          axiosReq.get(`/comments/?event=${id}`)
+          axiosReq.get(`/comments/?posted_event=${id}`)
         ]);
         setEvent({ results: [event] });
         setComments(comments);

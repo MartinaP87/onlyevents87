@@ -83,7 +83,6 @@ const EventsPage = ({message, filter=""}) => {
               <Asset spinner />
             </Container>
         )}
-        <p>List of events here</p>
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
