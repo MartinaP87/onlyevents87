@@ -98,11 +98,6 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-          <Route
-            exact
-            path="/categories/"
-            render={() => <CategoriesPage />}
-          />
           <Route render={() => <p>< NotFound/></p>} />
         </Switch>
       </Container>

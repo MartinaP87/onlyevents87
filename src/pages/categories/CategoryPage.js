@@ -8,25 +8,23 @@ import Row from "react-bootstrap/Row";
 import Category from "./Category";
 import { Container } from "react-bootstrap";
 import GenreCreateForm from "../genres/GenreCreateForm";
+import Genre from "../genres/Genre";
 
 function CategoryPage() {
   const { id } = useParams();
-  const [category, setCategory] = useState({ results: [] });
-  // const currentUser = useCurrentUser();
+  const [categoryData, setCategoryData] = useState({ results: [] });
   const [genres, setGenres] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: category }, { data: genres }] = await Promise.all([
+        const [{ data: category }, { data: genres}] = await Promise.all([
           axiosReq.get(`/categories/${id}`),
           axiosReq.get(`/categories/genres/?category=${id}`),
         ]);
-        setCategory({ results: [category] });
-        //   setGenres({ results: [genres] });
-        console.log(category.results);
+        setCategoryData({ results: [category] });
         setGenres(genres);
-        console.log("GEN", genres);
+        
       } catch (err) {
         console.log(err);
       }
@@ -37,17 +35,27 @@ function CategoryPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={6}>
-        <h1>PAGINA</h1>
         <Category
-          {...category.results[0]}
-          setCategories={setCategory}
+          {...categoryData.results[0]}
+          setCategories={setCategoryData}
           categoryPage
         />
-        {genres.results.length ? <p>Si</p> : <p>No</p>}
+        {genres.results.length ? 
+          genres.results.map((genre) => (
+        <Genre 
+        key={genre.id} 
+        {...genre}
+        setGenres={setGenres}
+        cat_id={id}
+        />
+          )) : <p>No genres in this category yet</p>}
       </Col>
       <Col lg={6} className="d-lg-block p-0 p-lg-2">
         <Container>
-          <GenreCreateForm id={id}/>
+          <GenreCreateForm 
+          id={id}
+          setGenres={setGenres}
+          />
         </Container>
       </Col>
     </Row>
@@ -61,15 +69,15 @@ function CategoryPage() {
                 profileImage={profile_image}
                 event={id}
                 setEvent={setEvent}
-                setComments={setComments}
+                setComments={setCategory}
               />
-            ) : comments.results.length ? (
-              "Comments"
+            ) : genres.results.length ? (
+              "Genres:"
             ) : null}
-            {comments.results.length ? (
+            {genres.results.length ? (
               <InfiniteScroll 
-              children={comments.results.map((comment) => (
-                <Comment key={comment.id} {...comment}
+              children={genres.results.map((genre) => (
+                <Genre key={genre.id} {...genre}
                 setEvent={setEvent}
                 setComments={setComments} />
               ))}

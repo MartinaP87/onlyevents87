@@ -30,6 +30,7 @@ function EventPage() {
         ]);
         setEvent({ results: [event] });
         setComments(comments);
+        console.log("COM", comments)
       } catch (err) {
         console.log(err);
       }
