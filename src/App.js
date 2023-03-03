@@ -6,7 +6,6 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import EventCreateForm from "./pages/events/EventCreateForm";
-import CategoryCreateForm from "./pages/categories/CategoryCreateForm";
 import EventPage from "./pages/events/EventPage";
 import EventsPage from "./pages/events/EventsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
@@ -17,6 +16,7 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
 import CategoriesPage from "./pages/categories/CategoriesPage";
+import CategoryPage from "./pages/categories/CategoryPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -78,9 +78,10 @@ function App() {
           <Route exact path="/events/:id" render={() => <EventPage />} />
           <Route
             exact
-            path="/categories/create"
-            render={() => <CategoryCreateForm />}
+            path="/categories/"
+            render={() => <CategoriesPage />}
           />
+          <Route exact path="/categories/:id" render={() => <CategoryPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route
             exact

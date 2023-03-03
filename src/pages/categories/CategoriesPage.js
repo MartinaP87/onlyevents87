@@ -26,20 +26,18 @@ const CategoriesPage = () => {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={6}>
+      <Col className="py-2 p-0 p-lg-2 justify-center" lg={4}>
         {categories?.results.map((category) => (
-          <div>
-            <Category key={category.id} {...category} 
-            setCategories={setCategories} />
+          <div key={category.id}>
+            <Category {...category} setCategories={setCategories} />
           </div>
         ))}
-        
       </Col>
-      <Col lg={6} className="d-none d-lg-block p-0 p-lg-2">
+      <Col lg={6} className="d-lg-block p-0 p-lg-2">
         <Container>
-          <CategoryCreateForm setCategories={setCategories}/>
+          <CategoryCreateForm setCategories={setCategories} />
         </Container>
-        </Col>
+      </Col>
     </Row>
   );
 };

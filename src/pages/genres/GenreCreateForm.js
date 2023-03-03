@@ -8,42 +8,40 @@ import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
-const CategoryCreateForm = (props) => {
-  const { setCategories } = props;
+const GenreCreateForm = (props) => {
+  const { id } = props;
+  //   const { setCategories } = props;
   const [errors, setErrors] = useState({});
-  const history = useHistory();
-  const [categoryData, setCategoryData] = useState({
-    cat_name: "",
-  });
-  const { cat_name } = categoryData;
+  //   const history = useHistory();
+  const [genreData, setGenreData] = useState("");
 
   const handleChange = (event) => {
-    setCategoryData({
-      cat_name: event.target.value,
-    });
+    setGenreData(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log( "GenData", genreData, "CAT", id)
     try {
-      const { data } = await axiosReq.post("/categories/", categoryData);
-      history.push(`/categories/`);
-      setCategories((prevCategories) => ({
-        ...prevCategories,
-        results: [data, ...prevCategories.results],
-      }));
+      await axiosReq.post("/categories/genres/", {
+        gen_name: genreData,
+        category: id
+      });
+      //   history.push(`/categories/`);
+      //   setCategories((prevCategories) => ({
+      //     ...prevCategories,
+      //     results: [data, ...prevCategories.results],
+      //   }));
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
-    setCategoryData({
-      cat_name: "",
-    });
+    setGenreData("");
   };
 
   return (
@@ -54,13 +52,13 @@ const CategoryCreateForm = (props) => {
             className={`${appStyles.Content} d-flex flex-column justify-content-center`}
           >
             <Form.Group controlId="cat_name">
-              <Form.Label className="d-none">Category name</Form.Label>
+              <Form.Label className="d-none">Genre name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Category name"
-                name="cat_name"
+                placeholder="Genre name"
+                name="genreData"
                 className={styles.Input}
-                value={cat_name}
+                value={genreData}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -69,12 +67,11 @@ const CategoryCreateForm = (props) => {
                 {message}
               </Alert>
             ))}
+
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => setCategoryData({
-                  cat_name: "",
-                })}
+                onClick={() => {}}
               >
                 cancel
               </Button>
@@ -92,4 +89,4 @@ const CategoryCreateForm = (props) => {
   );
 };
 
-export default CategoryCreateForm;
+export default GenreCreateForm;
