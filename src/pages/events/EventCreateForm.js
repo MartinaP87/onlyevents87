@@ -30,15 +30,14 @@ function EventCreateForm() {
   });
   const { title, date, category, location, address, content, image } =
     eventData;
-
   const [categoriesToGet, setCategoriesToGet] = useState({ results: [] });
   const imageInput = useRef(null);
+  
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const { data } = await axiosReq.get("/categories/");
-        console.log(data);
         setCategoriesToGet(data);
       } catch (err) {
         console.log(err);
@@ -84,6 +83,7 @@ function EventCreateForm() {
     formData.append("image", imageInput.current.files[0]);
     try {
       const { data } = await axiosReq.post("/events/", formData);
+      console.log(formData)
       history.push(`/events/${data.id}/`);
     } catch (err) {
       console.log(err);
@@ -127,7 +127,7 @@ function EventCreateForm() {
           {message}
         </Alert>
       ))}
-
+     
       <Form.Group controlId="category">
         <Form.Label className="d-none">Category</Form.Label>
         <Form.Control

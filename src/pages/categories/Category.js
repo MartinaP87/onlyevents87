@@ -4,17 +4,20 @@ import Media from "react-bootstrap/Media";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import CategoryEditForm from "./CategoryEditForm";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Category = (props) => {
   const { cat_name, id, setCategories, categoryPage} = props;
   // const currentUser = useCurrentUser();
+  // const admin = currentUser.pk === 1;
   const [showEditForm, setShowEditForm] = useState(false);
+  const history= useHistory()
+
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/categories/${id}/`);
-
+      history.push("/categories/")
       setCategories((prevCategories) => ({
         ...prevCategories,
         results: prevCategories.results.filter(
@@ -45,7 +48,7 @@ const Category = (props) => {
             </Link>
             )}
         </Media.Body>
-        {categoryPage && <MoreDropdown
+        {categoryPage  && <MoreDropdown
           handleEdit={() => {
             setShowEditForm(true);
           }}

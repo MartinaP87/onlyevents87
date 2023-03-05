@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -7,8 +7,10 @@ import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Event.module.css";
-import { axiosRes } from "../../api/axiosDefaults";
-import { MoreDropdown } from "../../components/MoreDropdown"
+import {  axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
+import EventGenreCreateForm from "./EventGenreCreateForm";
+import { Container } from "react-bootstrap";
 
 const Event = (props) => {
   const {
@@ -21,11 +23,9 @@ const Event = (props) => {
     address,
     content,
     image,
-    // created_at,
     updated_at,
     profile_id,
     profile_image,
-    event_genres,
     comments_count,
     interested_id,
     interesteds_count,
@@ -33,11 +33,28 @@ const Event = (props) => {
     goings_count,
     eventPage,
     setEvents,
+    setGenres,
   } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
+  const [genresToGet, setGenresToGet] = useState({ results: [] });
+
+  useEffect(() => {
+    
+    const fetchGenres = async () => {
+      try {
+        const {data} = await axiosReq.get(
+          `/categories/genres/?category=${category}`);
+          setGenresToGet(data)
+      } catch(err){console.log(err)}
+    }
+    fetchGenres()
+  }, [category])
+
+
+
 
   const handleEdit = () => {
     history.push(`/events/${id}/edit`);
@@ -48,55 +65,69 @@ const Event = (props) => {
       await axiosRes.delete(`/events/${id}/`);
       history.goBack();
     } catch (err) {
-      // console.log(err);
+      console.log(err);
     }
   };
 
   const handleInterested = async () => {
     try {
-        const { data } = await axiosRes.post('/interested/', { posted_event: id })
-        setEvents((prevEvents) => ({
-            ...prevEvents,
-            results: prevEvents.results.map((posted_event) => {
-                console.log(posted_event)
-                return posted_event.id === id
-                ? {...posted_event, interesteds_count: posted_event.interesteds_count + 1, interested_id: data.id}
-                : posted_event;
-            }),
-        }));
+      const { data } = await axiosRes.post("/interested/", {
+        posted_event: id,
+      });
+      setEvents((prevEvents) => ({
+        ...prevEvents,
+        results: prevEvents.results.map((posted_event) => {
+          console.log(posted_event);
+          return posted_event.id === id
+            ? {
+                ...posted_event,
+                interesteds_count: posted_event.interesteds_count + 1,
+                interested_id: data.id,
+              }
+            : posted_event;
+        }),
+      }));
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
   };
 
   const handleUninterested = async () => {
     try {
-        axiosRes.delete(`/interested/${interested_id}`)
-        setEvents((prevEvents) => ({
-            ...prevEvents,
-            results: prevEvents.results.map((posted_event) => {
-                return posted_event.id === id
-                ? {...posted_event, interesteds_count: posted_event.interesteds_count - 1, interested_id: null}
-                : posted_event;
-            }),
-        }));
+      axiosRes.delete(`/interested/${interested_id}`);
+      setEvents((prevEvents) => ({
+        ...prevEvents,
+        results: prevEvents.results.map((posted_event) => {
+          return posted_event.id === id
+            ? {
+                ...posted_event,
+                interesteds_count: posted_event.interesteds_count - 1,
+                interested_id: null,
+              }
+            : posted_event;
+        }),
+      }));
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
   };
   const handleGoing = async () => {
     try {
       const { data } = await axiosRes.post("/going/", { posted_event: id });
-      console.log(data)
+      console.log(data);
       setEvents((prevEvents) => ({
         ...prevEvents,
         results: prevEvents.results.map((posted_event) => {
           return posted_event.id === id
-            ? { ...posted_event, goings_count: posted_event.goings_count + 1, going_id: data.id }
+            ? {
+                ...posted_event,
+                goings_count: posted_event.goings_count + 1,
+                going_id: data.id,
+              }
             : posted_event;
         }),
       }));
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   };
@@ -107,7 +138,11 @@ const Event = (props) => {
         ...prevEvents,
         results: prevEvents.results.map((posted_event) => {
           return posted_event.id === id
-            ? { ...posted_event, goings_count: posted_event.goings_count - 1, going_id: null }
+            ? {
+                ...posted_event,
+                goings_count: posted_event.goings_count - 1,
+                going_id: null,
+              }
             : posted_event;
         }),
       }));
@@ -125,24 +160,35 @@ const Event = (props) => {
           </Link>
           <div className="d-flex align-item-center">
             <span>{updated_at}</span>
-            {is_owner && eventPage && <MoreDropdown 
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}/>}
+
+            {is_owner && eventPage && (
+              <>
+                <MoreDropdown
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
+              </>
+            )}
           </div>
         </Media>
+        <Container>
+          <EventGenreCreateForm
+            genresToGet={genresToGet}
+            setGenres={setGenres}
+          />
+        </Container>
       </Card.Body>
       <Link to={`/events/${id}/`}>
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
+        {id && <Card.Title className="text-center">{id}</Card.Title>}
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {date && <Card.Subtitle>{date}</Card.Subtitle>}
-        {category && <Card.Subtitle>{category}</Card.Subtitle>}
-        {event_genres && <Card.Text>{event_genres}</Card.Text>}
         {location && <Card.Text>{location}</Card.Text>}
         {address && <Card.Text>{address}</Card.Text>}
         {content && <Card.Text>{content}</Card.Text>}
-        
+
         <div className={styles.EventBar}>
           {interested_id ? (
             <span onClick={handleUninterested}>
@@ -176,14 +222,15 @@ const Event = (props) => {
             <OverlayTrigger
               placement="top"
               overlay={
-                <Tooltip>Log in to show that you are going to an event!</Tooltip>
+                <Tooltip>
+                  Log in to show that you are going to an event!
+                </Tooltip>
               }
             >
               <i className="far fa-calendar-check" />
             </OverlayTrigger>
           )}
           {goings_count}
-
 
           <Link to={`/events/${id}`}>
             <i className="far fa-comments" />

@@ -5,8 +5,11 @@ import Container from "react-bootstrap/Container";
 import CategoryCreateForm from "./CategoryCreateForm";
 import { axiosReq } from "../../api/axiosDefaults";
 import Category from "./Category";
+// import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const CategoriesPage = () => {
+  // const currentUser = useCurrentUser();
+  // const admin = currentUser.pk === 1;
   const [categories, setCategories] = useState({
     results: [],
   });
@@ -34,9 +37,11 @@ const CategoriesPage = () => {
         ))}
       </Col>
       <Col lg={6} className="d-lg-block p-0 p-lg-2">
+        {
+        //  admin && 
         <Container>
           <CategoryCreateForm setCategories={setCategories} />
-        </Container>
+        </Container>}
       </Col>
     </Row>
   );

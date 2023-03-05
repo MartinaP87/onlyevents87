@@ -10,6 +10,7 @@ import GenreEditForm from "./GenreEditForm";
 const Genre = (props) => {
   const { gen_name, id, cat_id, setGenres} = props;
   // const currentUser = useCurrentUser();
+  // const admin = currentUser.pk === 1;
   const [showEditForm, setShowEditForm] = useState(false);
 
   const handleDelete = async () => {
@@ -47,12 +48,14 @@ const Genre = (props) => {
             
             )}
         </Media.Body>
+       {
+      //  admin && 
        <MoreDropdown
           handleEdit={() => {
             setShowEditForm(true);
           }}
           handleDelete={handleDelete}
-        />
+        />}
       </Media>
     </>
   );

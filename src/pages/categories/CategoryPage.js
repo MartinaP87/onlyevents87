@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-// import Container from "react-bootstrap/Container";
 // import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Category from "./Category";
 import { Container } from "react-bootstrap";
@@ -14,6 +13,8 @@ function CategoryPage() {
   const { id } = useParams();
   const [categoryData, setCategoryData] = useState({ results: [] });
   const [genres, setGenres] = useState({ results: [] });
+  // const currentUser = useCurrentUser();
+  // const admin = currentUser.pk === 1;
 
   useEffect(() => {
     const handleMount = async () => {
@@ -50,6 +51,8 @@ function CategoryPage() {
         />
           )) : <p>No genres in this category yet</p>}
       </Col>
+      {
+      // admin && 
       <Col lg={6} className="d-lg-block p-0 p-lg-2">
         <Container>
           <GenreCreateForm 
@@ -57,7 +60,7 @@ function CategoryPage() {
           setGenres={setGenres}
           />
         </Container>
-      </Col>
+      </Col>}
     </Row>
   );
 }
