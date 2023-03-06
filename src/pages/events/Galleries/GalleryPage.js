@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { axiosReq } from "../../../api/axiosDefaults";
 import { useParams } from "react-router-dom";
@@ -27,7 +26,6 @@ function GalleryPage(props) {
         console.log(err);
       }
     };
-    console.log("PHOTO", photos.results)
     fetchData();
   }, [id]);
 
@@ -35,7 +33,7 @@ function GalleryPage(props) {
     
       <Col className="py-2 p-0 p-lg-2" lg={3}>
         <Container className={appStyles.Content}>
-          Gallery: {gallery.name}
+          {gallery.name}
           {photos.results.length ? ( 
             <InfiniteScroll
               children={photos.results.map((photo) => (

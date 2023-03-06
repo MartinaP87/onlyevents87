@@ -17,6 +17,8 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
 import CategoriesPage from "./pages/categories/CategoriesPage";
 import CategoryPage from "./pages/categories/CategoryPage";
+import PhotoPage from "./pages/events/Photos/PhotoPage";
+import PhotoEditForm from "./pages/events/Photos/PhotoEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -75,7 +77,18 @@ function App() {
             path="/events/:id/edit"
             render={() => <EventEditForm />}
           />
-          <Route exact path="/events/:id" render={() => <EventPage />} />
+          <Route exact path="/events/:id" 
+          render={() => <EventPage />} />
+          <Route
+            exact
+            path="/events/galleries/photos/:id"
+            render={() => <PhotoPage />}
+          />
+          <Route
+            exact
+            path="/events/galleries/photos/:id/edit"
+            render={() => <PhotoEditForm />}
+          />
           <Route
             exact
             path="/categories/"

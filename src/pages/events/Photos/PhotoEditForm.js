@@ -1,36 +1,49 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Upload from "../../../assets/red-upload.png";
 import styles from "../../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../../App.module.css";
 import btnStyles from "../../../styles/Button.module.css";
-import Asset from "../../../components/Asset";
 import { axiosReq } from "../../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-import { useRedirect } from "../../../hooks/useRedirect";
+// import { useCurrentUser } from "../../../contexts/CurrentUserContext";
 
-function PhotoCreateForm(props) {
-  useRedirect("loggedOut");
-
-  const {id} = props
+function PhotoEditForm() {
   const [errors, setErrors] = useState({});
-  const history = useHistory();
   const [photoData, setPhotoData] = useState({
-    // gallery: "",
+    gallery: "",
     title: "",
     image: "",
   });
-  const { title, image } =
-    photoData;
-  
+
+  const { gallery, title, image } = photoData;
   const imageInput = useRef(null);
-  
+  const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/events/galleries/photos/${id}`);
+        const { gallery, title, image, is_owner} = data;
+        is_owner
+          ? setPhotoData({
+              gallery,
+              title,
+              image,
+            })
+          : history.push(`/events/galleries/photos/${id}/`);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMount();
+  }, [history, id]);
 
   const handleChangeTitle = (event) => {
     setPhotoData({
@@ -38,7 +51,6 @@ function PhotoCreateForm(props) {
       title: event.target.value,
     });
   };
-
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
@@ -51,17 +63,18 @@ function PhotoCreateForm(props) {
   };
 
   const handleSubmit = async (event) => {
+    
     event.preventDefault();
     const formData = new FormData();
+    formData.append("gallery", gallery);
     formData.append("title", title);
-    formData.append("gallery", id);
-    formData.append("image", imageInput.current.files[0]);
-    console.log(formData.title)
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
+
     try {
-      const { data } = await axiosReq.post("/events/galleries/photos/", formData);
-      console.log(formData)
-      
-      history.push(`/events/galleries/photos/${data.id}/`);
+      await axiosReq.put(`/events/galleries/photos/${id}/`, formData);
+      history.push(`/events/galleries/photos/${id}/`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -91,12 +104,12 @@ function PhotoCreateForm(props) {
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
+        onClick={() => history.push(`/events/galleries/photos/${id}/`)}
       >
         cancel
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        create
+        save
       </Button>
     </div>
   );
@@ -109,32 +122,17 @@ function PhotoCreateForm(props) {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
-              {image ? (
-                <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
+              <figure>
+                <Image className={appStyles.Image} src={image} rounded />
+              </figure>
+              <div>
                 <Form.Label
-                  className="d-flex justify-content-center"
+                  className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
                   htmlFor="image-upload"
                 >
-                  <Asset
-                    src={Upload}
-                    message="Click or tap to upload an image"
-                  />
+                  Change the image
                 </Form.Label>
-              )}
-
+              </div>
               <Form.File
                 id="image-upload"
                 accept="image/*"
@@ -148,6 +146,7 @@ function PhotoCreateForm(props) {
               </Alert>
             ))}
 
+
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
@@ -159,4 +158,4 @@ function PhotoCreateForm(props) {
   );
 }
 
-export default PhotoCreateForm
+export default PhotoEditForm;
