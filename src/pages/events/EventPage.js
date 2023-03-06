@@ -27,13 +27,18 @@ function EventPage() {
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
-  const [genres, setGenres] = useState({results: []});
+  const [genres, setGenres] = useState({ results: [] });
   const [gallery, setGallery] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: event }, {data: comments}, {data: genres}, {data: gallery}] = await Promise.all([
+        const [
+          { data: event },
+          { data: comments },
+          { data: genres },
+          { data: gallery },
+        ] = await Promise.all([
           axiosReq.get(`/events/${id}`),
           axiosReq.get(`/comments/?posted_event=${id}`),
           axiosReq.get(`/events/genres/?event=${id}`),
@@ -42,9 +47,10 @@ function EventPage() {
         setEvent({ results: [event] });
         setComments(comments);
         setGallery(gallery);
-        setGenres(genres
+        setGenres(
+          genres
           // .results.filter((genre)=> genre.event === id)
-          );
+        );
       } catch (err) {
         console.log(err);
       }
@@ -54,26 +60,30 @@ function EventPage() {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <GalleryPage gallery={gallery}/>
+      <GalleryPage gallery={gallery} />
+      <Col className="py-2 p-0 p-lg-2" lg={6}>
         <PopularProfiles mobile />
-        <Event {...event.results[0]} setEvents={setEvent} setGenres={setGenres} eventPage />
-
-        <Container className={appStyles.Content}>
-          {genres.results.length ? (
-            <InfiniteScroll 
-            children={genres.results.map((genre) => (
-              <EventGenre key={genre.id} {...genre}
-              setGenres={setGenres} 
-              />
-            ))}
-            dataLength={genres.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!genres.next}
-            next={() => fetchMoreData(genres, setGenres)}
+        <Event
+          {...event.results[0]}
+          setEvents={setEvent}
+          setGenres={setGenres}
+          eventPage
+        />
+        {genres.results.length ? (
+            <InfiniteScroll
+              children={genres.results.map((genre) => (
+                <EventGenre key={genre.id} {...genre} setGenres={setGenres} />
+              ))}
+              dataLength={genres.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!genres.next}
+              next={() => fetchMoreData(genres, setGenres)}
             />
-          ) : ("No genres yet")}
-
+          ) : (
+            "No genres yet"
+          )}
+        
+        <Container className={appStyles.Content}>
           {currentUser ? (
             <CommentCreateForm
               profile_id={currentUser.profile_id}
@@ -86,25 +96,29 @@ function EventPage() {
             "Comments"
           ) : null}
           {comments.results.length ? (
-            <InfiniteScroll 
-            children={comments.results.map((comment) => (
-              <Comment key={comment.id} {...comment}
-              setEvent={setEvent}
-              setComments={setComments} />
-            ))}
-            dataLength={comments.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!comments.next}
-            next={() => fetchMoreData(comments, setComments)}
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setEvent={setEvent}
+                  setComments={setComments}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
             />
-          ) : currentUser? (
+          ) : currentUser ? (
             <span>No comments yet, be the first to comment!</span>
           ) : (
             <span>No comments... yet</span>
           )}
         </Container>
       </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+
+      <Col lg={3} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
       </Col>
     </Row>
