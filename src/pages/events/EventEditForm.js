@@ -104,6 +104,7 @@ function EventEditForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("EventDATA", eventData)
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -116,7 +117,10 @@ function EventEditForm() {
     }
 
     try {
+      
       await axiosReq.put(`/events/${id}`, formData);
+      console.log("FORM", formData.get('image'))
+      console.log("FORM", formData.get('title'))
       history.push(`/events/${id}/`);
     } catch (err) {
       console.log(err);

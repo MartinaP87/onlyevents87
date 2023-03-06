@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../../styles/Comment.module.css";
-import { Media } from "react-bootstrap";
+import { Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
@@ -17,6 +17,8 @@ const Comment = (props) => {
         updated_at,
         content,
         id,
+        like_id,
+        likes_count,
         setEvent,
         setComments,
     } = props;
@@ -43,6 +45,49 @@ const Comment = (props) => {
         }
     };
 
+    const handleLike = async () => {
+      try {
+        const { data } = await axiosRes.post("/likes/", {
+          comment: id,
+        });
+        setComments((prevComments) => ({
+          ...prevComments,
+          results: prevComments.results.map((comment) => {
+            // console.log(posted_event);
+            return comment.id === id
+              ? {
+                  ...comment,
+                  likes_count: comment.likes_count + 1,
+                  like_id: data.id,
+                }
+              : comment;
+          }),
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  
+    const handleUnlike = async () => {
+      try {
+        axiosRes.delete(`/likes/${like_id}`);
+        setComments((prevComments) => ({
+          ...prevComments,
+          results: prevComments.results.map((comment) => {
+            return comment.id === id
+              ? {
+                  ...comment,
+                  likes_count: comment.likes_count - 1,
+                  like_id: null,
+                }
+              : comment;
+          }),
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+   
 
   return (
       <>
@@ -63,8 +108,31 @@ const Comment = (props) => {
               setComments={setComments}
               setShowEditForm={setShowEditForm}
             />
-            ) : (
+            ) : (<>
               <p>{content}</p>
+              <div>
+                {is_owner ? 
+                (<OverlayTrigger placement="top" overlay={<Tooltip>
+                  You can't like your own comment!
+                </Tooltip>}>
+                  <i className="fas fa-heart" />
+                </OverlayTrigger>) : like_id ? (
+                  <span onClick={handleUnlike}>
+                    <i className={`far fa-heart ${styles.Heart}`}/>
+                  </span>
+                ) : currentUser ? (
+                  <span onClick={handleLike}>
+                    <i className={`fas fa-heart ${styles.HeartOutline}`}/>
+                  </span>
+                ) : (<OverlayTrigger placement="top" overlay={<Tooltip>
+                  Log in to like comments!
+                </Tooltip>}>
+                  <i className="far fa-heart" />
+                </OverlayTrigger>)}
+                {likes_count}
+              </div>
+              </>
+
             )}
           </Media.Body>
           {is_owner && !showEditForm && (

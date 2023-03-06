@@ -37,6 +37,7 @@ function PhotoEditForm() {
               title,
               image,
             })
+            
           : history.push(`/events/galleries/photos/${id}/`);
       } catch (err) {
         console.log(err);
@@ -63,7 +64,6 @@ function PhotoEditForm() {
   };
 
   const handleSubmit = async (event) => {
-    
     event.preventDefault();
     const formData = new FormData();
     formData.append("gallery", gallery);

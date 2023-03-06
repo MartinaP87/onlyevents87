@@ -49,7 +49,6 @@ function EventPage() {
         setGallery(gallery);
         setGenres(
           genres
-          // .results.filter((genre)=> genre.event === id)
         );
       } catch (err) {
         console.log(err);

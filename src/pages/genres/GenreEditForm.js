@@ -18,7 +18,6 @@ const GenreEditForm = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    console.log("GENDATA", genreData, "ID", id)
     event.preventDefault();
     try {
       await axiosReq.put(`/categories/genres/${id}/`, 

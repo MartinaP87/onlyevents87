@@ -19,6 +19,7 @@ const Event = (props) => {
     owner,
     date,
     category,
+    category_name,
     location,
     address,
     content,
@@ -182,12 +183,12 @@ const Event = (props) => {
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
-        {id && <Card.Title className="text-center">{id}</Card.Title>}
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {date && <Card.Subtitle>{date}</Card.Subtitle>}
         {location && <Card.Text>{location}</Card.Text>}
         {address && <Card.Text>{address}</Card.Text>}
         {content && <Card.Text>{content}</Card.Text>}
+        {category_name && <Card.Text>{category_name}</Card.Text>}
 
         <div className={styles.EventBar}>
           {interested_id ? (
