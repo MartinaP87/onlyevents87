@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
-import { axiosRes } from "../../api/axiosDefaults";
-import styles from "../../styles/Event.module.css";
+import { axiosRes } from "../../../api/axiosDefaults";
+import styles from "../../../styles/Event.module.css";
 
 const EventGenre = (props) => {
   const {

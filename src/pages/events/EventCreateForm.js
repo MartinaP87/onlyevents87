@@ -54,11 +54,17 @@ function EventCreateForm() {
   };
 
   const handleChangeCategory = (event) => {
-    setEventData({
+    if (event.target.value !== "select the event category")
+    {
+      setEventData({
       ...eventData,
       category: categoriesToGet.results.filter(
         (categoryToGet) => categoryToGet.cat_name === event.target.value)[0].id
-    });
+  })} else {
+      setEventData({
+        ...eventData,
+        category: ""
+    })}
   };
 
   const handleChangeImage = (event) => {
@@ -272,4 +278,4 @@ function EventCreateForm() {
   );
 }
 
-export default EventCreateForm;
+export default EventCreateForm

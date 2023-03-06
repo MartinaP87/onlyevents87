@@ -9,7 +9,7 @@ import Avatar from "../../components/Avatar";
 import styles from "../../styles/Event.module.css";
 import {  axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import EventGenreCreateForm from "./EventGenreCreateForm";
+import EventGenreCreateForm from "./EventGenres/EventGenreCreateForm";
 import { Container } from "react-bootstrap";
 
 const Event = (props) => {

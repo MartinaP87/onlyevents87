@@ -4,11 +4,11 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import styles from "../../styles/EventCreateEditForm.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import { axiosReq } from "../../api/axiosDefaults";
-// import { Alert } from "react-bootstrap";
+import styles from "../../../styles/EventCreateEditForm.module.css";
+import appStyles from "../../../App.module.css";
+import btnStyles from "../../../styles/Button.module.css";
+import { axiosReq } from "../../../api/axiosDefaults";
+import { Alert } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 
 
@@ -63,9 +63,11 @@ const EventGenreCreateForm = (props) => {
         setErrors(err.response?.data);
       }
     }
-    // setEventGenre({
-    //   genre: ""
-    // });
+    
+    setEventGenre({ 
+      event: "",
+      genre: ""
+     });
   };
 
   return (
@@ -75,7 +77,7 @@ const EventGenreCreateForm = (props) => {
           <Container
             className={`${appStyles.Content} d-flex flex-column justify-content-center`}
           >
-            {genresToGet.results.length && (
+            {genresToGet?.results.length && (
               <Form.Group controlId="genre">
                 <Form.Label className="d-none">Genre</Form.Label>
                 <Form.Control
@@ -94,11 +96,11 @@ const EventGenreCreateForm = (props) => {
               </Form.Group>
             )}
 
-            {/* {errors.eventGenre?.map((message, idx) => (
+            {errors.genre?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
-            ))} */}
+            ))}
 
             <Button
               className={`${btnStyles.Button} ${btnStyles.Blue}`}

@@ -16,7 +16,8 @@ import PopularProfiles from "../profiles/PopularProfiles";
 
 // import EventGenreCreateForm from "./EventGenreCreateForm";
 import { Container } from "react-bootstrap";
-import EventGenrePage from "./EventGenre";
+import EventGenre from "./EventGenres/EventGenre";
+import GalleryPage from "./Galleries/GalleryPage";
 // import EventGenreCreateForm from "./EventGenreCreateForm";
 // import EventGenre from "./EventGenre";
 
@@ -27,18 +28,20 @@ function EventPage() {
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
   const [genres, setGenres] = useState({results: []});
-  
+  const [gallery, setGallery] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: event }, {data: comments}, {data: genres}] = await Promise.all([
+        const [{ data: event }, {data: comments}, {data: genres}, {data: gallery}] = await Promise.all([
           axiosReq.get(`/events/${id}`),
           axiosReq.get(`/comments/?posted_event=${id}`),
-          axiosReq.get(`/events/genres/?event=${id}`)
+          axiosReq.get(`/events/genres/?event=${id}`),
+          axiosReq.get(`events/galleries/${id}`),
         ]);
         setEvent({ results: [event] });
         setComments(comments);
+        setGallery(gallery);
         setGenres(genres
           // .results.filter((genre)=> genre.event === id)
           );
@@ -52,15 +55,15 @@ function EventPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+        <GalleryPage gallery={gallery}/>
         <PopularProfiles mobile />
-
         <Event {...event.results[0]} setEvents={setEvent} setGenres={setGenres} eventPage />
 
         <Container className={appStyles.Content}>
           {genres.results.length ? (
             <InfiniteScroll 
             children={genres.results.map((genre) => (
-              <EventGenrePage key={genre.id} {...genre}
+              <EventGenre key={genre.id} {...genre}
               setGenres={setGenres} 
               />
             ))}
