@@ -21,6 +21,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Event from "../events/Event";
+import Preference from "./prefernces/Preference";
+import PreferenceCreateForm from "./prefernces/PreferenceCreateForm";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -33,21 +35,36 @@ function ProfilePage() {
   const [profileEvents, setProfileEvents] = useState({
     results: [],
   });
+  const [preferences, setPreferences] = useState({
+    results: [],
+  });
+  const [preferenceChoice, setPreferenceChoice] = useState({
+    results: [],
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profileEvents }] =
-          await Promise.all([
-            axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/events/?owner__profile=${id}`),
-          ]);
+        const [
+          { data: pageProfile },
+          { data: profileEvents },
+          { data: preferences },
+          { data: preferenceChoice },
+        ] = await Promise.all([
+          axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/events/?owner__profile=${id}`),
+          axiosReq.get(`/profiles/preferences/?profile=${id}`),
+          axiosReq.get(`/categories/genres/`),
+        ]);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
         setProfileEvents(profileEvents);
+        setPreferences(preferences);
+        setPreferenceChoice(preferenceChoice);
         setHasLoaded(true);
+        console.log("PREF", preferences.results.length)
       } catch (err) {
         console.log(err);
       }
@@ -57,14 +74,43 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
-          <Image
-            className={styles.ProfileImage}
-            roundedCircle
-            src={profile?.image}
-          />
+          <Row>
+            <Image
+              className={styles.ProfileImage}
+              roundedCircle
+              src={profile?.image}
+            />
+          </Row>
+          <Row>Bottoni</Row>
+          <Row>
+            {is_owner && 
+            <PreferenceCreateForm 
+            preferenceChoice={preferenceChoice} 
+            setPreferences={setPreferences} 
+            />
+            }
+
+            {preferences.results.length ? (
+              <InfiniteScroll
+                children={preferences.results.map((preference) => (
+                  <Preference
+                    key={preference.id}
+                    {...preference}
+                    setPreferences={setPreferences}
+                  />
+                ))}
+                dataLength={preferences.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!preferences.next}
+                next={() => fetchMoreData(preferences, setPreferences)}
+              />
+            ) : (
+              <p> No preferences yet...</p>
+            )}
+          </Row>
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
