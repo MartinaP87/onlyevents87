@@ -19,6 +19,7 @@ import CategoriesPage from "./pages/categories/CategoriesPage";
 import CategoryPage from "./pages/categories/CategoryPage";
 import PhotoPage from "./pages/events/Photos/PhotoPage";
 import PhotoEditForm from "./pages/events/Photos/PhotoEditForm";
+import PhotosPage from "./pages/profiles/PhotosPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -35,6 +36,16 @@ function App() {
               <EventsPage message="No results found. Adjust the search keyword." />
             )}
           />
+          {/* <Route
+            exact
+            path="/category/:id"
+            render={() => (
+              <EventsPage
+                message="No events of this category found."
+                filter={`category=${category_id}&`}
+              />
+            )}
+          /> */}
           <Route
             exact
             path="/feeds"
@@ -51,7 +62,7 @@ function App() {
             render={() => (
               <EventsPage
                 message="No results found. Adjust the search keyword or show interest for an event."
-                filter={`ineresteds__owner__profile=${profile_id}&ordering=-interesteds__created_at&`}
+                filter={`interesteds__owner__profile=${profile_id}&ordering=-interesteds__created_at&`}
               />
             )}
           />
@@ -62,6 +73,16 @@ function App() {
               <EventsPage
                 message="No results found. Adjust the search keyword or show that you are going to an event."
                 filter={`goings__owner__profile=${profile_id}&ordering=-goings__created_at&`}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/favourites"
+            render={() => (
+              <EventsPage
+                message="No results found. Adjust the search keyword or show that you are going to an event."
+                filter={`event_genres__genre__preference__profile=${profile_id}&`}
               />
             )}
           />
@@ -96,6 +117,7 @@ function App() {
           />
           <Route exact path="/categories/:id" render={() => <CategoryPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+          <Route exact path="/my_photos/:id" render={() => <PhotosPage />} />
           <Route
             exact
             path="/profiles/:id/edit/username"

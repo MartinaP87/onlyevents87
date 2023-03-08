@@ -119,8 +119,6 @@ function EventEditForm() {
     try {
       
       await axiosReq.put(`/events/${id}`, formData);
-      console.log("FORM", formData.get('image'))
-      console.log("FORM", formData.get('title'))
       history.push(`/events/${id}/`);
     } catch (err) {
       console.log(err);

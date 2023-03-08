@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Event.module.css";
-import {  axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import EventGenreCreateForm from "./EventGenres/EventGenreCreateForm";
 import { Container } from "react-bootstrap";
@@ -43,19 +43,20 @@ const Event = (props) => {
   const [genresToGet, setGenresToGet] = useState({ results: [] });
 
   useEffect(() => {
-    
     const fetchGenres = async () => {
       try {
-        const {data} = await axiosReq.get(
-          `/categories/genres/?category=${category}`);
-          setGenresToGet(data)
-      } catch(err){console.log(err)}
+        const { data } = await axiosReq.get(
+          `/categories/genres/?category=${category}`
+        );
+        setGenresToGet(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (category) {
+      fetchGenres();
     }
-    fetchGenres()
-  }, [category])
-
-
-
+  }, [category]);
 
   const handleEdit = () => {
     history.push(`/events/${id}/edit`);
@@ -168,27 +169,32 @@ const Event = (props) => {
                   handleEdit={handleEdit}
                   handleDelete={handleDelete}
                 />
+                <Container>
+                  <EventGenreCreateForm
+                    genresToGet={genresToGet}
+                    setGenres={setGenres}
+                  />
+                </Container>
               </>
             )}
           </div>
         </Media>
-        <Container>
-          <EventGenreCreateForm
-            genresToGet={genresToGet}
-            setGenres={setGenres}
-          />
-        </Container>
       </Card.Body>
       <Link to={`/events/${id}/`}>
-        <Card.Img src={image} alt={title} />
+        <Card.Img className={styles.EventImage} src={image} alt={title} />
       </Link>
       <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
         {date && <Card.Subtitle>{date}</Card.Subtitle>}
-        {location && <Card.Text>{location}</Card.Text>}
-        {address && <Card.Text>{address}</Card.Text>}
-        {content && <Card.Text>{content}</Card.Text>}
-        {category_name && <Card.Text>{category_name}</Card.Text>}
+        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {location && <Card.Subtitle>{location}</Card.Subtitle>}
+        {eventPage && (
+          <>
+            {category_name && <Card.Text>{category_name}</Card.Text>}
+            {address && <Card.Text>{address}</Card.Text>}
+            <hr />
+            {content && <Card.Text>{content}</Card.Text>}
+          </>
+        )}
 
         <div className={styles.EventBar}>
           {interested_id ? (

@@ -22,7 +22,6 @@ function PhotoCreateForm(props) {
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const [photoData, setPhotoData] = useState({
-    // gallery: "",
     title: "",
     image: "",
   });

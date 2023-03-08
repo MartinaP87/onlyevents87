@@ -47,9 +47,7 @@ function EventPage() {
         setEvent({ results: [event] });
         setComments(comments);
         setGallery(gallery);
-        setGenres(
-          genres
-        );
+        setGenres(genres);
       } catch (err) {
         console.log(err);
       }

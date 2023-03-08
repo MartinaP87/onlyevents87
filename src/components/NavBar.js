@@ -36,7 +36,7 @@ const NavBar = () => {
 
   const loggedInIcons = (
     <>
-      {currentUser?.username}
+      
       <NavLink
         to="/feeds"
         className={styles.NavLink}
@@ -90,7 +90,7 @@ const NavBar = () => {
         className={styles.NavLink}>
         <Avatar 
         src={currentUser?.profile_image} 
-        text='Profile'
+        text={`${currentUser?.username}'s profile`}
         height={40}/>
       </NavLink>
     </>

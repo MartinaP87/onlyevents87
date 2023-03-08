@@ -1,5 +1,6 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import Button from "react-bootstrap/Button";
 import styles from "../styles/MoreDropdown.module.css";
 import { useHistory } from "react-router";
 
@@ -14,6 +15,16 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
       onClick(e);
     }}
   />
+));
+
+const ProfileDropdown = React.forwardRef(({ onClick }, ref) => (
+  <Button
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+  >Edit Profile</Button>
 ));
 
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
@@ -48,8 +59,10 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
 export function ProfileEditDropdown({ id }) {
   const history = useHistory();
   return (
-    <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
-      <Dropdown.Toggle as={ThreeDots} />
+    <Dropdown 
+    className={`ml-auto px-3 ${styles.AbsoluteLeft}`}
+    >
+      <Dropdown.Toggle as={ProfileDropdown} />
       <Dropdown.Menu>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit`)}

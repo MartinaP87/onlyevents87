@@ -12,13 +12,14 @@ import btnStyles from "../../styles/Button.module.css";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   useProfileData,
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Button, Image } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Event from "../events/Event";
 import Preference from "./prefernces/Preference";
@@ -64,7 +65,7 @@ function ProfilePage() {
         setPreferences(preferences);
         setPreferenceChoice(preferenceChoice);
         setHasLoaded(true);
-        console.log("PREF", preferences.results.length)
+        console.log("PREF", preferences.results.length);
       } catch (err) {
         console.log(err);
       }
@@ -72,47 +73,57 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
+  const mainProfileActions = (
+    <Container>
+      <Row noGutters className="justify-content-center">
+        <Image
+          className={styles.ProfileImage}
+          roundedCircle
+          src={profile?.image}
+        />
+      </Row>
+      <Row className="my-3 justify-content-center">
+        {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+        <Button className="ml-auto">
+          <Link to={`/my_photos/${id}`}>Photos</Link>
+          
+        </Button>
+      </Row>
+      <Row className="my-3 justify-content-center">
+        {is_owner && (
+          <PreferenceCreateForm
+            preferenceChoice={preferenceChoice}
+            setPreferences={setPreferences}
+          />
+        )}
+      </Row>
+      <Row className="my-3 justify-content-center">
+        <Col lg={12}>
+        {preferences.results.length ? (
+          <InfiniteScroll
+            children={preferences.results.map((preference) => (
+              <Preference
+                key={preference.id}
+                {...preference}
+                setPreferences={setPreferences}
+              />
+            ))}
+            dataLength={preferences.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!preferences.next}
+            next={() => fetchMoreData(preferences, setPreferences)}
+          />
+        ) : (
+          <p> No preferences yet...</p>
+        )}</Col>
+      </Row>
+    </Container>
+  );
+
   const mainProfile = (
     <>
-      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
-        <Col lg={3} className="text-lg-left">
-          <Row>
-            <Image
-              className={styles.ProfileImage}
-              roundedCircle
-              src={profile?.image}
-            />
-          </Row>
-          <Row>Bottoni</Row>
-          <Row>
-            {is_owner && 
-            <PreferenceCreateForm 
-            preferenceChoice={preferenceChoice} 
-            setPreferences={setPreferences} 
-            />
-            }
-
-            {preferences.results.length ? (
-              <InfiniteScroll
-                children={preferences.results.map((preference) => (
-                  <Preference
-                    key={preference.id}
-                    {...preference}
-                    setPreferences={setPreferences}
-                  />
-                ))}
-                dataLength={preferences.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!preferences.next}
-                next={() => fetchMoreData(preferences, setPreferences)}
-              />
-            ) : (
-              <p> No preferences yet...</p>
-            )}
-          </Row>
-        </Col>
-        <Col lg={6}>
+        <Col lg={9}>
           <h3 className="m-2">{profile?.owner}</h3>
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
@@ -179,7 +190,8 @@ function ProfilePage() {
 
   return (
     <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col lg={3}>{mainProfileActions}</Col>
+      <Col className="py-2 p-0 p-lg-2" lg={6}>
         <PopularProfiles mobile />
         <Container className={appStyles.Content}>
           {hasLoaded ? (
@@ -192,7 +204,7 @@ function ProfilePage() {
           )}
         </Container>
       </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+      <Col lg={3} className="d-none d-lg-block p-0 p-lg-2">
         <PopularProfiles />
       </Col>
     </Row>

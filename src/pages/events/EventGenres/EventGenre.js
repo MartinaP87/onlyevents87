@@ -6,12 +6,8 @@ import styles from "../../../styles/Event.module.css";
 const EventGenre = (props) => {
   const {
     id,
-    // event,
-    // genre,
     event_title,
     genre_name,
-    // genre_category,
-    // event_category,
     setGenres,
   } = props;
 
@@ -42,12 +38,7 @@ const EventGenre = (props) => {
           {genre_name && (
             <Card.Title className="text-center">{genre_name}</Card.Title>
           )}
-          {/* {event && <Card.Title className="text-center">{event}</Card.Title>}
-          {genre && <Card.Subtitle>{genre}</Card.Subtitle>}
-          {genre_category && <Card.Subtitle>{genre_category}</Card.Subtitle>}
-          {event_category && <Card.Text>{event_category}</Card.Text>} */}
           {event_title && <Card.Text>{event_title}</Card.Text>}
-          {/* {id && <Card.Text>{id}</Card.Text>} */}
         </Card.Body>
       </Card>
     </div>
