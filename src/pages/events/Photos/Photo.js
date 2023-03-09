@@ -18,18 +18,23 @@ const Photo = (props) => {
     profile_id,
     profile_image,
     photoPage,
+    setPhotos,
   } = props;
 
   const history = useHistory();
 
   const handleEdit = () => {
-    history.push(`/events/galleries/photos/${id}/edit`)
+    history.push(`/events/galleries/photos/${id}/edit`);
   };
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/events/galleries/photos/${id}/`);
       history.goBack();
+      setPhotos((prevPhotos) => ({
+        ...prevPhotos,
+        results: prevPhotos.results.filter((photo) => photo.id !== id),
+      }));
     } catch (err) {
       console.log(err);
     }
@@ -55,15 +60,13 @@ const Photo = (props) => {
               )}
             </div>
           </Media>
-          {title && <Card.Title className="text-center">
-            {title}</Card.Title>}
+          {title && <Card.Title className="text-center">{title}</Card.Title>}
         </Card.Body>
       )}
-      
-        <Link to={`/events/galleries/photos/${id}/`}>
-          <Card.Img src={image} alt={title} />
-        </Link>
-      
+
+      <Link to={`/events/galleries/photos/${id}/`}>
+        <Card.Img src={image} alt={title} />
+      </Link>
     </Card>
   );
 };

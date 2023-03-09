@@ -30,14 +30,13 @@ function PhotoEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/events/galleries/photos/${id}`);
-        const { gallery, title, image, is_owner} = data;
+        const { gallery, title, image, is_owner } = data;
         is_owner
           ? setPhotoData({
               gallery,
               title,
               image,
             })
-            
           : history.push(`/events/galleries/photos/${id}/`);
       } catch (err) {
         console.log(err);
@@ -145,7 +144,6 @@ function PhotoEditForm() {
                 {message}
               </Alert>
             ))}
-
 
             <div className="d-md-none">{textFields}</div>
           </Container>

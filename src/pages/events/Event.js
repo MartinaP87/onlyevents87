@@ -153,99 +153,96 @@ const Event = (props) => {
     }
   };
   return (
-    <Card className={styles.Event}>
-      <Card.Body>
-        <Media className="align-item-center justify-content-between">
-          <Link to={`/profiles/${profile_id}/`}>
-            <Avatar src={profile_image} height={55} />
-            {owner}
-          </Link>
-          <div className="d-flex align-item-center">
-            <span>{updated_at}</span>
+    <Container>
+      <Card className={styles.Event}>
+        <Card.Body>
+          <Media className="align-item-center justify-content-between">
+            <Link to={`/profiles/${profile_id}/`}>
+              <Avatar src={profile_image} height={55} />
+              {owner}
+            </Link>
+            <div className="d-flex align-item-center">
+              <span>{updated_at}</span>
 
-            {is_owner && eventPage && (
-              <>
+              {is_owner && eventPage && (
                 <MoreDropdown
                   handleEdit={handleEdit}
                   handleDelete={handleDelete}
                 />
-                <Container>
-                  <EventGenreCreateForm
-                    genresToGet={genresToGet}
-                    setGenres={setGenres}
-                  />
-                </Container>
-              </>
+              )}
+            </div>
+          </Media>
+        </Card.Body>
+        <Link to={`/events/${id}/`}>
+          <Card.Img className={styles.EventImage} src={image} alt={title} />
+        </Link>
+        <Card.Body>
+          {date && <Card.Subtitle>{date}</Card.Subtitle>}
+          {title && <Card.Title className="text-center">{title}</Card.Title>}
+          {location && <Card.Subtitle>{location}</Card.Subtitle>}
+          {eventPage && (
+            <>
+              {category_name && <Card.Text>{category_name}</Card.Text>}
+              {address && <Card.Text>{address}</Card.Text>}
+              <hr />
+              {content && <Card.Text>{content}</Card.Text>}
+            </>
+          )}
+
+          <div className={styles.EventBar}>
+            {interested_id ? (
+              <span onClick={handleUninterested}>
+                <i className={`fas fa-calendar ${styles.Heart}`} />
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleInterested}>
+                <i className={`far fa-calendar ${styles.HeartOutline}`} />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip>Log in to show your interest to an event!</Tooltip>
+                }
+              >
+                <i className="far fa-calendar" />
+              </OverlayTrigger>
             )}
+            {interesteds_count}
+
+            {going_id ? (
+              <span onClick={handleNotGoing}>
+                <i className={`fas fa-calendar-check ${styles.Heart}`} />
+              </span>
+            ) : currentUser ? (
+              <span onClick={handleGoing}>
+                <i className={`far fa-calendar-check ${styles.HeartOutline}`} />
+              </span>
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={
+                  <Tooltip>
+                    Log in to show that you are going to an event!
+                  </Tooltip>
+                }
+              >
+                <i className="far fa-calendar-check" />
+              </OverlayTrigger>
+            )}
+            {goings_count}
+
+            <Link to={`/events/${id}`}>
+              <i className="far fa-comments" />
+            </Link>
+            {comments_count}
           </div>
-        </Media>
-      </Card.Body>
-      <Link to={`/events/${id}/`}>
-        <Card.Img className={styles.EventImage} src={image} alt={title} />
-      </Link>
-      <Card.Body>
-        {date && <Card.Subtitle>{date}</Card.Subtitle>}
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {location && <Card.Subtitle>{location}</Card.Subtitle>}
-        {eventPage && (
-          <>
-            {category_name && <Card.Text>{category_name}</Card.Text>}
-            {address && <Card.Text>{address}</Card.Text>}
-            <hr />
-            {content && <Card.Text>{content}</Card.Text>}
-          </>
-        )}
-
-        <div className={styles.EventBar}>
-          {interested_id ? (
-            <span onClick={handleUninterested}>
-              <i className={`fas fa-calendar ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleInterested}>
-              <i className={`far fa-calendar ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={
-                <Tooltip>Log in to show your interest to an event!</Tooltip>
-              }
-            >
-              <i className="far fa-calendar" />
-            </OverlayTrigger>
-          )}
-          {interesteds_count}
-
-          {going_id ? (
-            <span onClick={handleNotGoing}>
-              <i className={`fas fa-calendar-check ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleGoing}>
-              <i className={`far fa-calendar-check ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={
-                <Tooltip>
-                  Log in to show that you are going to an event!
-                </Tooltip>
-              }
-            >
-              <i className="far fa-calendar-check" />
-            </OverlayTrigger>
-          )}
-          {goings_count}
-
-          <Link to={`/events/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {comments_count}
-        </div>
-      </Card.Body>
-    </Card>
+        </Card.Body>
+      </Card>
+      {is_owner && eventPage && (
+        <EventGenreCreateForm genresToGet={genresToGet} setGenres={setGenres} />
+      )}
+    </Container>
   );
 };
 

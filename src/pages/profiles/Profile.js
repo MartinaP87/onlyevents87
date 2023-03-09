@@ -8,13 +8,14 @@ import { Button } from 'react-bootstrap'
 import { useSetProfileData } from '../../contexts/ProfileDataContext'
 
 const Profile = (props) => {
-    const {profile, mobile, imageSize=55} = props
+    const {profile, mobile, imageSize=55, eventPage} = props
     const {id, following_id, image, owner } = profile
     const currentUser = useCurrentUser()
     const is_owner = currentUser?.username === owner
     const {handleFollow, handleUnfollow} = useSetProfileData()
   return (
-    <div className={`my-3 d-flex align-item-center ${mobile && "flex-column"}`}>
+    
+    <div className={`${!eventPage && "my-3"} d-flex align-item-center ${mobile && "flex-column"}`}>
         <div>
             <Link className='align-self-center' to={`/profiles/${id}`}>
                 <Avatar src={image} height={imageSize}/>
@@ -27,12 +28,12 @@ const Profile = (props) => {
             {!mobile && currentUser && ! is_owner && (
                 following_id ? (
                     <Button 
-                    className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                    className={`${btnStyles.Button} ${btnStyles.BlackOutline} ${styles.Button}`}
                     onClick={()=>handleUnfollow(profile)}>
                         Unfollow</Button>
                 ) : (
                     <Button 
-                    className={`${btnStyles.Button} ${btnStyles.Black}`}
+                    className={`${eventPage && styles.Button} ${btnStyles.Black} ${btnStyles.Button}`}
                     onClick={()=>handleFollow(profile)}>
                         Follow</Button>
                 )

@@ -5,10 +5,8 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import GenreEditForm from "./GenreEditForm";
 
-
-
 const Genre = (props) => {
-  const { gen_name, id, cat_id, setGenres} = props;
+  const { gen_name, id, cat_id, setGenres } = props;
   // const currentUser = useCurrentUser();
   // const admin = currentUser.pk === 1;
   const [showEditForm, setShowEditForm] = useState(false);
@@ -19,9 +17,7 @@ const Genre = (props) => {
 
       setGenres((prevGenres) => ({
         ...prevGenres,
-        results: prevGenres.results.filter(
-          (genre) => genre.id !== id
-        ),
+        results: prevGenres.results.filter((genre) => genre.id !== id),
       }));
     } catch (err) {
       console.log(err);
@@ -32,9 +28,8 @@ const Genre = (props) => {
     <>
       <hr />
       <Media>
-        
         <Media.Body className="align-self-center ml-2">
-         {showEditForm ? (
+          {showEditForm ? (
             <GenreEditForm
               id={id}
               cat_id={cat_id}
@@ -43,22 +38,21 @@ const Genre = (props) => {
               setShowEditForm={setShowEditForm}
             />
           ) : (
-            
-              <p>{gen_name}</p>
-            
-            )}
+            <p>{gen_name}</p>
+          )}
         </Media.Body>
-       {
-      //  admin && 
-       <MoreDropdown
-          handleEdit={() => {
-            setShowEditForm(true);
-          }}
-          handleDelete={handleDelete}
-        />}
+        {
+          //  admin &&
+          <MoreDropdown
+            handleEdit={() => {
+              setShowEditForm(true);
+            }}
+            handleDelete={handleDelete}
+          />
+        }
       </Media>
     </>
   );
 };
 
-export default Genre
+export default Genre;

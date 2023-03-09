@@ -8,11 +8,10 @@ import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-    
+
 const CategoryEditForm = (props) => {
   const { id, cat_name, setCategories, setShowEditForm } = props;
   const [categoryData, setCategoryData] = useState(cat_name);
-
 
   const handleChange = (event) => {
     setCategoryData(event.target.value);
@@ -21,21 +20,19 @@ const CategoryEditForm = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosReq.put(`/categories/${id}/`, 
-      {cat_name: categoryData});
+      await axiosReq.put(`/categories/${id}/`, { cat_name: categoryData });
       setCategories((prevCategories) => ({
         ...prevCategories,
         results: prevCategories.results.map((category) => {
           return category.id === id
             ? {
                 ...category,
-                cat_name: categoryData
+                cat_name: categoryData,
               }
             : category;
         }),
       }));
       setShowEditForm(false);
-      
     } catch (err) {
       console.log(err);
     }
@@ -59,11 +56,11 @@ const CategoryEditForm = (props) => {
                 onChange={handleChange}
               />
             </Form.Group>
-            
+
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                  onClick={() => setShowEditForm(false)}
+                onClick={() => setShowEditForm(false)}
               >
                 cancel
               </Button>
@@ -81,4 +78,4 @@ const CategoryEditForm = (props) => {
   );
 };
 
-export default CategoryEditForm
+export default CategoryEditForm;

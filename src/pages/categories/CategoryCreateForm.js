@@ -72,9 +72,11 @@ const CategoryCreateForm = (props) => {
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => setCategoryData({
-                  cat_name: "",
-                })}
+                onClick={() =>
+                  setCategoryData({
+                    cat_name: "",
+                  })
+                }
               >
                 cancel
               </Button>

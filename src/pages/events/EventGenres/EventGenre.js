@@ -1,15 +1,13 @@
 import React from "react";
-import { Button, Card } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { axiosRes } from "../../../api/axiosDefaults";
-import styles from "../../../styles/Event.module.css";
+import { useCurrentUser } from "../../../contexts/CurrentUserContext";
+import styles from "../../../styles/EventGenre.module.css";
 
 const EventGenre = (props) => {
-  const {
-    id,
-    event_title,
-    genre_name,
-    setGenres,
-  } = props;
+  const { id, genre_name, setGenres, owner } = props;
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser.username === owner;
 
   const handleDelete = async () => {
     try {
@@ -24,24 +22,20 @@ const EventGenre = (props) => {
   };
 
   return (
-    <div>
-      <Card className={styles.Event}>
-        <Button
-          className="align-item-right"
-          aria-label="delete"
-          onClick={handleDelete}
-        >
-          <i className="fas fa-trash-alt" />
-        </Button>
-
-        <Card.Body>
-          {genre_name && (
-            <Card.Title className="text-center">{genre_name}</Card.Title>
-          )}
-          {event_title && <Card.Text>{event_title}</Card.Text>}
-        </Card.Body>
-      </Card>
-    </div>
+    <Container className="d-inline-flex justfy-content-between p-2">
+      <Container className="p-0">
+        {genre_name && <p className={`${styles.Bold}`}>{genre_name}</p>}
+      </Container>
+      <Container className="text-align-right p-0">
+        {is_owner && (
+          <i
+            className={`fas fa-trash-alt ${styles.Trash}`}
+            aria-label="delete"
+            onClick={handleDelete}
+          />
+        )}
+      </Container>
+    </Container>
   );
 };
 

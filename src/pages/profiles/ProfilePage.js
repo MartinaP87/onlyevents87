@@ -83,11 +83,18 @@ function ProfilePage() {
         />
       </Row>
       <Row className="my-3 justify-content-center">
-        {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
-        <Button className="ml-auto">
-          <Link to={`/my_photos/${id}`}>Photos</Link>
-          
-        </Button>
+        {profile?.is_owner ? (
+          <>
+            <ProfileEditDropdown id={profile?.id} />
+            <Button className="ml-auto">
+              <Link to={`/my_photos/${id}`}>Photos</Link>
+            </Button>
+          </>
+        ) : (
+          <Button>
+            <Link to={`/my_photos/${id}`}>Photos</Link>
+          </Button>
+        )}
       </Row>
       <Row className="my-3 justify-content-center">
         {is_owner && (
@@ -99,23 +106,24 @@ function ProfilePage() {
       </Row>
       <Row className="my-3 justify-content-center">
         <Col lg={12}>
-        {preferences.results.length ? (
-          <InfiniteScroll
-            children={preferences.results.map((preference) => (
-              <Preference
-                key={preference.id}
-                {...preference}
-                setPreferences={setPreferences}
-              />
-            ))}
-            dataLength={preferences.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!preferences.next}
-            next={() => fetchMoreData(preferences, setPreferences)}
-          />
-        ) : (
-          <p> No preferences yet...</p>
-        )}</Col>
+          {preferences.results.length ? (
+            <InfiniteScroll
+              children={preferences.results.map((preference) => (
+                <Preference
+                  key={preference.id}
+                  {...preference}
+                  setPreferences={setPreferences}
+                />
+              ))}
+              dataLength={preferences.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!preferences.next}
+              next={() => fetchMoreData(preferences, setPreferences)}
+            />
+          ) : (
+            <p> No preferences yet...</p>
+          )}
+        </Col>
       </Row>
     </Container>
   );

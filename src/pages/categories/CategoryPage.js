@@ -19,13 +19,12 @@ function CategoryPage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: category }, { data: genres}] = await Promise.all([
+        const [{ data: category }, { data: genres }] = await Promise.all([
           axiosReq.get(`/categories/${id}`),
           axiosReq.get(`/categories/genres/?category=${id}`),
         ]);
         setCategoryData({ results: [category] });
         setGenres(genres);
-        
       } catch (err) {
         console.log(err);
       }
@@ -41,31 +40,32 @@ function CategoryPage() {
           setCategories={setCategoryData}
           categoryPage
         />
-        {genres.results.length ? 
+        {genres.results.length ? (
           genres.results.map((genre) => (
-        <Genre 
-        key={genre.id} 
-        {...genre}
-        setGenres={setGenres}
-        cat_id={id}
-        />
-          )) : <p>No genres in this category yet</p>}
+            <Genre
+              key={genre.id}
+              {...genre}
+              setGenres={setGenres}
+              cat_id={id}
+            />
+          ))
+        ) : (
+          <p>No genres in this category yet</p>
+        )}
       </Col>
       {
-      // admin && 
-      <Col lg={6} className="d-lg-block p-0 p-lg-2">
-        <Container>
-          <GenreCreateForm 
-          id={id}
-          setGenres={setGenres}
-          />
-        </Container>
-      </Col>}
+        // admin &&
+        <Col lg={6} className="d-lg-block p-0 p-lg-2">
+          <Container>
+            <GenreCreateForm id={id} setGenres={setGenres} />
+          </Container>
+        </Col>
+      }
     </Row>
   );
 }
 
-  /* <Container>
+/* <Container>
             {currentUser ? (
               <CommentCreateForm
                 profile_id={currentUser.profile_id}

@@ -20,9 +20,9 @@ const GenreEditForm = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosReq.put(`/categories/genres/${id}/`, 
-      {gen_name: genreData,
-        category: cat_id
+      await axiosReq.put(`/categories/genres/${id}/`, {
+        gen_name: genreData,
+        category: cat_id,
       });
       setGenres((prevGenres) => ({
         ...prevGenres,
@@ -30,20 +30,19 @@ const GenreEditForm = (props) => {
           return genre.id === id
             ? {
                 ...genre,
-                gen_name: genreData
+                gen_name: genreData,
               }
             : genre;
         }),
       }));
       setShowEditForm(false);
-      
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-   <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
@@ -60,11 +59,11 @@ const GenreEditForm = (props) => {
                 onChange={handleChange}
               />
             </Form.Group>
-            
+
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                  onClick={() => setShowEditForm(false)}
+                onClick={() => setShowEditForm(false)}
               >
                 cancel
               </Button>
@@ -79,7 +78,7 @@ const GenreEditForm = (props) => {
         </Col>
       </Row>
     </Form>
-  )
-}
+  );
+};
 
-export default GenreEditForm
+export default GenreEditForm;

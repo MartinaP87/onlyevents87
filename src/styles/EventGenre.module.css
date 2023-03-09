@@ -1,0 +1,12 @@
+.Bold {
+  font-weight: bold;
+}
+
+.Trash {
+  color: #f85032;
+}
+  
+  
+.Trash:hover {
+  color: #f7f709;
+}

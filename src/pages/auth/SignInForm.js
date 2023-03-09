@@ -17,7 +17,7 @@ import { setTokenTimestamp } from "../../utils/utils";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
-  useRedirect("loggedIn")
+  useRedirect("loggedIn");
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -36,16 +36,16 @@ function SignInForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
-        const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-        setCurrentUser(data.user);
-        setTokenTimestamp(data);
-        history.goBack();
-    }catch (err) {
-        setErrors(err.response?.data);
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      setTokenTimestamp(data);
+      history.goBack();
+    } catch (err) {
+      setErrors(err.response?.data);
     }
   };
-  
+
   return (
     <Row className={styles.Row}>
       <Col className="my-auto p-0 p-md-2" md={6}>
@@ -60,7 +60,8 @@ function SignInForm() {
                 name="username"
                 className={styles.Input}
                 value={username}
-                onChange={handleChange} />
+                onChange={handleChange}
+              />
             </Form.Group>
             {errors.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
@@ -76,7 +77,8 @@ function SignInForm() {
                 name="password"
                 className={styles.Input}
                 value={password}
-                onChange={handleChange} />
+                onChange={handleChange}
+              />
             </Form.Group>
             {errors.password?.map((message, idx) => (
               <Alert key={idx} variant="warning">
@@ -94,7 +96,6 @@ function SignInForm() {
                 {message}
               </Alert>
             ))}
-            
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>

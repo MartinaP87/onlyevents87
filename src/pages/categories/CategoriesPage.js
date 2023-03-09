@@ -38,10 +38,11 @@ const CategoriesPage = () => {
       </Col>
       <Col lg={6} className="d-lg-block p-0 p-lg-2">
         {
-        //  admin && 
-        <Container>
-          <CategoryCreateForm setCategories={setCategories} />
-        </Container>}
+          //  admin &&
+          <Container>
+            <CategoryCreateForm setCategories={setCategories} />
+          </Container>
+        }
       </Col>
     </Row>
   );

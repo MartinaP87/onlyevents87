@@ -18,6 +18,8 @@ import PopularProfiles from "../profiles/PopularProfiles";
 import { Container } from "react-bootstrap";
 import EventGenre from "./EventGenres/EventGenre";
 import GalleryPage from "./Galleries/GalleryPage";
+import GoingProfiles from "../profiles/GoingProfiles";
+import InterestedProfiles from "../profiles/InterestedProfiles";
 // import EventGenreCreateForm from "./EventGenreCreateForm";
 // import EventGenre from "./EventGenre";
 
@@ -66,20 +68,30 @@ function EventPage() {
           setGenres={setGenres}
           eventPage
         />
-        {genres.results.length ? (
-            <InfiniteScroll
-              children={genres.results.map((genre) => (
-                <EventGenre key={genre.id} {...genre} setGenres={setGenres} />
-              ))}
-              dataLength={genres.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!genres.next}
-              next={() => fetchMoreData(genres, setGenres)}
-            />
-          ) : (
-            "No genres yet"
-          )}
-        
+        <Row>
+          <Col md={4} className="d-flex">
+            {genres.results.length ? (
+              <InfiniteScroll
+                className="d-flex"
+                children={genres.results.map((genre) => (
+                  <EventGenre
+                    key={genre.id}
+                    {...genre}
+                    setGenres={setGenres}
+                    owner={event.results[0].owner}
+                  />
+                ))}
+                dataLength={genres.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!genres.next}
+                next={() => fetchMoreData(genres, setGenres)}
+              />
+            ) : (
+              "No genres yet"
+            )}
+          </Col>
+        </Row>
+
         <Container className={appStyles.Content}>
           {currentUser ? (
             <CommentCreateForm
@@ -116,7 +128,8 @@ function EventPage() {
       </Col>
 
       <Col lg={3} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
+        <GoingProfiles id={id}/>
+        <InterestedProfiles id={id}/>
       </Col>
     </Row>
   );

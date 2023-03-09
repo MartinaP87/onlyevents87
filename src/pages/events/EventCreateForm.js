@@ -32,7 +32,6 @@ function EventCreateForm() {
     eventData;
   const [categoriesToGet, setCategoriesToGet] = useState({ results: [] });
   const imageInput = useRef(null);
-  
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -54,17 +53,19 @@ function EventCreateForm() {
   };
 
   const handleChangeCategory = (event) => {
-    if (event.target.value !== "select the event category")
-    {
-      setEventData({
-      ...eventData,
-      category: categoriesToGet.results.filter(
-        (categoryToGet) => categoryToGet.cat_name === event.target.value)[0].id
-  })} else {
+    if (event.target.value !== "select the event category") {
       setEventData({
         ...eventData,
-        category: ""
-    })}
+        category: categoriesToGet.results.filter(
+          (categoryToGet) => categoryToGet.cat_name === event.target.value
+        )[0].id,
+      });
+    } else {
+      setEventData({
+        ...eventData,
+        category: "",
+      });
+    }
   };
 
   const handleChangeImage = (event) => {
@@ -89,7 +90,6 @@ function EventCreateForm() {
     formData.append("image", imageInput.current.files[0]);
     try {
       const { data } = await axiosReq.post("/events/", formData);
-      console.log(formData)
       history.push(`/events/${data.id}/`);
     } catch (err) {
       console.log(err);
@@ -133,7 +133,7 @@ function EventCreateForm() {
           {message}
         </Alert>
       ))}
-     
+
       <Form.Group controlId="category">
         <Form.Label className="d-none">Category</Form.Label>
         <Form.Control
@@ -278,4 +278,4 @@ function EventCreateForm() {
   );
 }
 
-export default EventCreateForm
+export default EventCreateForm;

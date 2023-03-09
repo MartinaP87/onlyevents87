@@ -14,7 +14,7 @@ import { Alert } from "react-bootstrap";
 const GenreCreateForm = (props) => {
   const { id, setGenres } = props;
   const [errors, setErrors] = useState({});
-    const history = useHistory();
+  const history = useHistory();
   const [genreData, setGenreData] = useState("");
 
   const handleChange = (event) => {
@@ -23,17 +23,16 @@ const GenreCreateForm = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log( "GenData", genreData, "CAT", id)
     try {
       const { data } = await axiosReq.post("/categories/genres/", {
         gen_name: genreData,
-        category: id
+        category: id,
       });
-        history.push(`/categories/${id}`);
-        setGenres((prevGenres) => ({
-          ...prevGenres,
-          results: [data, ...prevGenres.results],
-        }));
+      history.push(`/categories/${id}`);
+      setGenres((prevGenres) => ({
+        ...prevGenres,
+        results: [data, ...prevGenres.results],
+      }));
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -50,7 +49,7 @@ const GenreCreateForm = (props) => {
           <Container
             className={`${appStyles.Content} d-flex flex-column justify-content-center`}
           >
-            <Form.Group controlId="cat_name">
+            <Form.Group controlId="genre_name">
               <Form.Label className="d-none">Genre name</Form.Label>
               <Form.Control
                 type="text"

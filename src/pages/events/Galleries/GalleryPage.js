@@ -30,32 +30,32 @@ function GalleryPage(props) {
   }, [id]);
 
   return (
-    
-      <Col className="py-2 p-0 p-lg-2" lg={3}>
-        <Container className={appStyles.Content}>
-          {gallery.name}
-          {photos.results.length ? ( 
-            <InfiniteScroll
-              children={photos.results.map((photo) => (
-                <Photo
-                  key={photo.id}
-                  {...photo}
-                  // setGenres={setGenres}
-                />
-              ))}
-              dataLength={photos.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!photos.next}
-              next={() => fetchMoreData(photos, setPhotos)}
-            />
-            
-          ) : (
-            <p>No photos posted yet</p>
-          )}
-          <PhotoCreateForm id={id}/>
-        </Container>
-      </Col>
-   
+    <Col className="py-2 p-0 p-lg-2" lg={3}>
+      <Container className={appStyles.Content}>
+        <h2 className="p-2">{gallery.name}</h2>
+        <div className="p-2">
+          <PhotoCreateForm setPhotos={setPhotos} id={id} />
+        </div>
+
+        {photos.results.length ? (
+          <InfiniteScroll
+            children={photos.results.map((photo) => (
+              <Photo
+                key={photo.id}
+                {...photo}
+                // setPhotos={setPhotos}
+              />
+            ))}
+            dataLength={photos.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!photos.next}
+            next={() => fetchMoreData(photos, setPhotos)}
+          />
+        ) : (
+          <p>No photos posted yet</p>
+        )}
+      </Container>
+    </Col>
   );
 }
 

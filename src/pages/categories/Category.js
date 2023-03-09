@@ -7,17 +7,16 @@ import CategoryEditForm from "./CategoryEditForm";
 import { Link, useHistory } from "react-router-dom";
 
 const Category = (props) => {
-  const { cat_name, id, setCategories, categoryPage} = props;
+  const { cat_name, id, setCategories, categoryPage } = props;
   // const currentUser = useCurrentUser();
   // const admin = currentUser.pk === 1;
   const [showEditForm, setShowEditForm] = useState(false);
-  const history= useHistory()
-
+  const history = useHistory();
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/categories/${id}/`);
-      history.push("/categories/")
+      history.push("/categories/");
       setCategories((prevCategories) => ({
         ...prevCategories,
         results: prevCategories.results.filter(
@@ -33,9 +32,8 @@ const Category = (props) => {
     <>
       <hr />
       <Media>
-        
         <Media.Body className="align-self-center ml-2">
-         {showEditForm ? (
+          {showEditForm ? (
             <CategoryEditForm
               id={id}
               cat_name={cat_name}
@@ -46,14 +44,16 @@ const Category = (props) => {
             <Link to={`/categories/${id}/`}>
               <p>{cat_name}</p>
             </Link>
-            )}
+          )}
         </Media.Body>
-        {categoryPage  && <MoreDropdown
-          handleEdit={() => {
-            setShowEditForm(true);
-          }}
-          handleDelete={handleDelete}
-        />}
+        {categoryPage && (
+          <MoreDropdown
+            handleEdit={() => {
+              setShowEditForm(true);
+            }}
+            handleDelete={handleDelete}
+          />
+        )}
       </Media>
     </>
   );
