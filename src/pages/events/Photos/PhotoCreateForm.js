@@ -55,13 +55,11 @@ function PhotoCreateForm(props) {
     formData.append("title", title);
     formData.append("gallery", id);
     formData.append("image", imageInput.current.files[0]);
-    console.log(formData.title);
     try {
       const { data } = await axiosReq.post(
         "/events/galleries/photos/",
         formData
       );
-      console.log(formData);
       setShow(false);
       history.push(`/events/${id}/`);
       setPhotos((prevPhotos) => ({

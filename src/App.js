@@ -33,7 +33,9 @@ function App() {
             exact
             path="/"
             render={() => (
-              <EventsPage message="No results found. Adjust the search keyword." />
+              <EventsPage 
+              message="No results found. Adjust the search keyword."
+              filter={`ordering=-date&`} />
             )}
           />
           {/* <Route
@@ -52,7 +54,7 @@ function App() {
             render={() => (
               <EventsPage
                 message="No results found. Adjust the search keyword or follow a user."
-                filter={`owner__followed__owner__profile=${profile_id}&`}
+                filter={`owner__followed__owner__profile=${profile_id}&ordering=-date&`}
               />
             )}
           />
@@ -62,7 +64,7 @@ function App() {
             render={() => (
               <EventsPage
                 message="No results found. Adjust the search keyword or show interest for an event."
-                filter={`interesteds__owner__profile=${profile_id}&ordering=-interesteds__created_at&`}
+                filter={`interesteds__owner__profile=${profile_id}&ordering=-date&`}
               />
             )}
           />
@@ -72,7 +74,7 @@ function App() {
             render={() => (
               <EventsPage
                 message="No results found. Adjust the search keyword or show that you are going to an event."
-                filter={`goings__owner__profile=${profile_id}&ordering=-goings__created_at&`}
+                filter={`goings__owner__profile=${profile_id}&ordering=-date&`}
               />
             )}
           />
@@ -82,7 +84,7 @@ function App() {
             render={() => (
               <EventsPage
                 message="No results found. Adjust the search keyword or show that you are going to an event."
-                filter={`event_genres__genre__preference__profile=${profile_id}&`}
+                filter={`event_genres__genre__preference__profile=${profile_id}&ordering=-date&`}
               />
             )}
           />

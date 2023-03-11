@@ -7,8 +7,7 @@
   }
   
  .EventImage {
-  max-height: 50vh;
-  max-width: 50vh;
+  max-width: 25vw;
   border: 1px solid;
  }
   .Event figure,

@@ -11,7 +11,6 @@ import { axiosReq } from "../../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory, useParams } from "react-router-dom";
 import { Alert } from "react-bootstrap";
-// import { useCurrentUser } from "../../../contexts/CurrentUserContext";
 
 function PhotoEditForm() {
   const [errors, setErrors] = useState({});

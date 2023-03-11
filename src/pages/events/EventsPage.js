@@ -13,6 +13,7 @@ import Event from "./Event";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const EventsPage = ({ message, filter = "" }) => {
   const [events, setEvents] = useState({ results: [] });
@@ -63,6 +64,17 @@ const EventsPage = ({ message, filter = "" }) => {
               placeholder="Search events"
             />
           </Form>
+          <OverlayTrigger
+            key="top"
+            placement="top"
+            overlay={<Tooltip id={`tooltip-top`}>
+              Search for events by date, title, or name of the user that posted it!
+            </Tooltip>}
+          >
+            <div>
+              <i className={`fas fa-info-circle ${styles.InfoIcon}`} />
+            </div>
+          </OverlayTrigger>
         </Row>
         <Row>Genres</Row>
       </Col>

@@ -32,7 +32,7 @@ const Category = (props) => {
     <>
       <hr />
       <Media>
-        <Media.Body className="align-self-center ml-2">
+        <Media.Body className="align-self-center"> 
           {showEditForm ? (
             <CategoryEditForm
               id={id}
@@ -42,7 +42,7 @@ const Category = (props) => {
             />
           ) : (
             <Link to={`/categories/${id}/`}>
-              <p>{cat_name}</p>
+              <h3>{cat_name}</h3>
             </Link>
           )}
         </Media.Body>

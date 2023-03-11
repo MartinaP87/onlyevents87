@@ -9,7 +9,7 @@ import Profile from "./Profile";
 
 const InterestedProfiles = (props) => {
   const { popularProfiles } = useProfileData();
-  const {mobile, id} = props
+  const {mobile, id, interested_count} = props
   const [interested, setInterested] = useState({results: []})
 
   useEffect(() => {
@@ -30,7 +30,7 @@ interested?.results.map((person_interested) => person_interested.owner).includes
   return (
 
     <Container className={`${appStyles.Content} ${mobile && "d-lg-none text-center mb-3"}`}>
-       <h3>Interested</h3>
+       <h3>{interested_count} Interested:</h3>
       {interestedProfiles.length ? (
         <>
          

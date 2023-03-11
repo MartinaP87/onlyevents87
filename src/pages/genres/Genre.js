@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Media from "react-bootstrap/Media";
-// import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import GenreEditForm from "./GenreEditForm";

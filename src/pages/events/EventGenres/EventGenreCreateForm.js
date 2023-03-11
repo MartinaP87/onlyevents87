@@ -14,23 +14,8 @@ const EventGenreCreateForm = (props) => {
   const { genresToGet, setGenres } = props;
   const history = useHistory();
   const { id } = useParams();
-
   const [genre, setGenre] = useState("")
-  // const [prevGenres, setPrevGenres] = useState({results: []})
-
   const [errors, setErrors] = useState({});
-
-  // useEffect(() => {
-  //   const fetchGenres = async () => {
-  //     try {
-  //       const { data } = await axiosReq.get(`/events/genres/?event=${id}`)
-  //       setPrevGenres(data)
-  //     } catch (err) {
-  //       console.log(err)
-  //     }
-  //   }
-  //   fetchGenres()
-  // }, [id])
 
   const handleChange = (e) => {
     if (e.target.value !== "select the event genre") {
@@ -44,9 +29,6 @@ const EventGenreCreateForm = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // if (prevGenres.results.map((prevGenre) => {
-    //   prevGenre.event !== genre.event && prevGenre.genre !== genre.genre
-    // })){
     try {
       const { data } = await axiosReq.post("/events/genres/", 
       { event: id,
@@ -56,11 +38,6 @@ const EventGenreCreateForm = (props) => {
       setGenres((prevGenres) => ({
         ...prevGenres,
         results: [data, ...prevGenres.results],
-
-      //   results: data.results.reduce((acc, cur) => {
-      //     return acc.some((accResult) => accResult === cur)
-      //     ? acc
-      //     : [...acc, cur];}, prevGenres.results)
       }));
     }  catch (err) {
       console.log(err);
@@ -79,7 +56,7 @@ const EventGenreCreateForm = (props) => {
           <Card>
             <Card.Header>
               <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                Add a preference! <i className="fas fa-plus" />
+                Add a genre! <i className="fas fa-plus" />
               </Accordion.Toggle>
             </Card.Header>
             <Accordion.Collapse eventKey="0">
@@ -126,12 +103,6 @@ const EventGenreCreateForm = (props) => {
                         type="submit"
                       >
                         create
-                      </Button>
-                      <Button
-                        className={`${btnStyles.Button}`}
-                        onClick={() => history.push(`/events/${id}`)}
-                      >
-                        cancel
                       </Button>
                     </div>
                   </Container>

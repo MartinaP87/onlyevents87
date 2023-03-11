@@ -6,10 +6,12 @@ import CategoryCreateForm from "./CategoryCreateForm";
 import { axiosReq } from "../../api/axiosDefaults";
 import Category from "./Category";
 // import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// import { useRedirect } from "../../hooks/useRedirect";
 
 const CategoriesPage = () => {
   // const currentUser = useCurrentUser();
   // const admin = currentUser.pk === 1;
+ 
   const [categories, setCategories] = useState({
     results: [],
   });
@@ -18,7 +20,6 @@ const CategoriesPage = () => {
     const fetchCategories = async () => {
       try {
         const { data } = await axiosReq.get("/categories/");
-        console.log(data);
         setCategories(data);
       } catch (err) {
         console.log(err);
@@ -29,7 +30,8 @@ const CategoriesPage = () => {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2 justify-center" lg={4}>
+      <Col className="py-2 p-0 p-lg-2 justify-center" lg={6}>
+        <h1>Categories:</h1>
         {categories?.results.map((category) => (
           <div key={category.id}>
             <Category {...category} setCategories={setCategories} />

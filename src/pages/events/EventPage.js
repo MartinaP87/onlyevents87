@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-// import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -13,15 +12,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
-
-// import EventGenreCreateForm from "./EventGenreCreateForm";
 import { Container } from "react-bootstrap";
 import EventGenre from "./EventGenres/EventGenre";
 import GalleryPage from "./Galleries/GalleryPage";
 import GoingProfiles from "../profiles/GoingProfiles";
 import InterestedProfiles from "../profiles/InterestedProfiles";
-// import EventGenreCreateForm from "./EventGenreCreateForm";
-// import EventGenre from "./EventGenre";
+import styles from "../../styles/EventPage.module.css";
 
 function EventPage() {
   const { id } = useParams();
@@ -68,9 +64,10 @@ function EventPage() {
           setGenres={setGenres}
           eventPage
         />
-        <Row>
+        <Row className="d-flex justify-content-center">
+          {genres.results.length ? (
           <Col md={4} className="d-flex">
-            {genres.results.length ? (
+            
               <InfiniteScroll
                 className="d-flex"
                 children={genres.results.map((genre) => (
@@ -86,10 +83,11 @@ function EventPage() {
                 hasMore={!!genres.next}
                 next={() => fetchMoreData(genres, setGenres)}
               />
+              </Col>
             ) : (
-              "No genres yet"
+              <p className="text=center">No genres yet</p>
             )}
-          </Col>
+          
         </Row>
 
         <Container className={appStyles.Content}>
@@ -126,11 +124,11 @@ function EventPage() {
           )}
         </Container>
       </Col>
-
-      <Col lg={3} className="d-none d-lg-block p-0 p-lg-2">
-        <GoingProfiles id={id}/>
-        <InterestedProfiles id={id}/>
-      </Col>
+{event?.results.length ? (
+      <Col lg={3} className="d-none d-lg-block p-0 p-lg-2"> 
+        <GoingProfiles id={id} going_count={event.results[0].goings_count} />
+        <InterestedProfiles id={id} interested_count={event.results[0].interesteds_count} />
+      </Col>) : (<div className={styles.SpinnerDiv}><Asset spinner /></div>)}
     </Row>
   );
 }

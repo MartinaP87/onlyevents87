@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../../components/Avatar";
-import styles from "../../../styles/Event.module.css";
+import styles from "../../../styles/Photo.module.css";
 import { axiosRes } from "../../../api/axiosDefaults";
 import { MoreDropdown } from "../../../components/MoreDropdown";
 
@@ -41,7 +41,7 @@ const Photo = (props) => {
   };
 
   return (
-    <Card className={styles.Event}>
+    <Card className={`${styles.PhotoCard}`}>
       {photoPage && (
         <Card.Body>
           <Media className="align-item-center justify-content-between">
@@ -65,7 +65,9 @@ const Photo = (props) => {
       )}
 
       <Link to={`/events/galleries/photos/${id}/`}>
-        <Card.Img src={image} alt={title} />
+        <Card.Img 
+        className={styles.Photo}
+         src={image} alt={title} />
       </Link>
     </Card>
   );

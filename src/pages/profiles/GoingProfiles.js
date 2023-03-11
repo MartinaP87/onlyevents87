@@ -9,7 +9,7 @@ import Asset from "../../components/Asset";
 
 const GoingProfiles = (props) => {
   const { popularProfiles } = useProfileData();
-  const {mobile, id} = props
+  const {mobile, id, going_count} = props
   const [going, setGoing] = useState({results: []})
 
   useEffect(() => {
@@ -30,7 +30,7 @@ going?.results.map((person_going) => person_going.owner).includes(profile.owner)
   return (
 
     <Container className={`${appStyles.Content} mb-3 ${mobile && "d-lg-none text-center py-4 mb-3"}`}>
-      <h3>Going</h3>
+      <h3>{going_count} Going:</h3>
       {goingProfiles.length ? (
         <>  
           {mobile ? (

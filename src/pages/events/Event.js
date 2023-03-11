@@ -45,10 +45,8 @@ const Event = (props) => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const { data } = await axiosReq.get(
-          `/categories/genres/?category=${category}`
-        );
-        setGenresToGet(data);
+        const { data } = await axiosReq.get( `/categories/genres/?category=${category}`)
+        setGenresToGet(data)
       } catch (err) {
         console.log(err);
       }
@@ -56,9 +54,11 @@ const Event = (props) => {
     if (category) {
       fetchGenres();
     }
-  }, [category]);
+  }, [category, id]);
 
-  const handleEdit = () => {
+  
+
+  const handleEdit =  () => {
     history.push(`/events/${id}/edit`);
   };
 
@@ -79,7 +79,6 @@ const Event = (props) => {
       setEvents((prevEvents) => ({
         ...prevEvents,
         results: prevEvents.results.map((posted_event) => {
-          console.log(posted_event);
           return posted_event.id === id
             ? {
                 ...posted_event,
@@ -116,7 +115,6 @@ const Event = (props) => {
   const handleGoing = async () => {
     try {
       const { data } = await axiosRes.post("/going/", { posted_event: id });
-      console.log(data);
       setEvents((prevEvents) => ({
         ...prevEvents,
         results: prevEvents.results.map((posted_event) => {
@@ -192,11 +190,11 @@ const Event = (props) => {
           <div className={styles.EventBar}>
             {interested_id ? (
               <span onClick={handleUninterested}>
-                <i className={`fas fa-calendar ${styles.Heart}`} />
+                <i className={`fas fa-star ${styles.Heart}`} />
               </span>
             ) : currentUser ? (
               <span onClick={handleInterested}>
-                <i className={`far fa-calendar ${styles.HeartOutline}`} />
+                <i className={`far fa-star ${styles.HeartOutline}`} />
               </span>
             ) : (
               <OverlayTrigger
@@ -205,7 +203,7 @@ const Event = (props) => {
                   <Tooltip>Log in to show your interest to an event!</Tooltip>
                 }
               >
-                <i className="far fa-calendar" />
+                <i className="far fa-star" />
               </OverlayTrigger>
             )}
             {interesteds_count}

@@ -1,0 +1,12 @@
+.Photo {
+  max-inline-size: fit-content;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+ .PhotoCard {
+  display: grid;
+  grid-gap: 1em;
+  box-sizing: border-box;
+  border: 1px solid;
+ }

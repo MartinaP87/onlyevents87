@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory, useParams } from "react-router-dom";
 import { Alert } from "react-bootstrap";
@@ -30,11 +30,19 @@ function EventEditForm() {
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
+  const [eventGenres, setEventGenres] = useState({ results: [] });
+
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/events/${id}/`);
+        const [
+          { data: eventData },
+          { data: categoriesToGet },
+          { data: eventGenres }] = await Promise.all([
+          axiosReq.get(`/events/${id}/`),
+          axiosReq.get("/categories/"),
+          axiosReq.get(`/events/genres/?event=${id}`)])
         const {
           title,
           date,
@@ -44,7 +52,9 @@ function EventEditForm() {
           content,
           image,
           is_owner,
-        } = data;
+        } = eventData;
+        setEventGenres(eventGenres)
+        setCategoriesToGet(categoriesToGet)
         is_owner
           ? setEventData({
               title,
@@ -55,6 +65,7 @@ function EventEditForm() {
               content,
               image,
             })
+            
           : history.push("/");
       } catch (err) {
         console.log(err);
@@ -63,18 +74,6 @@ function EventEditForm() {
     handleMount();
   }, [history, id]);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const { data } = await axiosReq.get("/categories/");
-        console.log(data);
-        setCategoriesToGet(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchCategories();
-  }, []);
 
   const handleChange = (event) => {
     setEventData({
@@ -83,7 +82,23 @@ function EventEditForm() {
     });
   };
 
+
+
+  const deleteEventGenres = () => {
+    eventGenres?.results.forEach((event_genre) => {
+    try {
+    axiosRes.delete(`/events/genres/${event_genre.id}`)
+    setEventGenres({results: []}) 
+  } catch (error) {
+    console.log(error)
+  }
+  console.log("FATTO")
+})}  
+
+
+
   const handleChangeCategory = (event) => {
+    deleteEventGenres()
     setEventData({
       ...eventData,
       category: categoriesToGet.results.filter(
@@ -104,7 +119,6 @@ function EventEditForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("EventDATA", eventData);
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);

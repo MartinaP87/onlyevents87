@@ -53,7 +53,6 @@ const Comment = (props) => {
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.map((comment) => {
-          // console.log(posted_event);
           return comment.id === id
             ? {
                 ...comment,

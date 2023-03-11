@@ -57,7 +57,7 @@ const NavBar = () => {
         to="/interested"
         className={styles.NavLink}
         activeClassName={styles.Active}>
-        <i className="fas fa-calendar"></i>
+        <i className="fas fa-star"></i>
         Interested
       </NavLink>
 
