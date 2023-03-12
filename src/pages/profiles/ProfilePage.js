@@ -22,8 +22,8 @@ import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Event from "../events/Event";
-import Preference from "./prefernces/Preference";
-import PreferenceCreateForm from "./prefernces/PreferenceCreateForm";
+import Preference from "./preferences/Preference";
+import PreferenceCreateForm from "./preferences/PreferenceCreateForm";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -65,7 +65,6 @@ function ProfilePage() {
         setPreferences(preferences);
         setPreferenceChoice(preferenceChoice);
         setHasLoaded(true);
-        console.log("PREF", preferences.results.length);
       } catch (err) {
         console.log(err);
       }

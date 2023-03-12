@@ -13,6 +13,7 @@ import { removeTokenTimestamp } from "../utils/utils";
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const admin = currentUser?.pk === 1;
   const {expanded, setExpanded, ref} = useClickOutsideToggle();
 
   const handleSignOut = async () => {
@@ -36,6 +37,14 @@ const NavBar = () => {
 
   const loggedInIcons = (
     <>
+    {admin && <NavLink
+        to="/categories"
+        className={styles.NavLink}
+        activeClassName={styles.Active}>
+        <i className="fas fa-project-diagram"></i>
+        Categories
+      </NavLink>
+      }
       
       <NavLink
         to="/feeds"
@@ -67,14 +76,6 @@ const NavBar = () => {
         activeClassName={styles.Active}>
         <i className="fa-solid fa-calendar-check"></i>
         Going
-      </NavLink>
-
-      <NavLink
-        to="/past"
-        className={styles.NavLink}
-        activeClassName={styles.Active}>
-        <i className="fa-duotone fa-face-holding-back-tears"></i>
-        Past Events
       </NavLink>
 
       <NavLink

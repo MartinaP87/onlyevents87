@@ -72,7 +72,7 @@ function PhotoEditForm() {
 
     try {
       await axiosReq.put(`/events/galleries/photos/${id}/`, formData);
-      history.push(`/events/galleries/photos/${id}/`);
+      history.goBack();
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

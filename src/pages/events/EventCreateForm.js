@@ -49,7 +49,7 @@ function EventCreateForm() {
     setEventData({
       ...eventData,
       [event.target.name]: event.target.value,
-    });
+    }); 
   };
 
   const handleChangeCategory = (event) => {
@@ -128,6 +128,7 @@ function EventCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      
       {errors.date?.map((message, idx) => (
         <Alert key={idx} variant="warning">
           {message}

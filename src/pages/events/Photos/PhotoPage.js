@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import appStyles from "../../../App.module.css";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../../api/axiosDefaults";
 import { Container } from "react-bootstrap";
@@ -25,11 +24,13 @@ const PhotoPage = () => {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={6}>
-        <Photo {...photo.results[0]} photoPage />
-        <Container className={appStyles.Content}></Container>
+      <Col className="py-2 p-0 p-lg-2">
+        <Container
+          className="d-flex justify-content-center"
+        >
+          <Photo {...photo.results[0]} photoPage />
+        </Container>
       </Col>
-      <Col lg={3} className="d-none d-lg-block p-0 p-lg-2"></Col>
     </Row>
   );
 };

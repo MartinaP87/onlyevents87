@@ -36,7 +36,6 @@ const CategoryCreateForm = (props) => {
         results: [data, ...prevCategories.results],
       }));
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -64,11 +63,16 @@ const CategoryCreateForm = (props) => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors && errors.detail &&
+              <Alert variant="warning">
+                {errors.detail}
+              </Alert>}
             {errors.cat_name?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
+
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}

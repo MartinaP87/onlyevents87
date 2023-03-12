@@ -29,7 +29,11 @@ function PhotoCreateForm(props) {
   const imageInput = useRef(null);
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setPhotoData("");
+    setErrors("")
+  };
   const handleShow = () => setShow(true);
 
   const handleChangeTitle = (event) => {
@@ -66,6 +70,8 @@ function PhotoCreateForm(props) {
         ...prevPhotos,
         results: [data, ...prevPhotos.results],
       }));
+      setPhotoData("");
+      setErrors("");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

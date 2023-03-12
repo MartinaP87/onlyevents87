@@ -11,6 +11,7 @@ import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import EventGenreCreateForm from "./EventGenres/EventGenreCreateForm";
 import { Container } from "react-bootstrap";
+import { format } from 'date-fns'
 
 const Event = (props) => {
   const {
@@ -54,7 +55,7 @@ const Event = (props) => {
     if (category) {
       fetchGenres();
     }
-  }, [category, id]);
+  }, [category, id, date]);
 
   
 
@@ -175,8 +176,12 @@ const Event = (props) => {
           <Card.Img className={styles.EventImage} src={image} alt={title} />
         </Link>
         <Card.Body>
-          {date && <Card.Subtitle>{date}</Card.Subtitle>}
-          {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {date && <Card.Subtitle>{format(new Date(date),'d-MMM-yyyy')}</Card.Subtitle>}
+        {date && eventPage && 
+        <Card.Subtitle className="p-2">
+          Time: {format(new Date(date),'HH.mm')}
+          </Card.Subtitle>}
+          {title && <Card.Title className="text-center"><h2>{title}</h2></Card.Title>}
           {location && <Card.Subtitle>{location}</Card.Subtitle>}
           {eventPage && (
             <>

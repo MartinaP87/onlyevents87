@@ -8,10 +8,13 @@ import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
+import { Alert } from "react-bootstrap";
 
 const GenreEditForm = (props) => {
   const { id, gen_name, setGenres, cat_id, setShowEditForm } = props;
   const [genreData, setGenreData] = useState(gen_name);
+  const [errors, setErrors] = useState({});
+
 
   const handleChange = (event) => {
     setGenreData(event.target.value);
@@ -37,7 +40,9 @@ const GenreEditForm = (props) => {
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
     }
   };
 
@@ -59,7 +64,14 @@ const GenreEditForm = (props) => {
                 onChange={handleChange}
               />
             </Form.Group>
-
+            {errors.gen_name?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+            {errors?.non_field_errors && (
+              <Alert variant="warning">possible duplicate</Alert>
+            )}
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}

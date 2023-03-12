@@ -3,11 +3,12 @@ import Media from "react-bootstrap/Media";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import GenreEditForm from "./GenreEditForm";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const Genre = (props) => {
   const { gen_name, id, cat_id, setGenres } = props;
-  // const currentUser = useCurrentUser();
-  // const admin = currentUser.pk === 1;
+  const currentUser = useCurrentUser();
+  const admin = currentUser?.pk === 1;
   const [showEditForm, setShowEditForm] = useState(false);
 
   const handleDelete = async () => {
@@ -41,7 +42,7 @@ const Genre = (props) => {
           )}
         </Media.Body>
         {
-          //  admin &&
+           admin &&
           <MoreDropdown
             handleEdit={() => {
               setShowEditForm(true);

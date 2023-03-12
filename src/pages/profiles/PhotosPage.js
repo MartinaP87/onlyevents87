@@ -9,9 +9,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import Asset from "../../components/Asset";
 import { useParams } from "react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function PhotosPage() {
-  const {id} = useParams()
+  useRedirect("loggedOut");
+  const { id } = useParams();
   const [photos, setPhotos] = useState({ results: [] });
 
   useEffect(() => {
@@ -30,27 +32,25 @@ function PhotosPage() {
 
   return (
     <Col className="py-2 p-0 p-lg-2" lg={12}>
-      
-      
-        {photos.results.length ? (<>
-          <h1>
-        {photos.results[0].owner}' photos</h1>
+      {photos.results.length ? (
+        <>
+          <h1>{photos.results[0].owner}' photos</h1>
           <Container className={appStyles.Content}>
-          <InfiniteScroll
-           className={styles.Photos}
-            children={photos.results.map((photo) => (
-              <Photo key={photo.id} {...photo} />
-            ))}
-            dataLength={photos.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!photos.next}
-            next={() => fetchMoreData(photos, setPhotos)}
-          />
-          </Container></>
-        ) : (
-          <p>No photos yet</p>
-        )}
-      
+            <InfiniteScroll
+              className={styles.Photos}
+              children={photos.results.map((photo) => (
+                <Photo key={photo.id} {...photo} />
+              ))}
+              dataLength={photos.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!photos.next}
+              next={() => fetchMoreData(photos, setPhotos)}
+            />
+          </Container>
+        </>
+      ) : (
+        <p>No photos yet</p>
+      )}
     </Col>
   );
 }

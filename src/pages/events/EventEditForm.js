@@ -68,7 +68,7 @@ function EventEditForm() {
             
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
     };
     handleMount();
@@ -80,6 +80,7 @@ function EventEditForm() {
       ...eventData,
       [event.target.name]: event.target.value,
     });
+    console.log(date)
   };
 
 

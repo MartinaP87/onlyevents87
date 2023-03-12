@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Media from "react-bootstrap/Media";
-// import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import CategoryEditForm from "./CategoryEditForm";
@@ -8,8 +8,8 @@ import { Link, useHistory } from "react-router-dom";
 
 const Category = (props) => {
   const { cat_name, id, setCategories, categoryPage } = props;
-  // const currentUser = useCurrentUser();
-  // const admin = currentUser.pk === 1;
+  const currentUser = useCurrentUser();
+  const admin = currentUser?.pk === 1;
   const [showEditForm, setShowEditForm] = useState(false);
   const history = useHistory();
 
@@ -46,7 +46,7 @@ const Category = (props) => {
             </Link>
           )}
         </Media.Body>
-        {categoryPage && (
+        {admin && categoryPage && (
           <MoreDropdown
             handleEdit={() => {
               setShowEditForm(true);

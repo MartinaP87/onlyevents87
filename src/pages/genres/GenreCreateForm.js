@@ -35,6 +35,7 @@ const GenreCreateForm = (props) => {
       }));
     } catch (err) {
       console.log(err);
+      console.log("oooo", err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -60,9 +61,14 @@ const GenreCreateForm = (props) => {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.cat_name?.map((message, idx) => (
+            {errors.gen_name?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
+              </Alert>
+            ))}
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="warning" className="mt-3">
+                This genre already exists.
               </Alert>
             ))}
 

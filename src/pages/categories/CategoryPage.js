@@ -3,18 +3,20 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axiosDefaults";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-// import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Category from "./Category";
 import { Container } from "react-bootstrap";
 import GenreCreateForm from "../genres/GenreCreateForm";
 import Genre from "../genres/Genre";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function CategoryPage() {
+  useRedirect("loggedOut")
   const { id } = useParams();
   const [categoryData, setCategoryData] = useState({ results: [] });
   const [genres, setGenres] = useState({ results: [] });
-  // const currentUser = useCurrentUser();
-  // const admin = currentUser.pk === 1;
+  const currentUser = useCurrentUser();
+  const admin = currentUser?.pk === 1;
 
   useEffect(() => {
     const handleMount = async () => {
@@ -54,7 +56,7 @@ function CategoryPage() {
         )}
       </Col>
       {
-        // admin &&
+        admin &&
         <Col lg={6} className="d-lg-block p-0 p-lg-2">
           <Container>
             <GenreCreateForm id={id} setGenres={setGenres} />

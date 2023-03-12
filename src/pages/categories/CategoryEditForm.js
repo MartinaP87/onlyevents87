@@ -8,10 +8,12 @@ import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
+import { Alert } from "react-bootstrap";
 
 const CategoryEditForm = (props) => {
   const { id, cat_name, setCategories, setShowEditForm } = props;
   const [categoryData, setCategoryData] = useState(cat_name);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setCategoryData(event.target.value);
@@ -35,6 +37,9 @@ const CategoryEditForm = (props) => {
       setShowEditForm(false);
     } catch (err) {
       console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
     }
   };
 
@@ -56,6 +61,14 @@ const CategoryEditForm = (props) => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.cat_name?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+            {errors?.length && (
+              <Alert variant="warning">possible duplicate or internal server error</Alert>
+            )}
 
             <div className="d-inline">
               <Button

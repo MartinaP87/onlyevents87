@@ -28,8 +28,7 @@ const PreferenceCreateForm = (props) => {
     } else {
       setPreference("");
     }
-    console.log("PR", preference);
-    console.log("ET", event.target.value);
+    setErrors("");
   };
 
   const handleSubmit = async (event) => {
@@ -52,7 +51,6 @@ const PreferenceCreateForm = (props) => {
         setErrors(err.response?.data);
       }
     }
-    setPreference("");
   };
 
   return (
@@ -62,8 +60,12 @@ const PreferenceCreateForm = (props) => {
           <Accordion>
             <Card>
               <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  Add a preference! <i className="fas fa-plus"/>
+                <Accordion.Toggle 
+                as={Button} 
+                variant="link" 
+                eventKey="0"
+                onClick={() => setErrors("")}>
+                  Add a preference! <i className="fas fa-plus" />
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey="0">
@@ -104,6 +106,9 @@ const PreferenceCreateForm = (props) => {
                           {message}
                         </Alert>
                       ))}
+                      {errors && errors.detail && (
+                        <Alert variant="warning">{errors.detail}</Alert>
+                      )}
                       <div className="d-inline">
                         <Button
                           className={`${btnStyles.Button} py-1`}

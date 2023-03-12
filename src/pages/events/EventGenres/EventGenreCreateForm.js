@@ -14,40 +14,43 @@ const EventGenreCreateForm = (props) => {
   const { genresToGet, setGenres } = props;
   const history = useHistory();
   const { id } = useParams();
-  const [genre, setGenre] = useState("")
+  const [genre, setGenre] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     if (e.target.value !== "select the event genre") {
-        setGenre(genresToGet.results.filter(
+      setGenre(
+        genresToGet.results.filter(
           (genreToGet) => genreToGet.gen_name === e.target.value
-        )[0].id)
+        )[0].id
+      );
     } else {
       setGenre("");
     }
+    setErrors("");
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axiosReq.post("/events/genres/", 
-      { event: id,
-       genre: genre});
+      const { data } = await axiosReq.post("/events/genres/", {
+        event: id,
+        genre: genre,
+      });
       history.push(`/events/${id}`);
 
       setGenres((prevGenres) => ({
         ...prevGenres,
         results: [data, ...prevGenres.results],
       }));
-    }  catch (err) {
-      console.log(err);
+    } catch (err) {
+      console.log(err.response);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
-    setGenre("");
+    // setGenre("");
   };
-
 
   return (
     <Row>
@@ -55,7 +58,12 @@ const EventGenreCreateForm = (props) => {
         <Accordion>
           <Card>
             <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="0">
+              <Accordion.Toggle
+                onClick={() => setErrors("")}
+                as={Button}
+                variant="link"
+                eventKey="0"
+              >
                 Add a genre! <i className="fas fa-plus" />
               </Accordion.Toggle>
             </Card.Header>
@@ -96,6 +104,9 @@ const EventGenreCreateForm = (props) => {
                         {message}
                       </Alert>
                     ))}
+                    {errors?.non_field_errors && (
+                      <Alert variant="warning">possible duplicate</Alert>
+                    )}
 
                     <div className="d-inline">
                       <Button
