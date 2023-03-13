@@ -10,25 +10,26 @@ import { axiosReq } from "../../../api/axiosDefaults";
 import { Accordion, Alert, Card } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 
+
 const EventGenreCreateForm = (props) => {
   const { genresToGet, setGenres } = props;
   const history = useHistory();
   const { id } = useParams();
+  const [selectValue, setSelectValue] = useState("");
   const [genre, setGenre] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    if (e.target.value !== "select the event genre") {
+    setSelectValue(e.target.value)
+    console.log(e.target.value)
+    if (e.target.value !== "") {
       setGenre(
         genresToGet.results.filter(
           (genreToGet) => genreToGet.gen_name === e.target.value
         )[0].id
       );
-    } else {
-      setGenre("");
-    }
     setErrors("");
-  };
+  };}
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -49,7 +50,8 @@ const EventGenreCreateForm = (props) => {
         setErrors(err.response?.data);
       }
     }
-    // setGenre("");
+    setSelectValue("")
+    setGenre("")
   };
 
   return (
@@ -81,16 +83,17 @@ const EventGenreCreateForm = (props) => {
                           placeholder="Genre"
                           name="genre"
                           className={styles.Input}
-                          value={genre.gen_name}
+                          value={selectValue}
                           as="select"
                         >
-                          <option className="d-flex">
+                          <option value="" className="d-flex">
                             select the event genre
                           </option>
                           {genresToGet?.results.map((genreToGet) => (
                             <option
                               key={genreToGet.id}
                               className="text-align-center"
+                              value={genreToGet.gen_name}
                             >
                               {genreToGet.gen_name}
                             </option>

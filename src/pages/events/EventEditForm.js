@@ -31,6 +31,8 @@ function EventEditForm() {
   const history = useHistory();
   const { id } = useParams();
   const [eventGenres, setEventGenres] = useState({ results: [] });
+  const [selectValue, setSelectValue] = useState("");
+
 
 
   useEffect(() => {
@@ -55,6 +57,9 @@ function EventEditForm() {
         } = eventData;
         setEventGenres(eventGenres)
         setCategoriesToGet(categoriesToGet)
+        setSelectValue(categoriesToGet.results.filter(
+            (categoryToGet) => categoryToGet.id === category
+          )[0].cat_name);
         is_owner
           ? setEventData({
               title,
@@ -65,7 +70,6 @@ function EventEditForm() {
               content,
               image,
             })
-            
           : history.push("/");
       } catch (err) {
         console.log(err)
@@ -73,7 +77,6 @@ function EventEditForm() {
     };
     handleMount();
   }, [history, id]);
-
 
   const handleChange = (event) => {
     setEventData({
@@ -93,19 +96,24 @@ function EventEditForm() {
   } catch (error) {
     console.log(error)
   }
-  console.log("FATTO")
 })}  
 
-
-
   const handleChangeCategory = (event) => {
-    deleteEventGenres()
+    deleteEventGenres();
+    setSelectValue(event.target.value)
+    if (event.target.value !== "") {
     setEventData({
       ...eventData,
       category: categoriesToGet.results.filter(
         (categoryToGet) => categoryToGet.cat_name === event.target.value
       )[0].id,
-    });
+    })
+  } else {
+    setSelectValue("")
+    setEventData({
+      ...eventData, 
+      category: ""
+    })}
   };
 
   const handleChangeImage = (event) => {
@@ -140,6 +148,7 @@ function EventEditForm() {
         setErrors(err.response?.data);
       }
     }
+    setSelectValue("")
   };
 
   const textFields = (
@@ -184,12 +193,15 @@ function EventEditForm() {
           placeholder="Category"
           name="category"
           className={styles.Input}
-          value={category.cat_name}
+          value={selectValue}
           as="select"
         >
-          <option>select the event category</option>
+          <option value="">select the event category</option>
           {categoriesToGet?.results.map((categoryToGet) => (
-            <option key={categoryToGet.id}>{categoryToGet.cat_name}</option>
+            <option 
+            key={categoryToGet.id}
+            value={categoryToGet.cat_name}
+            >{categoryToGet.cat_name}</option>
           ))}
         </Form.Control>
       </Form.Group>

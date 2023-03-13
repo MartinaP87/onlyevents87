@@ -42,6 +42,12 @@ function ProfilePage() {
   const [preferenceChoice, setPreferenceChoice] = useState({
     results: [],
   });
+  const allCategories = preferences.results.map(
+    (preference) => preference.category
+  );
+  const filteredCategories = allCategories.filter(
+    (cat, idx) => allCategories.indexOf(cat) === idx
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,6 +77,7 @@ function ProfilePage() {
     };
     fetchData();
   }, [id, setProfileData]);
+
 
   const mainProfileActions = (
     <Container>
@@ -106,19 +113,29 @@ function ProfilePage() {
       <Row className="my-3 justify-content-center">
         <Col lg={12}>
           {preferences.results.length ? (
-            <InfiniteScroll
-              children={preferences.results.map((preference) => (
-                <Preference
-                  key={preference.id}
-                  {...preference}
-                  setPreferences={setPreferences}
-                />
+            <>
+              {filteredCategories.map((uniqueCategory) => (
+                <div key={uniqueCategory}>
+                  <h5>{uniqueCategory}</h5>
+                  <InfiniteScroll
+                    children={preferences.results.map((preference) => (
+                      <div key={preference.id}>
+                        {preference.category === uniqueCategory && (
+                          <Preference
+                            {...preference}
+                            setPreferences={setPreferences}
+                          />
+                        )}
+                      </div>
+                    ))}
+                    dataLength={preferences.results.length}
+                    loader={<Asset spinner />}
+                    hasMore={!!preferences.next}
+                    next={() => fetchMoreData(preferences, setPreferences)}
+                  />
+                </div>
               ))}
-              dataLength={preferences.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!preferences.next}
-              next={() => fetchMoreData(preferences, setPreferences)}
-            />
+            </>
           ) : (
             <p> No preferences yet...</p>
           )}

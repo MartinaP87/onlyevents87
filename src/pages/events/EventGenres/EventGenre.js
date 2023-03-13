@@ -22,8 +22,8 @@ const EventGenre = (props) => {
   };
 
   return (
-    <Container className="d-inline-flex justfy-content-between px-2 border">
-      <Container className={styles.GenreContainer}>
+    <Container className="d-inline-flex px-2 border">
+      <Container className={styles.GenreNameContainer}>
         {genre_name && <p className={`${styles.Bold}`}>{genre_name}</p>}
       </Container>
       <Container className="text-align-right p-0">

@@ -64,12 +64,12 @@ function EventPage() {
           setGenres={setGenres}
           eventPage
         />
-        <Row className="d-flex justify-content-center">
+        <Row>
           {genres.results.length ? (
-          <Col md={4} className="d-flex">
+          <Container>
             
               <InfiniteScroll
-                className="d-flex"
+                className={styles.Genres}
                 children={genres.results.map((genre) => (
                   <EventGenre
                     key={genre.id}
@@ -83,7 +83,7 @@ function EventPage() {
                 hasMore={!!genres.next}
                 next={() => fetchMoreData(genres, setGenres)}
               />
-              </Col>
+              </Container>
             ) : (
               <p className="text=center">No genres yet</p>
             )}

@@ -2,3 +2,10 @@
   margin-inline: auto;
   display: block;
 }
+
+.Genres {
+  overflow: unset;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}

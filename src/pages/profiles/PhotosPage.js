@@ -8,13 +8,14 @@ import Photo from "../events/Photos/Photo";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import Asset from "../../components/Asset";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function PhotosPage() {
   useRedirect("loggedOut");
   const { id } = useParams();
   const [photos, setPhotos] = useState({ results: [] });
+  const history = useHistory()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +35,10 @@ function PhotosPage() {
     <Col className="py-2 p-0 p-lg-2" lg={12}>
       {photos.results.length ? (
         <>
+        <div className="d-inline-flex">
           <h1>{photos.results[0].owner}' photos</h1>
+          <i className="fas fa-arrow-circle-left p-3" onClick={() => {history.goBack()}}/>
+          </div>
           <Container className={appStyles.Content}>
             <InfiniteScroll
               className={styles.Photos}

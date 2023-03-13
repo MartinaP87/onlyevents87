@@ -16,17 +16,17 @@ const PreferenceCreateForm = (props) => {
   const history = useHistory();
   const { id } = useParams();
   const [preference, setPreference] = useState("");
+  const [selectValue, setSelectValue] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    if (event.target.value !== "select your preference") {
+    setSelectValue(event.target.value);
+    if (event.target.value !== "") {
       setPreference(
         preferenceChoice.results.filter(
           (preferenceChoice) => preferenceChoice.gen_name === event.target.value
         )[0].id
       );
-    } else {
-      setPreference("");
     }
     setErrors("");
   };
@@ -39,7 +39,6 @@ const PreferenceCreateForm = (props) => {
         profile: id,
         genre: preference,
       });
-      console.log("DATA", data);
       history.push(`/profiles/${id}`);
       setPreferences((prevPreferences) => ({
         ...prevPreferences,
@@ -51,6 +50,8 @@ const PreferenceCreateForm = (props) => {
         setErrors(err.response?.data);
       }
     }
+    setSelectValue("");
+    setPreference("");
   };
 
   return (
@@ -60,11 +61,12 @@ const PreferenceCreateForm = (props) => {
           <Accordion>
             <Card>
               <Card.Header>
-                <Accordion.Toggle 
-                as={Button} 
-                variant="link" 
-                eventKey="0"
-                onClick={() => setErrors("")}>
+                <Accordion.Toggle
+                  as={Button}
+                  variant="link"
+                  eventKey="0"
+                  onClick={() => setErrors("")}
+                >
                   Add a preference! <i className="fas fa-plus" />
                 </Accordion.Toggle>
               </Card.Header>
@@ -83,16 +85,17 @@ const PreferenceCreateForm = (props) => {
                             onChange={handleChange}
                             name="preference"
                             className={styles.Input}
-                            value={preference.genre_name}
+                            value={selectValue}
                             as="select"
                           >
-                            <option className="d-flex">
+                            <option value="" className="d-flex">
                               select your preference
                             </option>
                             {preferenceChoice?.results.map((genre) => (
                               <option
                                 className="text-align-center"
                                 key={genre.id}
+                                value={genre.gen_name}
                               >
                                 {genre.gen_name}
                               </option>
