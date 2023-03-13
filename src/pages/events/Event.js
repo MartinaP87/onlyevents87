@@ -181,7 +181,7 @@ const Event = (props) => {
         <Card.Subtitle className="p-2">
           Time: {format(new Date(date),'HH.mm')}
           </Card.Subtitle>}
-          {title && <Card.Title className="text-center"><h2>{title}</h2></Card.Title>}
+          {title && <Card.Title className="text-center"><h3>{title}</h3></Card.Title>}
           {location && <Card.Subtitle>{location}</Card.Subtitle>}
           {eventPage && (
             <>

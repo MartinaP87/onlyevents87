@@ -6,7 +6,7 @@
   }
 
   .AddEvent {
-    font-size: 9vh;
+    font-size: 5vh;
   }
   
   .SearchIcon {
@@ -20,7 +20,7 @@
     cursor: default;
     color: #cfced3;
   }
-
+  
   .InfoIcon {
     position: absolute;
     font-size: 1.2rem;

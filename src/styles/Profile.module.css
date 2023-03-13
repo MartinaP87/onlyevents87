@@ -1,5 +1,6 @@
 .WordBreak {
     word-break: break-all;
+    font-size: 2vh;
   }
 
 .Button {

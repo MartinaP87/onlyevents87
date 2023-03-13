@@ -116,7 +116,7 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar expanded={expanded} expand="md" fixed="top" className={styles.NavBar}>
+    <Navbar expanded={expanded} expand="lg" fixed="top" className={styles.NavBar}>
       <Container>
         <NavLink exact to="/">
           <Navbar.Brand className={styles.NavbarBrand}>

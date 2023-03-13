@@ -44,13 +44,13 @@ const EventsPage = ({ message, filter = "" }) => {
     };
   }, [filter, query, pathname]);
   return (
-    <Row className="h-100">
-      <Col lg={3}>
-        <Row>Logo</Row>
-        <Row>
-          <h1>Events</h1>
+    <Row className="h-100 pt-4">
+       <PopularProfiles mobile />
+      <Col className="pt-1" lg={3} md={12}>
+        <Row className="py-2 ml-2">
+          <h3>Events</h3>
         </Row>
-        <Row>
+        <Row className="flex-nowrap pr-4 ml-2">
           <i className={`fas fa-search ${styles.SearchIcon}`} />
           <Form
             className={styles.SearchBar}
@@ -71,25 +71,24 @@ const EventsPage = ({ message, filter = "" }) => {
               Search for events by date, title, or name of the user that posted it!
             </Tooltip>}
           >
-            <div>
+            <div className="px-1">
               <i className={`fas fa-info-circle ${styles.InfoIcon}`} />
             </div>
           </OverlayTrigger>
         </Row>
-        <Row>Categories</Row>
       </Col>
 
       <Col className="py-2 p-0 p-lg-2" lg={6}>
-        <Link to={`/events/create`}>
-          <Container className="d-inline-flex justify-content-between px-4">
-            <h2 className="d-flex mb-0">Add the next event! </h2>
+        <Link className="d-none d-md-inline" to={`/events/create`}>
+          <Container className="d-inline-flex justify-content-center px-4">
+            <h3 className="d-flex align-items-center mb-0">Add the next event! </h3>
             <i
-              className={`fas fa-plus-square d-flex pt-0 ${styles.AddEvent}`}
+              className={`fas fa-plus-square d-flex px-3 ${styles.AddEvent}`}
             />
           </Container>
         </Link>
 
-        <PopularProfiles mobile />
+        {/* <PopularProfiles mobile /> */}
 
         {hasLoaded ? (
           <>
