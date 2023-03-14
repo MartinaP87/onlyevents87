@@ -114,6 +114,7 @@ function ProfilePage() {
         <Col lg={12}>
           {preferences.results.length ? (
             <>
+            <h4 className={styles.GenreTitle}>{profile?.owner}'s favourites:</h4>
               {filteredCategories.map((uniqueCategory) => (
                 <div key={uniqueCategory}>
                   <h5>{uniqueCategory}</h5>
@@ -133,6 +134,7 @@ function ProfilePage() {
                     hasMore={!!preferences.next}
                     next={() => fetchMoreData(preferences, setPreferences)}
                   />
+                  <hr />
                 </div>
               ))}
             </>
@@ -146,25 +148,26 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-      <Row noGutters className="px-3 text-center">
-        <Col lg={9}>
+      <Row className="mx-4 text-center">
+        <Col lg={10} className={styles.FollowersBox}>
           <h3 className="m-2">{profile?.owner}</h3>
-          <Row className="justify-content-center no-gutters">
+          {/* <Row className={`${is_owner && styles.FollowersBox} justify-content-between no-gutters`} > */}
+          <Row className="justify-content-between no-gutters" >
             <Col xs={3} className="my-2">
               <div>{profile?.events_count}</div>
-              <div>Events</div>
+              <div className={styles.BoxText}>Events</div>
             </Col>
             <Col xs={3} className="my-2">
               <div>{profile?.followers_count}</div>
-              <div>Followers</div>
+              <div className={styles.BoxText}>Followers</div>
             </Col>
             <Col xs={3} className="my-2">
               <div>{profile?.following_count}</div>
-              <div>Following</div>
+              <div className={styles.BoxText}>Following</div>
             </Col>
           </Row>
         </Col>
-        <Col lg={3} className="text-lg-right">
+        <Col lg={2} className="text-lg-right">
           {currentUser &&
             !is_owner &&
             (profile?.following_id ? (
@@ -190,8 +193,6 @@ function ProfilePage() {
 
   const mainProfileEvents = (
     <>
-      <hr />
-      <p className="text-center">{profile?.owner}'s events</p>
       <hr />
       {profileEvents.results.length ? (
         <InfiniteScroll

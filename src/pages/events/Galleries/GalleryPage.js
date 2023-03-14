@@ -9,11 +9,15 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../../utils/utils";
 import Asset from "../../../components/Asset";
 import PhotoCreateForm from "../Photos/PhotoCreateForm";
+import Button from "react-bootstrap/Button";
+import Collapse from "react-bootstrap/Collapse";
+import styles from "../../../styles/GalleryPage.module.css";
 
 function GalleryPage(props) {
   const { id } = useParams();
   const { gallery } = props;
   const [photos, setPhotos] = useState({ results: [] });
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +35,15 @@ function GalleryPage(props) {
 
   return (
     <Col className="py-2 p-0 p-lg-2" lg={3}>
+      <Button
+      className={styles.GalleryButton}
+        onClick={() => setOpen(!open)}
+        aria-controls="example-collapse-text"
+        aria-expanded={open}
+      >
+        See gallery
+      </Button>
+      <Collapse in={open}>
       <Container className={appStyles.Content}>
         <h2 className="p-2">{gallery.name}</h2>
         <div className="p-2">
@@ -55,6 +68,7 @@ function GalleryPage(props) {
           <p>No photos posted yet</p>
         )}
       </Container>
+      </Collapse>
     </Col>
   );
 }

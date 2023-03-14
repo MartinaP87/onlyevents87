@@ -10,8 +10,8 @@ import styles from "../../styles/Event.module.css";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import EventGenreCreateForm from "./EventGenres/EventGenreCreateForm";
-import { Container } from "react-bootstrap";
-import { format } from 'date-fns'
+import  Container from "react-bootstrap/Container";
+import { format } from "date-fns";
 
 const Event = (props) => {
   const {
@@ -46,8 +46,10 @@ const Event = (props) => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const { data } = await axiosReq.get( `/categories/genres/?category=${category}`)
-        setGenresToGet(data)
+        const { data } = await axiosReq.get(
+          `/categories/genres/?category=${category}`
+        );
+        setGenresToGet(data);
       } catch (err) {
         console.log(err);
       }
@@ -57,9 +59,7 @@ const Event = (props) => {
     }
   }, [category, id, date]);
 
-  
-
-  const handleEdit =  () => {
+  const handleEdit = () => {
     history.push(`/events/${id}/edit`);
   };
 
@@ -156,12 +156,12 @@ const Event = (props) => {
       <Card className={styles.Event}>
         <Card.Body>
           <Media className="align-item-center justify-content-between">
-            <Link to={`/profiles/${profile_id}/`}>
+            <Link className="d-flex" to={`/profiles/${profile_id}/`}>
               <Avatar src={profile_image} height={55} />
-              {owner}
+              <p className={`${styles.Media}`}>{owner}</p>
             </Link>
-            <div className="d-flex align-item-center">
-              <span>{updated_at}</span>
+            <div className="d-sm-flex align-item-center">
+              <span className={`${styles.Media} d-none d-sm-inline`}>{updated_at}</span>
 
               {is_owner && eventPage && (
                 <MoreDropdown
@@ -176,19 +176,30 @@ const Event = (props) => {
           <Card.Img className={styles.EventImage} src={image} alt={title} />
         </Link>
         <Card.Body>
-        {date && <Card.Subtitle>{format(new Date(date),'d-MMM-yyyy')}</Card.Subtitle>}
-        {date && eventPage && 
-        <Card.Subtitle className="p-2">
-          Time: {format(new Date(date),'HH.mm')}
-          </Card.Subtitle>}
-          {title && <Card.Title className="text-center"><h3>{title}</h3></Card.Title>}
-          {location && <Card.Subtitle>{location}</Card.Subtitle>}
+          {date && (
+            <Card.Subtitle>
+              {format(new Date(date), "d-MMM-yyyy")}
+            </Card.Subtitle>
+          )}
+          {date && eventPage && (
+            <Card.Subtitle className="p-2">
+              Time: {format(new Date(date), "HH.mm")}
+            </Card.Subtitle>
+          )}
+          {title && (
+            <Card.Title className="text-center">
+              <h3>{title}</h3>
+            </Card.Title>
+          )}
+          {location && <Card.Subtitle className="p-2"><strong>{location}</strong></Card.Subtitle>}
+          {!eventPage && category_name && 
+          <Card.Subtitle className="p-2">Category: {category_name}</Card.Subtitle>}
+
           {eventPage && (
             <>
-              {category_name && <Card.Text>{category_name}</Card.Text>}
-              {address && <Card.Text>{address}</Card.Text>}
+              {address && <Card.Subtitle>{address}</Card.Subtitle>}
               <hr />
-              {content && <Card.Text>{content}</Card.Text>}
+              {content && <Card.Text>{content}<hr /></Card.Text>}
             </>
           )}
 
@@ -239,11 +250,14 @@ const Event = (props) => {
               <i className="far fa-comments" />
             </Link>
             {comments_count}
-          </div>
+          </div><hr/ >
+          {eventPage && category_name && <Card.Subtitle>Category: {category_name}</Card.Subtitle>}
+              
         </Card.Body>
       </Card>
       {is_owner && eventPage && (
         <EventGenreCreateForm genresToGet={genresToGet} setGenres={setGenres} />
+        
       )}
     </Container>
   );

@@ -1,6 +1,11 @@
 .WordBreak {
     word-break: break-all;
-    font-size: 2vh;
+  }
+
+.Usernames {
+    padding: 1.5vh;
+    font-size: 1rem;
+    align-self: center;
   }
 
 .Button {

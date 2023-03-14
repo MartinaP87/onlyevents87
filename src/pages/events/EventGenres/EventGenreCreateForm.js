@@ -55,11 +55,13 @@ const EventGenreCreateForm = (props) => {
   };
 
   return (
-    <Row>
-      <Col className="py-1 p-0 p-md-2" md={7} lg={12}>
+    <Row className="justify-content-center">
+      <Col  md={7} lg={12}>
+        <Container
+        className={"d-flex flex-column justify-content-center p-0"}>
         <Accordion>
-          <Card>
-            <Card.Header>
+          <Card className="border-0">
+            <Card.Header className="py-0">
               <Accordion.Toggle
                 onClick={() => setErrors("")}
                 as={Button}
@@ -72,9 +74,9 @@ const EventGenreCreateForm = (props) => {
             <Accordion.Collapse eventKey="0">
               <Card.Body>
                 <Form onSubmit={handleSubmit}>
-                  <Container
+                  {/* <Container
                     className={"d-flex flex-column justify-content-center p-0"}
-                  >
+                  > */}
                     {genresToGet?.results.length && (
                       <Form.Group controlId="genre">
                         <Form.Label className="d-none">Genre</Form.Label>
@@ -119,12 +121,12 @@ const EventGenreCreateForm = (props) => {
                         create
                       </Button>
                     </div>
-                  </Container>
+                  {/* </Container> */}
                 </Form>
               </Card.Body>
             </Accordion.Collapse>
           </Card>
-        </Accordion>
+        </Accordion></Container>
       </Col>
     </Row>
   );

@@ -55,7 +55,9 @@ function EventPage() {
 
   return (
     <Row className="h-100">
-      <GalleryPage gallery={gallery} />
+      <div className="d-none d-lg-block">
+        <GalleryPage gallery={gallery} />
+      </div>
       <Col className="py-2 p-0 p-lg-2" lg={6}>
         <PopularProfiles mobile />
         <Event
@@ -64,10 +66,9 @@ function EventPage() {
           setGenres={setGenres}
           eventPage
         />
-        <Row>
+        <Row className="justify-content-center">
           {genres.results.length ? (
-          <Container>
-            
+            <Container className="px-0 py-2">
               <InfiniteScroll
                 className={styles.Genres}
                 children={genres.results.map((genre) => (
@@ -83,11 +84,15 @@ function EventPage() {
                 hasMore={!!genres.next}
                 next={() => fetchMoreData(genres, setGenres)}
               />
-              </Container>
-            ) : (
-              <p className="text=center">No genres yet</p>
-            )}
-          
+            </Container>
+          ) : (
+            <Container className="px-0 py-2 justify-content-center">
+              <p className="text-center">No genres yet</p>
+            </Container>
+          )}
+          <div className="d-lg-none">
+            <GalleryPage gallery={gallery} />
+          </div>
         </Row>
 
         <Container className={appStyles.Content}>
@@ -124,11 +129,19 @@ function EventPage() {
           )}
         </Container>
       </Col>
-{event?.results.length ? (
-      <Col lg={3} className="d-none d-lg-block p-0 p-lg-2"> 
-        <GoingProfiles id={id} going_count={event.results[0].goings_count} />
-        <InterestedProfiles id={id} interested_count={event.results[0].interesteds_count} />
-      </Col>) : (<div className={styles.SpinnerDiv}><Asset spinner /></div>)}
+      {event?.results.length ? (
+        <Col lg={3} className="d-none d-lg-block p-0 p-lg-2">
+          <GoingProfiles id={id} going_count={event.results[0].goings_count} />
+          <InterestedProfiles
+            id={id}
+            interested_count={event.results[0].interesteds_count}
+          />
+        </Col>
+      ) : (
+        <div className={styles.SpinnerDiv}>
+          <Asset spinner />
+        </div>
+      )}
     </Row>
   );
 }

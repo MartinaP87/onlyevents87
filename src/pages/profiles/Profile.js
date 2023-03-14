@@ -17,14 +17,14 @@ const Profile = (props) => {
     
     <div className={`${!eventPage && "my-1"} d-flex align-item-center ${mobile && "flex-column"}`}>
         <div>
-            <Link className='align-self-center' to={`/profiles/${id}`}>
+            <Link className="align-self-center" to={`/profiles/${id}`}>
                 <Avatar src={image} height={imageSize}/>
             </Link>
         </div>
-        <div className={`py-3 mx-2 ${styles.WordBreak}`}>
+        <div className={`mx-2 ${styles.WordBreak} ${styles.Usernames}`}>
             <strong>{owner}</strong>
         </div>
-        <div className={`text-right ${!mobile && 'ml-auto'}`}>
+        <div className={`text-right py-3 ${!mobile && 'ml-auto'}`}>
             {!mobile && currentUser && ! is_owner && (
                 following_id ? (
                     <Button 

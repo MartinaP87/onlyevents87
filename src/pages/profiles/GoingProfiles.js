@@ -6,46 +6,45 @@ import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
 import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
+import styles from "../../styles/GoingInterestedProfiles.module.css";
 
 const GoingProfiles = (props) => {
   const { popularProfiles } = useProfileData();
-  const {mobile, id, going_count} = props
-  const [going, setGoing] = useState({results: []})
+  const { id, going_count } = props;
+  const [going, setGoing] = useState({ results: [] });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axiosReq.get(`/going/?posted_event=${id}`)
-        setGoing(data)
-      } catch(err) {console.log(err)}
-    }
+        const { data } = await axiosReq.get(`/going/?posted_event=${id}`);
+        setGoing(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     if (id) {
-    fetchData()}
-  }, [id])
+      fetchData();
+    }
+  }, [id]);
 
-const goingProfiles = popularProfiles?.results.filter((profile) => 
-going?.results.map((person_going) => person_going.owner).includes(profile.owner) ); 
+  const goingProfiles = popularProfiles?.results.filter((profile) =>
+    going?.results
+      .map((person_going) => person_going.owner)
+      .includes(profile.owner)
+  );
 
- 
   return (
-
-    <Container className={`${appStyles.Content} mb-3 ${mobile && "d-lg-none text-center py-4 mb-3"}`}>
-      <h3>{going_count} Going:</h3>
+    <Container className={`${appStyles.Content} mb-3`}>
+      <h3 className={styles.Title}>{going_count} Going:</h3>
       {goingProfiles.length ? (
-        <>  
-          {mobile ? (
-            <div className="d-flex justify-content-around">
-                {goingProfiles.slice(0,4).map((profile) => (
-            <Profile key={profile.id} profile={profile} mobile />
-          ))}
-            </div>
-          ) : (
-            goingProfiles.map((profile) => (
-                <Profile key={profile.id} profile={profile} eventPage imageSize={30}/>
-          ))
-          )}
-          
-        </>
+        goingProfiles.map((profile) => (
+          <Profile
+            key={profile.id}
+            profile={profile}
+            eventPage
+            imageSize={40}
+          />
+        ))
       ) : (
         <Asset src={NoResults} />
       )}

@@ -1,9 +1,12 @@
 .GenreNameContainer {
   min-width: fit-content;
+  align-self: center;
 }
 
 .Bold {
   font-weight: bold;
+  font-size: 80%;
+  margin-bottom: 0px;
 }
 
 .Trash {

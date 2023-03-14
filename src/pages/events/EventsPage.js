@@ -47,10 +47,10 @@ const EventsPage = ({ message, filter = "" }) => {
     <Row className="h-100 pt-4">
        <PopularProfiles mobile />
       <Col className="pt-1" lg={3} md={12}>
-        <Row className="py-2 ml-2">
+        <Row className="py-2">
           <h3>Events</h3>
         </Row>
-        <Row className="flex-nowrap pr-4 ml-2">
+        <Row className="flex-nowrap pr-4">
           <i className={`fas fa-search ${styles.SearchIcon}`} />
           <Form
             className={styles.SearchBar}
@@ -87,8 +87,6 @@ const EventsPage = ({ message, filter = "" }) => {
             />
           </Container>
         </Link>
-
-        {/* <PopularProfiles mobile /> */}
 
         {hasLoaded ? (
           <>

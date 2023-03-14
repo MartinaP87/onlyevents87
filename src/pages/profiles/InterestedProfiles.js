@@ -6,49 +6,49 @@ import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
+import styles from "../../styles/GoingInterestedProfiles.module.css";
 
 const InterestedProfiles = (props) => {
   const { popularProfiles } = useProfileData();
-  const {mobile, id, interested_count} = props
-  const [interested, setInterested] = useState({results: []})
+  const { id, interested_count } = props;
+  const [interested, setInterested] = useState({ results: [] });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axiosReq.get(`/interested/?posted_event=${id}`)
-        setInterested(data)
-      } catch(err) {console.log(err)}
-    }
+        const { data } = await axiosReq.get(`/interested/?posted_event=${id}`);
+        setInterested(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
     if (id) {
-      fetchData()}
-  }, [id])
+      fetchData();
+    }
+  }, [id]);
 
-const interestedProfiles = popularProfiles?.results.filter((profile) => 
-interested?.results.map((person_interested) => person_interested.owner).includes(profile.owner) ); 
+  const interestedProfiles = popularProfiles?.results.filter((profile) =>
+    interested?.results
+      .map((person_interested) => person_interested.owner)
+      .includes(profile.owner)
+  );
 
- 
   return (
-
-    <Container className={`${appStyles.Content} ${mobile && "d-lg-none text-center mb-3"}`}>
-       <h3>{interested_count} Interested:</h3>
+    <Container className={`${appStyles.Content} mb-3`}>
+      <h3 className={styles.Title}>{interested_count} Interested:</h3>
       {interestedProfiles.length ? (
-        <>
-         
-          {mobile ? (
-            <div className="d-flex justify-content-around">
-                {interestedProfiles.slice(0,4).map((profile) => (
-            <Profile key={profile.id} profile={profile} mobile />
-          ))}
-            </div>
-          ) : (
-            interestedProfiles.map((profile) => (
-                <Profile key={profile.id} profile={profile} eventPage imageSize={30} />
-          ))
-          )}
-          
-        </>
+        interestedProfiles.map((profile) => (
+          <Profile
+            key={profile.id}
+            profile={profile}
+            eventPage
+            imageSize={40}
+          />
+        ))
       ) : (
-        <Asset src={NoResults} />
+        <div>
+          <Asset className={styles.NoResult} src={NoResults} />
+        </div>
       )}
     </Container>
   );
