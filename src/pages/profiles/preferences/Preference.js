@@ -21,13 +21,14 @@ const Preference = (props) => {
   };
 
   return (
-    <Container className="d-inline-flex">
-      <Container className="d-flex">
-        {genre_name && (
-          <p className={`${styles.bold} text-center`}>{genre_name}</p>
-        )}
-      </Container>
+<>
+    <Container className={`${styles.GenreContainer} d-inline-flex px-2 border`}>
       <Container>
+        {genre_name && 
+          <p className={`${styles.Bold} text-center`}>{genre_name}</p>
+        }
+      </Container>
+      <Container className="text-align-right p-0">
         {is_owner && (
           <i
             className="fas fa-trash-alt"
@@ -37,6 +38,7 @@ const Preference = (props) => {
         )} 
       </Container>
     </Container>
+    </>
   );
 };
 

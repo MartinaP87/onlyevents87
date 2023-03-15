@@ -6,9 +6,15 @@
   }
 
 .GenreTitle {
-  font-weight: bolder;
+  font-weight: bold;
   font-size: 3.7vh;
   padding-bottom: 3vh;
+}
+
+.Genres {
+  overflow: unset;
+  height: auto;
+  display: contents;
 }
 
 .FollowersBox {
@@ -16,10 +22,10 @@
 }
 
 .BoxText {
-  font-size: 1.7vw;
+  font-size: 1.2rem;
 }
   
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 991px) {
   .ProfileImage {
     width: 250px;
     height: 250px;

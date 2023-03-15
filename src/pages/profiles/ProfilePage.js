@@ -78,9 +78,8 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
-
-  const mainProfileActions = (
-    <Container>
+  const mainProfileHeader = (
+    <>
       <Row noGutters className="justify-content-center">
         <Image
           className={styles.ProfileImage}
@@ -90,11 +89,15 @@ function ProfilePage() {
       </Row>
       <Row className="my-3 justify-content-center">
         {profile?.is_owner ? (
-          <>
+          <> <Col xs={10} sm={6} lg={12} className="d-flex justify-content-center">
+          <Container className="px-0 d-flex">
             <ProfileEditDropdown id={profile?.id} />
-            <Button className="ml-auto">
+            <div className="ml-auto">
+            <Button>
               <Link to={`/my_photos/${id}`}>Photos</Link>
             </Button>
+            </div>
+            </Container></Col>
           </>
         ) : (
           <Button>
@@ -102,7 +105,11 @@ function ProfilePage() {
           </Button>
         )}
       </Row>
-      <Row className="my-3 justify-content-center">
+    </>
+  );
+  const mainProfileActions = (
+    <>
+      <Row className="my-3 justify-content-center ">
         {is_owner && (
           <PreferenceCreateForm
             preferenceChoice={preferenceChoice}
@@ -110,17 +117,23 @@ function ProfilePage() {
           />
         )}
       </Row>
-      <Row className="my-3 justify-content-center">
-        <Col lg={12}>
+      <Row className="my-3">
+        <>
           {preferences.results.length ? (
-            <>
-            <h4 className={styles.GenreTitle}>{profile?.owner}'s favourites:</h4>
+            <Container className={`justify-content-center ${appStyles.Content}`}>
+              <h4 className={styles.GenreTitle}>
+                {profile?.owner}'s favourites:
+              </h4>
               {filteredCategories.map((uniqueCategory) => (
-                <div key={uniqueCategory}>
-                  <h5>{uniqueCategory}</h5>
+                <Container 
+                className="p-2" 
+                key={uniqueCategory}>
+                  <h5 className="p-2">{uniqueCategory}</h5>
                   <InfiniteScroll
                     children={preferences.results.map((preference) => (
-                      <div key={preference.id}>
+                      <div 
+                      className={`${styles.Genres}`}
+                      key={preference.id}>
                         {preference.category === uniqueCategory && (
                           <Preference
                             {...preference}
@@ -134,25 +147,24 @@ function ProfilePage() {
                     hasMore={!!preferences.next}
                     next={() => fetchMoreData(preferences, setPreferences)}
                   />
-                  <hr />
-                </div>
+                  
+                </Container>
               ))}
-            </>
+            </Container>
           ) : (
             <p> No preferences yet...</p>
           )}
-        </Col>
+        </>
       </Row>
-    </Container>
+    </>
   );
 
-  const mainProfile = (
+  const mainProfileDetails = (
     <>
-      <Row className="mx-4 text-center">
-        <Col lg={10} className={styles.FollowersBox}>
+      <Row className="mx-1 text-center">
+        <Col xs={12} lg={10} className={styles.FollowersBox}>
           <h3 className="m-2">{profile?.owner}</h3>
-          {/* <Row className={`${is_owner && styles.FollowersBox} justify-content-between no-gutters`} > */}
-          <Row className="justify-content-between no-gutters" >
+          <Row className="justify-content-between no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.events_count}</div>
               <div className={styles.BoxText}>Events</div>
@@ -186,7 +198,9 @@ function ProfilePage() {
               </Button>
             ))}
         </Col>
+        
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
+        
       </Row>
     </>
   );
@@ -214,24 +228,30 @@ function ProfilePage() {
   );
 
   return (
-    <Row>
-      <Col lg={3}>{mainProfileActions}</Col>
-      <Col className="py-2 p-0 p-lg-2" lg={6}>
-        <PopularProfiles mobile />
-        <Container className={appStyles.Content}>
-          {hasLoaded ? (
-            <>
-              {mainProfile}
+    <Row className="h-100">
+      {hasLoaded ? (
+        <>
+          <Col lg={3} className="d-none d-lg-block">
+            {mainProfileHeader}
+            {mainProfileActions}
+          </Col>
+          <Col className="py-2 p-0 p-lg-2" lg={6}>
+            <Container className={appStyles.Content}>
+              <div className="d-lg-none">{mainProfileHeader}</div>
+             
+              {mainProfileDetails}
+              <hr/>
+              <div className="d-lg-none">{mainProfileActions}</div>
               {mainProfileEvents}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
-        </Container>
-      </Col>
-      <Col lg={3} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
-      </Col>
+            </Container>
+          </Col>
+          <Col lg={3} className="d-none d-lg-block p-0 pt-lg-2">
+            <PopularProfiles />
+          </Col>
+        </>
+      ) : (
+        <Asset spinner />
+      )}
     </Row>
   );
 }

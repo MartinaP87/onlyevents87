@@ -2,6 +2,6 @@
     min-height: 343px;
   }
 
-.NonOption {
-  font-size: 2px;
+.ButtonAccordion {
+  display: contents;
 }

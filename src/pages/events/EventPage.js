@@ -66,9 +66,9 @@ function EventPage() {
           setGenres={setGenres}
           eventPage
         />
-        <Row className="justify-content-center">
+        <Row className="justify-content-center px-3">
           {genres.results.length ? (
-            <Container className="px-0 py-2">
+            <Container className="py-2">
               <InfiniteScroll
                 className={styles.Genres}
                 children={genres.results.map((genre) => (
@@ -95,7 +95,7 @@ function EventPage() {
           </div>
         </Row>
 
-        <Container className={appStyles.Content}>
+        <Container className={`${appStyles.Content}`}>
           {currentUser ? (
             <CommentCreateForm
               profile_id={currentUser.profile_id}

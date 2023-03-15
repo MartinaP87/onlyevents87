@@ -158,7 +158,7 @@ const Event = (props) => {
           <Media className="align-item-center justify-content-between">
             <Link className="d-flex" to={`/profiles/${profile_id}/`}>
               <Avatar src={profile_image} height={55} />
-              <p className={`${styles.Media}`}>{owner}</p>
+              <p className={styles.Media}>{owner}</p>
             </Link>
             <div className="d-sm-flex align-item-center">
               <span className={`${styles.Media} d-none d-sm-inline`}>{updated_at}</span>

@@ -31,7 +31,7 @@ const CategoriesPage = () => {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2 justify-center" lg={6}>
+      <Col className="py-2 p-lg-2" lg={6}>
         <h1>Categories:</h1>
         {categories?.results.map((category) => (
           <div key={category.id}>

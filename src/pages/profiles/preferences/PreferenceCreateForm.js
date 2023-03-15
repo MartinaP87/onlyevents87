@@ -57,7 +57,7 @@ const PreferenceCreateForm = (props) => {
   return (
     <>
       <Row>
-        <Col className="py-1 p-0 p-md-2" md={7} lg={12}>
+        <Col className={`${styles.ButtonAccordion} py-1 px-0 p-md-2`} md={7} lg={12}>
           <Accordion>
             <Card>
               <Card.Header>

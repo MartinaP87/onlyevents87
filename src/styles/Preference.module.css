@@ -1,4 +1,15 @@
-.bold {
+.Bold {
   font-weight: bold;
   font-size: 2.3vh;
+}
+
+.GenreContainer {
+  width: fit-content;
+  align-self: center;
+}
+
+@media screen and (min-width: 992px) {
+  .GenreContainer {
+  width: -webkit-fill-available;
+}
 }

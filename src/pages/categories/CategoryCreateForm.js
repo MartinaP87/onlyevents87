@@ -47,10 +47,10 @@ const CategoryCreateForm = (props) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
+      <Row className="d-flex justify-content-center">
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
-            className={`${appStyles.Content} d-flex flex-column justify-content-center`}
+            className={appStyles.Content}
           >
             <Form.Group controlId="cat_name">
               <Form.Label className="d-none">Category name</Form.Label>
