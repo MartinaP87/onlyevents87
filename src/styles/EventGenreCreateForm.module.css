@@ -1,0 +1,9 @@
+.Purple {
+    color: #8f1fff;
+    font-weight: bold;
+  }
+  
+  .Purple:hover {
+    color: #da2bff;
+    font-weight: bold;
+  }

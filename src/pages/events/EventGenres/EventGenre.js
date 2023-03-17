@@ -7,7 +7,7 @@ import styles from "../../../styles/EventGenre.module.css";
 const EventGenre = (props) => {
   const { id, genre_name, setGenres, owner } = props;
   const currentUser = useCurrentUser();
-  const is_owner = currentUser.username === owner;
+  const is_owner = currentUser?.username === owner;
 
   const handleDelete = async () => {
     try {

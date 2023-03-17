@@ -9,6 +9,8 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
+import Logo from "../assets/logo.png";
+import { Image } from "react-bootstrap";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -117,10 +119,12 @@ const NavBar = () => {
 
   return (
     <Navbar expanded={expanded} expand="lg" fixed="top" className={styles.NavBar}>
-      <Container>
+      <Container className="mx-0">
         <NavLink exact to="/">
-          <Navbar.Brand className={styles.NavbarBrand}>
-            Only Events
+          <Navbar.Brand >
+            <Container className={styles.NavbarBrand}>
+            <Image src={Logo} height={60}/>
+            <h4>Only Events</h4></Container>
           </Navbar.Brand>
         </NavLink>
         {currentUser && addEventIcon}

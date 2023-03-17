@@ -12,7 +12,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "./PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {
   useProfileData,
   useSetProfileData,
@@ -32,6 +32,7 @@ function ProfilePage() {
   const { setProfileData, handleFollow, handleUnfollow } = useSetProfileData();
   const { pageProfile } = useProfileData();
   const [profile] = pageProfile.results;
+  const history = useHistory();
   const is_owner = currentUser?.username === profile?.owner;
   const [profileEvents, setProfileEvents] = useState({
     results: [],
@@ -93,16 +94,20 @@ function ProfilePage() {
           <Container className="px-0 d-flex">
             <ProfileEditDropdown id={profile?.id} />
             <div className="ml-auto">
-            <Button>
-              <Link to={`/my_photos/${id}`}>Photos</Link>
+            <Button 
+            className={btnStyles.Button}
+            onClick={() => history.push(`/my_photos/${id}`)}>
+            Photos
             </Button>
             </div>
             </Container></Col>
           </>
         ) : (
-          <Button>
-            <Link to={`/my_photos/${id}`}>Photos</Link>
-          </Button>
+          <Button
+          className={btnStyles.Button}
+           onClick={() => history.push(`/my_photos/${id}`)}>
+            Photos
+            </Button>
         )}
       </Row>
     </>
@@ -121,9 +126,9 @@ function ProfilePage() {
         <>
           {preferences.results.length ? (
             <Container className={`justify-content-center ${appStyles.Content}`}>
-              <h4 className={styles.GenreTitle}>
+              <h3 className="pb-1">
                 {profile?.owner}'s favourites:
-              </h4>
+              </h3>
               {filteredCategories.map((uniqueCategory) => (
                 <Container 
                 className="p-2" 
@@ -184,14 +189,14 @@ function ProfilePage() {
             !is_owner &&
             (profile?.following_id ? (
               <Button
-                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
+                className={`${btnStyles.Button} ${btnStyles.BlueOutline}`}
                 onClick={() => handleUnfollow(profile)}
               >
                 Unfollow
               </Button>
             ) : (
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Black}`}
+                className={`${btnStyles.Button} ${btnStyles.Blue}`}
                 onClick={() => handleFollow(profile)}
               >
                 Follow

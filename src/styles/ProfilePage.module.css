@@ -5,12 +5,6 @@
     margin: 4px;
   }
 
-.GenreTitle {
-  font-weight: bold;
-  font-size: 3.7vh;
-  padding-bottom: 3vh;
-}
-
 .Genres {
   overflow: unset;
   height: auto;
@@ -23,6 +17,29 @@
 
 .BoxText {
   font-size: 1.2rem;
+}
+
+.Button:hover {
+  opacity: 0.8;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.Button {
+  background-color: #8f1fff;
+  border: none;
+}
+.Button:hover:active {
+  background-color: #3b12ff !important;
+}
+
+.Button:active {
+  background-color: #3b12ff !important;
+}
+
+.Button:focus {
+  background-color: #3b12ff;
+  /* background-color: #2142b2; */
 }
   
 @media screen and (max-width: 991px) {

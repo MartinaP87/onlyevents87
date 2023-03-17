@@ -1,19 +1,24 @@
 .NavBar {
-    background-color: #ededed;
-    border: 1px solid #e0a9a9;
+    background-image: linear-gradient(to right, #FFE830 , #87E805);
+    /* background-color: #ffe830; */
+    justify-content: center;
     font-family: 'Poiret One', cursive;
 }
 
+.Pink {
+    color: #b31968;
+}
 .NavbarBrand {
-    font-family: 'Poiret One', cursive;
-    background-color: rgb(255, 101, 5);
-    font-size: 45px;
+    justify-content: center;
+    display: contents;
+    margin: 0px;
+    padding: 0px;
 }
 
 .NavLink {
-    padding: 3px;
+    padding: 2px;
 }
 
 .Active i{
-    color: #620000;
+  color: #b31968;
 }

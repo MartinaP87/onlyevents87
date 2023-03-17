@@ -65,6 +65,7 @@ const PreferenceCreateForm = (props) => {
                   as={Button}
                   variant="link"
                   eventKey="0"
+                  className={styles.Purple}
                   onClick={() => setErrors("")}
                 >
                   Add a preference! <i className="fas fa-plus" />

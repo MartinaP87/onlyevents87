@@ -10,24 +10,26 @@
   max-width: 90%;
   border: 1px solid;
  }
-  .Event figure,
-  h5 {
-    margin: 0 0;
-  }
-  .Media {
+ 
+  .Name {
     padding: 1.5vh;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   
-  .Heart {
-    color: #f85032;
+  .CreatedAt {
+    padding: 1.5vh;
+    font-size: 1rem;
+  }
+
+  .Star {
+    color: #da2bff;
   }
   
   
-.Heart:hover {
-  color: #2142b2;
+.Star:hover {
+  color: #8f1fff;
 }
 
-.HeartOutline:hover {
-  color: #f85032;
+.StarOutline:hover {
+  color: #da2bff;
 }

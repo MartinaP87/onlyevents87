@@ -3,12 +3,6 @@
     max-width: 50%;
     padding: 0px;
   }
-  
-  .Absolute {
-    position: absolute;
-    right: 0;
-    z-index: 99;
-  }
 
   .AbsoluteLeft {
     position: absolute;

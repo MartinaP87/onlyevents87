@@ -1,6 +1,7 @@
 .Owner {
     font-weight: bold;
-    color: #2142b2;
+    /* color: #2142b2; */
+    color: #3B12FF;
     margin-right: 8px;
   }
   
@@ -9,10 +10,15 @@
     color: #c1c1c5;
   }
   
-  .Heart:hover {
-    color: #2142b2;
+  .Heart {
+    color: #da2bff;
   }
   
-  .HeartOutline:hover {
-    color: #f85032;
-  }
+  
+.Heart:hover {
+  color: #8f1fff;
+}
+
+.HeartOutline:hover {
+  color: #da2bff;
+}

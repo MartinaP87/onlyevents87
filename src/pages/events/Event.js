@@ -158,10 +158,10 @@ const Event = (props) => {
           <Media className="align-item-center justify-content-between">
             <Link className="d-flex" to={`/profiles/${profile_id}/`}>
               <Avatar src={profile_image} height={55} />
-              <p className={styles.Media}>{owner}</p>
+              <p className={styles.Name}>{owner}</p>
             </Link>
             <div className="d-sm-flex align-item-center">
-              <span className={`${styles.Media} d-none d-sm-inline`}>{updated_at}</span>
+              <span className={`${styles.CreatedAt} d-none d-sm-inline`}>{updated_at}</span>
 
               {is_owner && eventPage && (
                 <MoreDropdown
@@ -203,14 +203,14 @@ const Event = (props) => {
             </>
           )}
 
-          <div className={styles.EventBar}>
+          <div>
             {interested_id ? (
               <span onClick={handleUninterested}>
-                <i className={`fas fa-star ${styles.Heart}`} />
+                <i className={`fas fa-star ${styles.Star}`} />
               </span>
             ) : currentUser ? (
               <span onClick={handleInterested}>
-                <i className={`far fa-star ${styles.HeartOutline}`} />
+                <i className={`far fa-star ${styles.StarOutline}`} />
               </span>
             ) : (
               <OverlayTrigger
@@ -226,11 +226,11 @@ const Event = (props) => {
 
             {going_id ? (
               <span onClick={handleNotGoing}>
-                <i className={`fas fa-calendar-check ${styles.Heart}`} />
+                <i className={`fas fa-calendar-check ${styles.Star}`} />
               </span>
             ) : currentUser ? (
               <span onClick={handleGoing}>
-                <i className={`far fa-calendar-check ${styles.HeartOutline}`} />
+                <i className={`far fa-calendar-check ${styles.StarOutline}`} />
               </span>
             ) : (
               <OverlayTrigger

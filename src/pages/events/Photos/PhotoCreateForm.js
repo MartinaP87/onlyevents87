@@ -110,7 +110,10 @@ function PhotoCreateForm(props) {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button 
+      className={btnStyles.Button}
+      variant="primary" 
+      onClick={handleShow}>
         Add a photo!
       </Button>
 

@@ -15,10 +15,11 @@
     padding: 9px;
     padding-left: 15px;
   }
-  
+
+  .InfoIcon:hover,
   .SearchIcon:hover {
     cursor: default;
-    color: #cfced3;
+    color: #da2bff;
   }
   
   .InfoIcon {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { axiosReq } from "../../../api/axiosDefaults";
 import { useParams } from "react-router-dom";
@@ -11,7 +10,7 @@ import Asset from "../../../components/Asset";
 import PhotoCreateForm from "../Photos/PhotoCreateForm";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
-import styles from "../../../styles/GalleryPage.module.css";
+import buttonStyle from "../../../styles/Button.module.css";
 
 function GalleryPage(props) {
   const { id } = useParams();
@@ -34,9 +33,9 @@ function GalleryPage(props) {
   }, [id]);
 
   return (
-    <Col className="py-2 p-0 p-lg-2" lg={3}>
+    <>
       <Button
-      className={styles.GalleryButton}
+      className={`${buttonStyle.Button} my-2`}
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
@@ -69,7 +68,8 @@ function GalleryPage(props) {
         )}
       </Container>
       </Collapse>
-    </Col>
+    </>
+    // </Col>
   );
 }
 

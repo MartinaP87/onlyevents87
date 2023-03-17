@@ -4,10 +4,12 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import styles from "../../../styles/EventCreateEditForm.module.css";
+import styles from "../../../styles/EventGenreCreateForm.module.css";
 import btnStyles from "../../../styles/Button.module.css";
 import { axiosReq } from "../../../api/axiosDefaults";
-import { Accordion, Alert, Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import  Alert from "react-bootstrap/Alert";
+import Accordion from "react-bootstrap/Accordion";
 import { useHistory, useParams } from "react-router-dom";
 
 
@@ -63,6 +65,7 @@ const EventGenreCreateForm = (props) => {
           <Card className="border-0">
             <Card.Header className="py-0">
               <Accordion.Toggle
+              className={styles.Purple}
                 onClick={() => setErrors("")}
                 as={Button}
                 variant="link"
@@ -74,9 +77,6 @@ const EventGenreCreateForm = (props) => {
             <Accordion.Collapse eventKey="0">
               <Card.Body>
                 <Form onSubmit={handleSubmit}>
-                  {/* <Container
-                    className={"d-flex flex-column justify-content-center p-0"}
-                  > */}
                     {genresToGet?.results.length && (
                       <Form.Group controlId="genre">
                         <Form.Label className="d-none">Genre</Form.Label>
@@ -115,13 +115,12 @@ const EventGenreCreateForm = (props) => {
 
                     <div className="d-inline">
                       <Button
-                        className={`${btnStyles.Button} py-1`}
+                        className={`${btnStyles.Button} ${btnStyles.Blue} py-1`}
                         type="submit"
                       >
                         create
                       </Button>
                     </div>
-                  {/* </Container> */}
                 </Form>
               </Card.Body>
             </Accordion.Collapse>

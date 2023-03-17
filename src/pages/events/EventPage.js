@@ -55,9 +55,9 @@ function EventPage() {
 
   return (
     <Row className="h-100">
-      <div className="d-none d-lg-block">
+      <Col lg={3} className="d-none d-lg-block">
         <GalleryPage gallery={gallery} />
-      </div>
+      </Col>
       <Col className="py-2 p-0 p-lg-2" lg={6}>
         <PopularProfiles mobile />
         <Event

@@ -121,11 +121,11 @@ const Comment = (props) => {
                   </OverlayTrigger>
                 ) : like_id ? (
                   <span onClick={handleUnlike}>
-                    <i className={`far fa-heart ${styles.Heart}`} />
+                    <i className={`fas fa-heart ${styles.Heart}`} />
                   </span>
                 ) : currentUser ? (
                   <span onClick={handleLike}>
-                    <i className={`fas fa-heart ${styles.HeartOutline}`} />
+                    <i className={`far fa-heart ${styles.HeartOutline}`} />
                   </span>
                 ) : (
                   <OverlayTrigger
