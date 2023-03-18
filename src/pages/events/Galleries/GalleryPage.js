@@ -35,7 +35,7 @@ function GalleryPage(props) {
   return (
     <>
       <Button
-      className={`${buttonStyle.Button} my-2`}
+        className={`${buttonStyle.Button} my-2`}
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
@@ -43,30 +43,29 @@ function GalleryPage(props) {
         See gallery
       </Button>
       <Collapse in={open}>
-      <Container className={appStyles.Content}>
-        <h2 className="p-2">{gallery.name}</h2>
-        <div className="p-2">
-          <PhotoCreateForm setPhotos={setPhotos} id={id} />
-        </div>
+        <Container className={appStyles.Content}>
+          <h2 className="p-2">{gallery.name}</h2>
+          <div className="p-2">
+            <PhotoCreateForm setPhotos={setPhotos} id={id} />
+          </div>
 
-        {photos.results.length ? (
-          <InfiniteScroll
-            children={photos.results.map((photo) => (
-              <Photo
-                key={photo.id}
-                {...photo}
-                // setPhotos={setPhotos}
-              />
-            ))}
-            dataLength={photos.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!photos.next}
-            next={() => fetchMoreData(photos, setPhotos)}
-          />
-        ) : (
-          <p>No photos posted yet</p>
-        )}
-      </Container>
+          {photos.results.length ? (
+            <InfiniteScroll
+              children={photos.results.map((photo) => (
+                <Photo
+                  key={photo.id}
+                  {...photo}
+                />
+              ))}
+              dataLength={photos.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!photos.next}
+              next={() => fetchMoreData(photos, setPhotos)}
+            />
+          ) : (
+            <p>No photos posted yet</p>
+          )}
+        </Container>
       </Collapse>
     </>
     // </Col>

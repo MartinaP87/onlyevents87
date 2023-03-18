@@ -10,7 +10,7 @@ import styles from "../../styles/Event.module.css";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import EventGenreCreateForm from "./EventGenres/EventGenreCreateForm";
-import  Container from "react-bootstrap/Container";
+import Container from "react-bootstrap/Container";
 import { format } from "date-fns";
 
 const Event = (props) => {
@@ -161,7 +161,9 @@ const Event = (props) => {
               <p className={styles.Name}>{owner}</p>
             </Link>
             <div className="d-sm-flex align-item-center">
-              <span className={`${styles.CreatedAt} d-none d-sm-inline`}>{updated_at}</span>
+              <span className={`${styles.CreatedAt} d-none d-sm-inline`}>
+                {updated_at}
+              </span>
 
               {is_owner && eventPage && (
                 <MoreDropdown
@@ -191,15 +193,27 @@ const Event = (props) => {
               <h3>{title}</h3>
             </Card.Title>
           )}
-          {location && <Card.Subtitle className="p-2"><strong>{location}</strong></Card.Subtitle>}
-          {!eventPage && category_name && 
-          <Card.Subtitle className="p-2">Category: {category_name}</Card.Subtitle>}
+          {location && (
+            <Card.Subtitle className="p-2">
+              <strong>{location}</strong>
+            </Card.Subtitle>
+          )}
+          {!eventPage && category_name && (
+            <Card.Subtitle className="p-2">
+              Category: {category_name}
+            </Card.Subtitle>
+          )}
 
           {eventPage && (
             <>
               {address && <Card.Subtitle>{address}</Card.Subtitle>}
               <hr />
-              {content && <Card.Text>{content}<hr /></Card.Text>}
+              {content && (
+                <Card.Text>
+                  {content}
+                  <hr />
+                </Card.Text>
+              )}
             </>
           )}
 
@@ -250,14 +264,15 @@ const Event = (props) => {
               <i className="far fa-comments" />
             </Link>
             {comments_count}
-          </div><hr/ >
-          {eventPage && category_name && <Card.Subtitle>Category: {category_name}</Card.Subtitle>}
-              
+          </div>
+          <hr />
+          {eventPage && category_name && (
+            <Card.Subtitle>Category: {category_name}</Card.Subtitle>
+          )}
         </Card.Body>
       </Card>
       {is_owner && eventPage && (
         <EventGenreCreateForm genresToGet={genresToGet} setGenres={setGenres} />
-        
       )}
     </Container>
   );

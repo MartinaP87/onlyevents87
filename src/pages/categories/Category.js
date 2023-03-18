@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Media from "react-bootstrap/Media";
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import CategoryEditForm from "./CategoryEditForm";
@@ -32,7 +32,7 @@ const Category = (props) => {
     <>
       <hr />
       <Media>
-        <Media.Body className="align-self-center"> 
+        <Media.Body className="align-self-center">
           {showEditForm ? (
             <CategoryEditForm
               id={id}

@@ -45,7 +45,7 @@ const EventsPage = ({ message, filter = "" }) => {
   }, [filter, query, pathname]);
   return (
     <Row className="h-100 pt-4">
-       <PopularProfiles mobile />
+      <PopularProfiles mobile />
       <Col className="pt-1" lg={3} md={12}>
         <Row className="py-2">
           <h3>Events</h3>
@@ -67,9 +67,12 @@ const EventsPage = ({ message, filter = "" }) => {
           <OverlayTrigger
             key="top"
             placement="top"
-            overlay={<Tooltip id={`tooltip-top`}>
-              Search for events by date, title, or name of the user that posted it!
-            </Tooltip>}
+            overlay={
+              <Tooltip id={`tooltip-top`}>
+                Search for events by date, title, or name of the user that
+                posted it!
+              </Tooltip>
+            }
           >
             <div className="px-1">
               <i className={`fas fa-info-circle ${styles.InfoIcon}`} />
@@ -81,7 +84,9 @@ const EventsPage = ({ message, filter = "" }) => {
       <Col className="py-2 p-0 p-lg-2" lg={6}>
         <Link className="d-none d-md-inline" to={`/events/create`}>
           <Container className="d-inline-flex justify-content-center px-4">
-            <h3 className="d-flex align-items-center mb-0">Add the next event! </h3>
+            <h3 className={`${styles.AddLink} d-flex align-items-center mb-0`}>
+              Add the next event!{" "}
+            </h3>
             <i
               className={`fas fa-plus-square d-flex px-3 ${styles.AddEvent}`}
             />

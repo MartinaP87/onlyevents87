@@ -11,7 +11,7 @@ import Genre from "../genres/Genre";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function CategoryPage() {
-  useRedirect("loggedOut")
+  useRedirect("loggedOut");
   const { id } = useParams();
   const [categoryData, setCategoryData] = useState({ results: [] });
   const [genres, setGenres] = useState({ results: [] });
@@ -55,14 +55,13 @@ function CategoryPage() {
           <p>No genres in this category yet</p>
         )}
       </Col>
-      {
-        admin &&
+      {admin && (
         <Col lg={6} className="d-lg-block p-0 p-lg-2">
           <Container>
             <GenreCreateForm id={id} setGenres={setGenres} />
           </Container>
         </Col>
-      }
+      )}
     </Row>
   );
 }

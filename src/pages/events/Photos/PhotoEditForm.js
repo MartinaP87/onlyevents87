@@ -101,12 +101,15 @@ function PhotoEditForm() {
       ))}
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Purple}`}
         onClick={() => history.push(`/events/galleries/photos/${id}/`)}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Purple}`}
+        type="submit"
+      >
         save
       </Button>
     </div>
@@ -125,7 +128,7 @@ function PhotoEditForm() {
               </figure>
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                  className={`${btnStyles.Button} ${btnStyles.Purple} btn`}
                   htmlFor="image-upload"
                 >
                   Change the image

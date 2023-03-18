@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Upload from "../../assets/red-upload.png";
+import Upload from "../../assets/upload.png";
 import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -49,7 +49,7 @@ function EventCreateForm() {
     setEventData({
       ...eventData,
       [event.target.name]: event.target.value,
-    }); 
+    });
   };
 
   const handleChangeCategory = (event) => {
@@ -107,7 +107,6 @@ function EventCreateForm() {
           type="text"
           placeholder="Event title"
           name="title"
-          className={styles.Input}
           value={title}
           onChange={handleChange}
         />
@@ -123,12 +122,11 @@ function EventCreateForm() {
         <Form.Control
           type="datetime-local"
           name="date"
-          className={styles.Input}
           value={date}
           onChange={handleChange}
         />
       </Form.Group>
-      
+
       {errors.date?.map((message, idx) => (
         <Alert key={idx} variant="warning">
           {message}
@@ -141,7 +139,6 @@ function EventCreateForm() {
           onChange={handleChangeCategory}
           placeholder="Category"
           name="category"
-          className={styles.Input}
           value={category.cat_name}
           as="select"
         >
@@ -163,7 +160,6 @@ function EventCreateForm() {
           type="text"
           placeholder="Event location"
           name="location"
-          className={styles.Input}
           value={location}
           onChange={handleChange}
         />
@@ -180,7 +176,6 @@ function EventCreateForm() {
           type="text"
           placeholder="Address"
           name="address"
-          className={styles.Input}
           value={address}
           onChange={handleChange}
         />
@@ -198,7 +193,6 @@ function EventCreateForm() {
           rows={5}
           placeholder="Content"
           name="content"
-          className={styles.Input}
           value={content}
           onChange={handleChange}
         />
@@ -210,12 +204,15 @@ function EventCreateForm() {
       ))}
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Purple}`}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Purple}`}
+        type="submit"
+      >
         create
       </Button>
     </div>
@@ -236,7 +233,7 @@ function EventCreateForm() {
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                      className={`${btnStyles.Button} ${btnStyles.Purple} btn`}
                       htmlFor="image-upload"
                     >
                       Change the image

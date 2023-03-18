@@ -8,10 +8,9 @@ import styles from "../../../styles/EventGenreCreateForm.module.css";
 import btnStyles from "../../../styles/Button.module.css";
 import { axiosReq } from "../../../api/axiosDefaults";
 import Card from "react-bootstrap/Card";
-import  Alert from "react-bootstrap/Alert";
+import Alert from "react-bootstrap/Alert";
 import Accordion from "react-bootstrap/Accordion";
 import { useHistory, useParams } from "react-router-dom";
-
 
 const EventGenreCreateForm = (props) => {
   const { genresToGet, setGenres } = props;
@@ -22,16 +21,16 @@ const EventGenreCreateForm = (props) => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    setSelectValue(e.target.value)
-    console.log(e.target.value)
+    setSelectValue(e.target.value);
     if (e.target.value !== "") {
       setGenre(
         genresToGet.results.filter(
           (genreToGet) => genreToGet.gen_name === e.target.value
         )[0].id
       );
-    setErrors("");
-  };}
+      setErrors("");
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -52,31 +51,30 @@ const EventGenreCreateForm = (props) => {
         setErrors(err.response?.data);
       }
     }
-    setSelectValue("")
-    setGenre("")
+    setSelectValue("");
+    setGenre("");
   };
 
   return (
     <Row className="justify-content-center">
-      <Col  md={7} lg={12}>
-        <Container
-        className={"d-flex flex-column justify-content-center p-0"}>
-        <Accordion>
-          <Card className="border-0">
-            <Card.Header className="py-0">
-              <Accordion.Toggle
-              className={styles.Purple}
-                onClick={() => setErrors("")}
-                as={Button}
-                variant="link"
-                eventKey="0"
-              >
-                Add a genre! <i className="fas fa-plus" />
-              </Accordion.Toggle>
-            </Card.Header>
-            <Accordion.Collapse eventKey="0">
-              <Card.Body>
-                <Form onSubmit={handleSubmit}>
+      <Col md={7} lg={12}>
+        <Container className={"d-flex flex-column justify-content-center p-0"}>
+          <Accordion>
+            <Card className="border-0">
+              <Card.Header className="py-0">
+                <Accordion.Toggle
+                  className={styles.Purple}
+                  onClick={() => setErrors("")}
+                  as={Button}
+                  variant="link"
+                  eventKey="0"
+                >
+                  Add a genre! <i className="fas fa-plus" />
+                </Accordion.Toggle>
+              </Card.Header>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  <Form onSubmit={handleSubmit}>
                     {genresToGet?.results.length && (
                       <Form.Group controlId="genre">
                         <Form.Label className="d-none">Genre</Form.Label>
@@ -115,17 +113,18 @@ const EventGenreCreateForm = (props) => {
 
                     <div className="d-inline">
                       <Button
-                        className={`${btnStyles.Button} ${btnStyles.Blue} py-1`}
+                        className={`${btnStyles.Button} ${btnStyles.Purple} py-1`}
                         type="submit"
                       >
                         create
                       </Button>
                     </div>
-                </Form>
-              </Card.Body>
-            </Accordion.Collapse>
-          </Card>
-        </Accordion></Container>
+                  </Form>
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+        </Container>
       </Col>
     </Row>
   );

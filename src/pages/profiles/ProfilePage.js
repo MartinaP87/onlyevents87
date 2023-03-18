@@ -90,24 +90,34 @@ function ProfilePage() {
       </Row>
       <Row className="my-3 justify-content-center">
         {profile?.is_owner ? (
-          <> <Col xs={10} sm={6} lg={12} className="d-flex justify-content-center">
-          <Container className="px-0 d-flex">
-            <ProfileEditDropdown id={profile?.id} />
-            <div className="ml-auto">
-            <Button 
-            className={btnStyles.Button}
-            onClick={() => history.push(`/my_photos/${id}`)}>
-            Photos
-            </Button>
-            </div>
-            </Container></Col>
+          <>
+            {" "}
+            <Col
+              xs={10}
+              sm={6}
+              lg={12}
+              className="d-flex justify-content-center"
+            >
+              <Container className="px-0 d-flex">
+                <ProfileEditDropdown id={profile?.id} />
+                <div className="ml-auto">
+                  <Button
+                    className={btnStyles.Button}
+                    onClick={() => history.push(`/my_photos/${id}`)}
+                  >
+                    Photos
+                  </Button>
+                </div>
+              </Container>
+            </Col>
           </>
         ) : (
           <Button
-          className={btnStyles.Button}
-           onClick={() => history.push(`/my_photos/${id}`)}>
+            className={btnStyles.Button}
+            onClick={() => history.push(`/my_photos/${id}`)}
+          >
             Photos
-            </Button>
+          </Button>
         )}
       </Row>
     </>
@@ -125,20 +135,16 @@ function ProfilePage() {
       <Row className="my-3">
         <>
           {preferences.results.length ? (
-            <Container className={`justify-content-center ${appStyles.Content}`}>
-              <h3 className="pb-1">
-                {profile?.owner}'s favourites:
-              </h3>
+            <Container
+              className={`justify-content-center ${appStyles.Content}`}
+            >
+              <h3 className="pb-1">{profile?.owner}'s favourites:</h3>
               {filteredCategories.map((uniqueCategory) => (
-                <Container 
-                className="p-2" 
-                key={uniqueCategory}>
+                <Container className="p-2" key={uniqueCategory}>
                   <h5 className="p-2">{uniqueCategory}</h5>
                   <InfiniteScroll
                     children={preferences.results.map((preference) => (
-                      <div 
-                      className={`${styles.Genres}`}
-                      key={preference.id}>
+                      <div className={`${styles.Genres}`} key={preference.id}>
                         {preference.category === uniqueCategory && (
                           <Preference
                             {...preference}
@@ -152,7 +158,6 @@ function ProfilePage() {
                     hasMore={!!preferences.next}
                     next={() => fetchMoreData(preferences, setPreferences)}
                   />
-                  
                 </Container>
               ))}
             </Container>
@@ -166,7 +171,7 @@ function ProfilePage() {
 
   const mainProfileDetails = (
     <>
-      <Row className="mx-1 text-center">
+      <Row className="mx-1 d-inline-flex text-center">
         <Col xs={12} lg={10} className={styles.FollowersBox}>
           <h3 className="m-2">{profile?.owner}</h3>
           <Row className="justify-content-between no-gutters">
@@ -184,28 +189,27 @@ function ProfilePage() {
             </Col>
           </Row>
         </Col>
-        <Col lg={2} className="text-lg-right">
+        <Col lg={2} className="text-lg-right px-0">
           {currentUser &&
             !is_owner &&
             (profile?.following_id ? (
               <Button
-                className={`${btnStyles.Button} ${btnStyles.BlueOutline}`}
+                className={`${btnStyles.Button} ${btnStyles.PurpleOutline}`}
                 onClick={() => handleUnfollow(profile)}
               >
                 Unfollow
               </Button>
             ) : (
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Purple}`}
                 onClick={() => handleFollow(profile)}
               >
                 Follow
               </Button>
             ))}
         </Col>
-        
+
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
-        
       </Row>
     </>
   );
@@ -243,9 +247,9 @@ function ProfilePage() {
           <Col className="py-2 p-0 p-lg-2" lg={6}>
             <Container className={appStyles.Content}>
               <div className="d-lg-none">{mainProfileHeader}</div>
-             
+
               {mainProfileDetails}
-              <hr/>
+              <hr />
               <div className="d-lg-none">{mainProfileActions}</div>
               {mainProfileEvents}
             </Container>

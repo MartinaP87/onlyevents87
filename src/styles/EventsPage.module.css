@@ -14,16 +14,23 @@
     font-size: 1.2rem;
     padding: 9px;
     padding-left: 15px;
+    /* color: #B710E8; */
+  }
+
+  .InfoIcon {
+    position: absolute;
+    font-size: 1.2rem;
+    padding: 9px;
+    /* color: #B710E8; */
   }
 
   .InfoIcon:hover,
   .SearchIcon:hover {
     cursor: default;
-    color: #da2bff;
+    /* color: #ff12eb; */
   }
   
-  .InfoIcon {
-    position: absolute;
-    font-size: 1.2rem;
-    padding: 9px;
+  a:hover h3,
+  a:hover i {
+    color: #ff12eb;
   }

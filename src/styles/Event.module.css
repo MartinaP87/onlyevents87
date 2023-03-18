@@ -22,14 +22,14 @@
   }
 
   .Star {
-    color: #da2bff;
+    color: #ff12eb;
   }
   
   
 .Star:hover {
-  color: #8f1fff;
+  color: #ff12eb;
 }
 
 .StarOutline:hover {
-  color: #da2bff;
+  color: #b710e8;
 }

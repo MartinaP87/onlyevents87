@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
 import styles from "../styles/MoreDropdown.module.css";
-import buttonStyle from "../styles/Button.module.css";
+import btnStyle from "../styles/Button.module.css";
 import { useHistory } from "react-router";
 
 // The forwardRef is important!!
@@ -20,22 +20,20 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
 
 const ProfileDropdown = React.forwardRef(({ onClick }, ref) => (
   <Button
-  className={buttonStyle.Button}
+    className={btnStyle.Button}
     ref={ref}
     onClick={(e) => {
       e.preventDefault();
       onClick(e);
     }}
-  >Edit Profile</Button>
+  >
+    Edit Profile
+  </Button>
 ));
 
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
-    <Dropdown
-      className="ml-auto"
-      drop="left"
-      // popperConfig={{ strategy: "fixed" }}
-    >
+    <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={ThreeDots} />
 
       <Dropdown.Menu className="text-center">
@@ -61,9 +59,7 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
 export function ProfileEditDropdown({ id }) {
   const history = useHistory();
   return (
-    <Dropdown 
-    className={`ml-auto px-3 ${styles.AbsoluteLeft}`}
-    >
+    <Dropdown className={`ml-auto px-3 ${styles.AbsoluteLeft}`}>
       <Dropdown.Toggle as={ProfileDropdown} />
       <Dropdown.Menu>
         <Dropdown.Item

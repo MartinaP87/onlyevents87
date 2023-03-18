@@ -57,7 +57,11 @@ const PreferenceCreateForm = (props) => {
   return (
     <>
       <Row>
-        <Col className={`${styles.ButtonAccordion} py-1 px-0 p-md-2`} md={7} lg={12}>
+        <Col
+          className={`${styles.ButtonAccordion} py-1 px-0 p-md-2`}
+          md={7}
+          lg={12}
+        >
           <Accordion>
             <Card>
               <Card.Header>
@@ -65,7 +69,7 @@ const PreferenceCreateForm = (props) => {
                   as={Button}
                   variant="link"
                   eventKey="0"
-                  className={styles.Purple}
+                  className={styles.Button}
                   onClick={() => setErrors("")}
                 >
                   Add a preference! <i className="fas fa-plus" />

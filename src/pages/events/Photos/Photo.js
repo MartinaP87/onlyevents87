@@ -26,7 +26,7 @@ const Photo = (props) => {
   const handleEdit = () => {
     history.push(`/events/galleries/photos/${id}/edit`);
   };
- 
+
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/events/galleries/photos/${id}/`);
@@ -60,14 +60,14 @@ const Photo = (props) => {
               )}
             </div>
           </Media>
-          {title && <Card.Title className="text-center p-0">{title}</Card.Title>}
+          {title && (
+            <Card.Title className="text-center p-0">{title}</Card.Title>
+          )}
         </Card.Body>
       )}
 
       <Link to={`/events/galleries/photos/${id}/`}>
-        <Card.Img 
-        className={styles.Photo}
-         src={image} alt={title} />
+        <Card.Img className={styles.Photo} src={image} alt={title} />
       </Link>
     </Card>
   );

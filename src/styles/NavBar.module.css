@@ -1,14 +1,11 @@
 .NavBar {
-    background-image: linear-gradient(to right, #FFE830 , #87E805);
-    /* background-color: #ffe830; */
+    background-image: linear-gradient(to right, #121eff , #B710E8);
     justify-content: center;
     font-family: 'Poiret One', cursive;
 }
 
-.Pink {
-    color: #b31968;
-}
 .NavbarBrand {
+  color: #ffffff;
     justify-content: center;
     display: contents;
     margin: 0px;
@@ -16,9 +13,34 @@
 }
 
 .NavLink {
+  font-weight: 500;
     padding: 2px;
+    color: #ffffff;
 }
 
-.Active i{
-  color: #b31968;
+.NavLink:hover {
+  padding: 2px;
+  color: #ffffff;
 }
+
+.NavLink.Active i{
+  color:  #ff12eb;
+}
+
+.NavLink:hover i{
+  color:  #ffaef8;
+}
+
+.NavLink i {
+    color: #f4f7f7;
+    font-size: 1.6rem;
+    padding: 7px;
+    vertical-align: middle;
+  }
+  
+  .NavLink i:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+    color: #ffaef8;
+  }
+  

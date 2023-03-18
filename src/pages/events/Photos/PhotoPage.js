@@ -27,11 +27,14 @@ const PhotoPage = () => {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2">
-        <Container
-          className="d-flex justify-content-center"
-        > 
+        <Container className="d-flex justify-content-center">
           <Photo {...photo.results[0]} photoPage />
-          <i className="fas fa-arrow-circle-left p-3" onClick={() => {history.goBack()}}/>
+          <i
+            className="fas fa-arrow-circle-left p-3"
+            onClick={() => {
+              history.goBack();
+            }}
+          />
         </Container>
       </Col>
     </Row>

@@ -6,12 +6,21 @@
   display: contents;
 }
 
+.Button {
+  color: #B710E8;
+}
+
+.Button:hover,
+.Button:hover i {
+  color: #ff12eb;
+}
+
 .Purple {
   color: #8f1fff;
   font-weight: bold;
 }
 
 .Purple:hover {
-  color: #da2bff;
+  color: #ff12eb;
   font-weight: bold;
 }

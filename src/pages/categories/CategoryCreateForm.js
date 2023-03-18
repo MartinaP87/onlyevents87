@@ -49,9 +49,7 @@ const CategoryCreateForm = (props) => {
     <Form onSubmit={handleSubmit}>
       <Row className="d-flex justify-content-center">
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={appStyles.Content}
-          >
+          <Container className={appStyles.Content}>
             <Form.Group controlId="cat_name">
               <Form.Label className="d-none">Category name</Form.Label>
               <Form.Control
@@ -63,10 +61,9 @@ const CategoryCreateForm = (props) => {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors && errors.detail &&
-              <Alert variant="warning">
-                {errors.detail}
-              </Alert>}
+            {errors && errors.detail && (
+              <Alert variant="warning">{errors.detail}</Alert>
+            )}
             {errors.cat_name?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -75,7 +72,7 @@ const CategoryCreateForm = (props) => {
 
             <div className="d-inline">
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Purple}`}
                 onClick={() =>
                   setCategoryData({
                     cat_name: "",
@@ -85,7 +82,7 @@ const CategoryCreateForm = (props) => {
                 cancel
               </Button>
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Purple}`}
                 type="submit"
               >
                 create

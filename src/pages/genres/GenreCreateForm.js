@@ -45,11 +45,9 @@ const GenreCreateForm = (props) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row  className="d-flex justify-content-center">
+      <Row className="d-flex justify-content-center">
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={appStyles.Content}
-          >
+          <Container className={appStyles.Content}>
             <Form.Group controlId="genre_name">
               <Form.Label className="d-none">Genre name</Form.Label>
               <Form.Control
@@ -74,13 +72,13 @@ const GenreCreateForm = (props) => {
 
             <div className="d-inline">
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Purple}`}
                 onClick={() => {}}
               >
                 cancel
               </Button>
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Purple}`}
                 type="submit"
               >
                 create

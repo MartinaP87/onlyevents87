@@ -5,26 +5,29 @@ import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
 
-const PopularProfiles = ({mobile}) => {
+const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
 
   return (
-    <Container className={`${appStyles.Content} ${mobile && "d-lg-none text-center px-0 pt-2 mb-3"}`}>
+    <Container
+      className={`${appStyles.Content} ${
+        mobile && "d-lg-none text-center px-0 pt-2 mb-3"
+      }`}
+    >
       {popularProfiles.results.length ? (
         <>
           <h3>Most followed profiles</h3>
           {mobile ? (
             <div className="d-flex justify-content-around">
-                {popularProfiles.results.slice(0,4).map((profile) => (
-            <Profile key={profile.id} profile={profile} mobile />
-          ))}
+              {popularProfiles.results.slice(0, 4).map((profile) => (
+                <Profile key={profile.id} profile={profile} mobile />
+              ))}
             </div>
           ) : (
             popularProfiles.results.map((profile) => (
-                <Profile key={profile.id} profile={profile} />
-          ))
+              <Profile key={profile.id} profile={profile} />
+            ))
           )}
-          
         </>
       ) : (
         <Asset spinner />

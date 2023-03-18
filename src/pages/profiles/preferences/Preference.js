@@ -21,23 +21,25 @@ const Preference = (props) => {
   };
 
   return (
-<>
-    <Container className={`${styles.GenreContainer} d-inline-flex px-2 border`}>
-      <Container>
-        {genre_name && 
-          <p className={`${styles.Bold} text-center`}>{genre_name}</p>
-        }
+    <>
+      <Container
+        className={`${styles.GenreContainer} d-inline-flex px-2 border`}
+      >
+        <Container>
+          {genre_name && (
+            <p className={`${styles.Bold} text-center`}>{genre_name}</p>
+          )}
+        </Container>
+        <Container className="text-align-right p-0">
+          {is_owner && (
+            <i
+              className="fas fa-trash-alt"
+              aria-label="delete"
+              onClick={handleDelete}
+            />
+          )}
+        </Container>
       </Container>
-      <Container className="text-align-right p-0">
-        {is_owner && (
-          <i
-            className="fas fa-trash-alt"
-            aria-label="delete"
-            onClick={handleDelete}
-          />
-        )} 
-      </Container>
-    </Container>
     </>
   );
 };

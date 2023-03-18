@@ -41,15 +41,14 @@ const Genre = (props) => {
             <p>{gen_name}</p>
           )}
         </Media.Body>
-        {
-           admin &&
+        {admin && (
           <MoreDropdown
             handleEdit={() => {
               setShowEditForm(true);
             }}
             handleDelete={handleDelete}
           />
-        }
+        )}
       </Media>
     </>
   );

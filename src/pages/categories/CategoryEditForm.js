@@ -45,11 +45,9 @@ const CategoryEditForm = (props) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row  className="d-flex justify-content-center">
+      <Row className="d-flex justify-content-center">
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${appStyles.Content} mt-3`}
-          >
+          <Container className={`${appStyles.Content} mt-3`}>
             <Form.Group controlId="cat_name">
               <Form.Label className="d-none">Category name</Form.Label>
               <Form.Control
@@ -67,18 +65,20 @@ const CategoryEditForm = (props) => {
               </Alert>
             ))}
             {errors?.length && (
-              <Alert variant="warning">possible duplicate or internal server error</Alert>
+              <Alert variant="warning">
+                possible duplicate or internal server error
+              </Alert>
             )}
 
             <div className="d-inline">
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Purple}`}
                 onClick={() => setShowEditForm(false)}
               >
                 cancel
               </Button>
               <Button
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Purple}`}
                 type="submit"
               >
                 save

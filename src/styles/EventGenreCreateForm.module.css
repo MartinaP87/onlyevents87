@@ -1,8 +1,9 @@
 .Purple {
-    color: #8f1fff;
+    color: #b710e8;
     font-weight: bold;
   }
   
+  .Purple:hover i,
   .Purple:hover {
     color: #da2bff;
     font-weight: bold;

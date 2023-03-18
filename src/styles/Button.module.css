@@ -1,5 +1,7 @@
+.Purple,
 .Button {
-  background-color: #3b12ff;
+  border: none;
+  background-color: #8F1FFF;
   font-size: 0.8rem;
   align-self: center;
   border-radius: 100px;
@@ -14,18 +16,20 @@
   opacity: 0.8;
   border-color: transparent;
   cursor: pointer;
+  background-color: #8F1FFF !important;
+
 }
 
 .Button:hover:active {
-  background-color: #3b12ff !important;
+  background-color: #8F1FFF !important;
 }
 
 .Button:active {
-  background-color: #3b12ff !important;
+  background-color: #8F1FFF !important;
 }
 
 .Button:focus {
-  background-color: #3b12ff;
+  background-color: #8F1FFF;
 }
 
 .Wide {
@@ -33,20 +37,21 @@
   width: 100%;
 }
 
-.Blue,
-.BlueOutline:hover,
+.Purple,
+.PurpleOutline:hover,
+.PurpleOutline:focus ,
 .Bright:hover {
-  background-color: #3b12ff;
-  color: aliceblue;
+  background-color: #8F1FFF;
+  color: #ffffff !important;
 }
 
-.BlueOutline,
-.Blue:hover {
-  background-color: aliceblue;
-  color: #3b12ff;
+.PurpleOutline,
+.Purple:hover{
+  background-color: #ffaef8;
+  color: #8F1FFF;
 }
 
 .Bright {
-  background-color: #2ed9ff;
-  color: #3b12ff;
+  background-color: #ffaef8;
+  color: #8F1FFF;
 }

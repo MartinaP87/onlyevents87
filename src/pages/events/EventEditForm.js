@@ -33,18 +33,18 @@ function EventEditForm() {
   const [eventGenres, setEventGenres] = useState({ results: [] });
   const [selectValue, setSelectValue] = useState("");
 
-
-
   useEffect(() => {
     const handleMount = async () => {
       try {
         const [
           { data: eventData },
           { data: categoriesToGet },
-          { data: eventGenres }] = await Promise.all([
+          { data: eventGenres },
+        ] = await Promise.all([
           axiosReq.get(`/events/${id}/`),
           axiosReq.get("/categories/"),
-          axiosReq.get(`/events/genres/?event=${id}`)])
+          axiosReq.get(`/events/genres/?event=${id}`),
+        ]);
         const {
           title,
           date,
@@ -55,11 +55,13 @@ function EventEditForm() {
           image,
           is_owner,
         } = eventData;
-        setEventGenres(eventGenres)
-        setCategoriesToGet(categoriesToGet)
-        setSelectValue(categoriesToGet.results.filter(
+        setEventGenres(eventGenres);
+        setCategoriesToGet(categoriesToGet);
+        setSelectValue(
+          categoriesToGet.results.filter(
             (categoryToGet) => categoryToGet.id === category
-          )[0].cat_name);
+          )[0].cat_name
+        );
         is_owner
           ? setEventData({
               title,
@@ -72,7 +74,7 @@ function EventEditForm() {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     };
     handleMount();
@@ -83,37 +85,37 @@ function EventEditForm() {
       ...eventData,
       [event.target.name]: event.target.value,
     });
-    console.log(date)
+    console.log(date);
   };
-
-
 
   const deleteEventGenres = () => {
     eventGenres?.results.forEach((event_genre) => {
-    try {
-    axiosRes.delete(`/events/genres/${event_genre.id}`)
-    setEventGenres({results: []}) 
-  } catch (error) {
-    console.log(error)
-  }
-})}  
+      try {
+        axiosRes.delete(`/events/genres/${event_genre.id}`);
+        setEventGenres({ results: [] });
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
 
   const handleChangeCategory = (event) => {
     deleteEventGenres();
-    setSelectValue(event.target.value)
+    setSelectValue(event.target.value);
     if (event.target.value !== "") {
-    setEventData({
-      ...eventData,
-      category: categoriesToGet.results.filter(
-        (categoryToGet) => categoryToGet.cat_name === event.target.value
-      )[0].id,
-    })
-  } else {
-    setSelectValue("")
-    setEventData({
-      ...eventData, 
-      category: ""
-    })}
+      setEventData({
+        ...eventData,
+        category: categoriesToGet.results.filter(
+          (categoryToGet) => categoryToGet.cat_name === event.target.value
+        )[0].id,
+      });
+    } else {
+      setSelectValue("");
+      setEventData({
+        ...eventData,
+        category: "",
+      });
+    }
   };
 
   const handleChangeImage = (event) => {
@@ -148,7 +150,7 @@ function EventEditForm() {
         setErrors(err.response?.data);
       }
     }
-    setSelectValue("")
+    setSelectValue("");
   };
 
   const textFields = (
@@ -198,10 +200,9 @@ function EventEditForm() {
         >
           <option value="">select the event category</option>
           {categoriesToGet?.results.map((categoryToGet) => (
-            <option 
-            key={categoryToGet.id}
-            value={categoryToGet.cat_name}
-            >{categoryToGet.cat_name}</option>
+            <option key={categoryToGet.id} value={categoryToGet.cat_name}>
+              {categoryToGet.cat_name}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>
@@ -264,12 +265,15 @@ function EventEditForm() {
       ))}
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Purple}`}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Purple}`}
+        type="submit"
+      >
         save
       </Button>
     </div>
@@ -288,7 +292,7 @@ function EventEditForm() {
               </figure>
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                  className={`${btnStyles.Button} ${btnStyles.Purple} btn`}
                   htmlFor="image-upload"
                 >
                   Change the image

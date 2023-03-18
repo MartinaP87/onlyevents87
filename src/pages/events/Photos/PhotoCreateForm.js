@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Upload from "../../../assets/red-upload.png";
+import Upload from "../../../assets/upload.png";
 import styles from "../../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../../App.module.css";
 import btnStyles from "../../../styles/Button.module.css";
@@ -112,7 +112,6 @@ function PhotoCreateForm(props) {
     <>
       <Button 
       className={btnStyles.Button}
-      variant="primary" 
       onClick={handleShow}>
         Add a photo!
       </Button>
@@ -144,7 +143,7 @@ function PhotoCreateForm(props) {
                       </figure>
                       <div>
                         <Form.Label
-                          className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                          className={`${btnStyles.Button} ${btnStyles.Purple} btn`}
                           htmlFor="image-upload"
                         >
                           Change the image

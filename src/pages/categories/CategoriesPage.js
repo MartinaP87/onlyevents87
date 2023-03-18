@@ -9,10 +9,10 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const CategoriesPage = () => {
-  useRedirect("loggedOut")
+  useRedirect("loggedOut");
   const currentUser = useCurrentUser();
   const admin = currentUser?.pk === 1;
- 
+
   const [categories, setCategories] = useState({
     results: [],
   });
@@ -40,11 +40,11 @@ const CategoriesPage = () => {
         ))}
       </Col>
       <Col lg={6} className="d-lg-block p-0 p-lg-2">
-        {admin &&
+        {admin && (
           <Container>
             <CategoryCreateForm setCategories={setCategories} />
           </Container>
-        }
+        )}
       </Col>
     </Row>
   );
