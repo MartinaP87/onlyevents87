@@ -74,9 +74,9 @@ const CategoryCreateForm = (props) => {
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Purple}`}
                 onClick={() =>
-                  setCategoryData({
+                  {setCategoryData({
                     cat_name: "",
-                  })
+                  }); setErrors({})}
                 }
               >
                 cancel

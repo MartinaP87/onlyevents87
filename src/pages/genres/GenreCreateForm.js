@@ -35,7 +35,6 @@ const GenreCreateForm = (props) => {
       }));
     } catch (err) {
       console.log(err);
-      console.log("oooo", err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -73,7 +72,7 @@ const GenreCreateForm = (props) => {
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Purple}`}
-                onClick={() => {}}
+                onClick={() => {setGenreData(""); setErrors({})}}
               >
                 cancel
               </Button>

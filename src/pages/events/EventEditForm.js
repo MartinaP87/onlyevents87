@@ -85,7 +85,6 @@ function EventEditForm() {
       ...eventData,
       [event.target.name]: event.target.value,
     });
-    console.log(date);
   };
 
   const deleteEventGenres = () => {
@@ -93,8 +92,8 @@ function EventEditForm() {
       try {
         axiosRes.delete(`/events/genres/${event_genre.id}`);
         setEventGenres({ results: [] });
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.log(err);
       }
     });
   };
@@ -150,7 +149,6 @@ function EventEditForm() {
         setErrors(err.response?.data);
       }
     }
-    setSelectValue("");
   };
 
   const textFields = (

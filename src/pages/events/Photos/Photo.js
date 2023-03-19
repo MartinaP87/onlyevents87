@@ -18,7 +18,8 @@ const Photo = (props) => {
     profile_id,
     profile_image,
     photoPage,
-    setPhotos,
+    setPhotosGallery,
+    setPhotosProfile,
   } = props;
 
   const history = useHistory();
@@ -31,10 +32,17 @@ const Photo = (props) => {
     try {
       await axiosRes.delete(`/events/galleries/photos/${id}/`);
       history.goBack();
-      setPhotos((prevPhotos) => ({
+      
+
+      if(setPhotosGallery && setPhotosProfile) {
+      setPhotosGallery((prevPhotos) => ({
         ...prevPhotos,
         results: prevPhotos.results.filter((photo) => photo.id !== id),
       }));
+      setPhotosProfile((prevPhotos) => ({
+        ...prevPhotos,
+        results: prevPhotos.results.filter((photo) => photo.id !== id),
+      }));}
     } catch (err) {
       console.log(err);
     }

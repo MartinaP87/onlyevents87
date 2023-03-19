@@ -31,12 +31,15 @@ const ProfileEditForm = () => {
     image: "",
   });
   const { name, content, image } = profileData;
-
+  const componentMounted = useRef(true);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const handleMount = async () => {
-      if (currentUser?.profile_id?.toString() === id) {
+      if (
+        currentUser?.profile_id?.toString() === id &&
+        componentMounted.current
+      ) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
           const { name, content, image } = data;
@@ -51,6 +54,7 @@ const ProfileEditForm = () => {
     };
 
     handleMount();
+    componentMounted.current = false;
   }, [currentUser, history, id]);
 
   const handleChange = (event) => {

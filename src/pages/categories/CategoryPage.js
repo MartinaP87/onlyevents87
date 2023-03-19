@@ -66,35 +66,4 @@ function CategoryPage() {
   );
 }
 
-/* <Container>
-            {currentUser ? (
-              <CommentCreateForm
-                profile_id={currentUser.profile_id}
-                profileImage={profile_image}
-                event={id}
-                setEvent={setEvent}
-                setComments={setCategory}
-              />
-            ) : genres.results.length ? (
-              "Genres:"
-            ) : null}
-            {genres.results.length ? (
-              <InfiniteScroll 
-              children={genres.results.map((genre) => (
-                <Genre key={genre.id} {...genre}
-                setEvent={setEvent}
-                setComments={setComments} />
-              ))}
-              dataLength={comments.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!comments.next}
-              next={() => fetchMoreData(comments, setComments)}
-              />
-            ) : currentUser? (
-              <span>No comments yet, be the first to comment!</span>
-            ) : (
-              <span>No comments... yet</span>
-            )}
-          </Container> */
-
 export default CategoryPage;

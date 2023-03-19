@@ -28,7 +28,7 @@ const EventGenreCreateForm = (props) => {
           (genreToGet) => genreToGet.gen_name === e.target.value
         )[0].id
       );
-      setErrors("");
+      setErrors({});
     }
   };
 

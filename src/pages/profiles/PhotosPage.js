@@ -14,7 +14,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 function PhotosPage() {
   useRedirect("loggedOut");
   const { id } = useParams();
-  const [photos, setPhotos] = useState({ results: [] });
+  const [photosProfile, setPhotosProfile] = useState({ results: [] });
   const history = useHistory();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function PhotosPage() {
         const { data } = await axiosReq.get(
           `events/galleries/photos/?owner__profile=${id}`
         );
-        setPhotos(data);
+        setPhotosProfile(data);
       } catch (err) {
         console.log(err);
       }
@@ -33,10 +33,10 @@ function PhotosPage() {
 
   return (
     <Col className="py-2 p-0 p-lg-2" lg={12}>
-      {photos.results.length ? (
+      {photosProfile.results.length ? (
         <>
           <div className="d-inline-flex">
-            <h1>{photos.results[0].owner}' photos</h1>
+            <h1>{photosProfile.results[0].owner}' photos</h1>
             <i
               className="fas fa-arrow-circle-left p-3"
               onClick={() => {
@@ -47,13 +47,13 @@ function PhotosPage() {
           <Container className={appStyles.Content}>
             <InfiniteScroll
               className={styles.Photos}
-              children={photos.results.map((photo) => (
-                <Photo key={photo.id} {...photo} />
+              children={photosProfile.results.map((photo) => (
+                <Photo key={photo.id} {...photo} setPhotosProfile={setPhotosProfile}/>
               ))}
-              dataLength={photos.results.length}
+              dataLength={photosProfile.results.length}
               loader={<Asset spinner />}
-              hasMore={!!photos.next}
-              next={() => fetchMoreData(photos, setPhotos)}
+              hasMore={!!photosProfile.next}
+              next={() => fetchMoreData(photosProfile, setPhotosProfile)}
             />
           </Container>
         </>

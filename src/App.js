@@ -38,16 +38,6 @@ function App() {
               filter={`ordering=-date&`} />
             )}
           />
-          {/* <Route
-            exact
-            path="/category/:id"
-            render={() => (
-              <EventsPage
-                message="No events of this category found."
-                filter={`category=${category_id}&`}
-              />
-            )}
-          /> */}
           <Route
             exact
             path="/feeds"
@@ -80,7 +70,7 @@ function App() {
           />
           <Route
             exact
-            path="/favourites"
+            path="/favorites"
             render={() => (
               <EventsPage
                 message="No results found. Adjust the search keyword or show that you are going to an event."

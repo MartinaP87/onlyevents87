@@ -91,7 +91,6 @@ function ProfilePage() {
       <Row className="my-3 justify-content-center">
         {profile?.is_owner ? (
           <>
-            {" "}
             <Col
               xs={10}
               sm={6}
@@ -132,7 +131,7 @@ function ProfilePage() {
           />
         )}
       </Row>
-      <Row className="my-3">
+      <Row className="my-3 justify-content-center">
         <>
           {preferences.results.length ? (
             <Container

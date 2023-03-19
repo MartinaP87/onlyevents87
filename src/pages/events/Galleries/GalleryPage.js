@@ -15,7 +15,7 @@ import buttonStyle from "../../../styles/Button.module.css";
 function GalleryPage(props) {
   const { id } = useParams();
   const { gallery } = props;
-  const [photos, setPhotos] = useState({ results: [] });
+  const [photosGallery, setPhotosGallery] = useState({ results: [] });
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function GalleryPage(props) {
         const { data } = await axiosReq.get(
           `events/galleries/photos/?gallery__posted_event=${id}`
         );
-        setPhotos(data);
+        setPhotosGallery(data);
       } catch (err) {
         console.log(err);
       }
@@ -46,21 +46,22 @@ function GalleryPage(props) {
         <Container className={appStyles.Content}>
           <h2 className="p-2">{gallery.name}</h2>
           <div className="p-2">
-            <PhotoCreateForm setPhotos={setPhotos} id={id} />
+            <PhotoCreateForm setPhotosGallery={setPhotosGallery} id={id} />
           </div>
 
-          {photos.results.length ? (
+          {photosGallery.results.length ? (
             <InfiniteScroll
-              children={photos.results.map((photo) => (
+              children={photosGallery.results.map((photo) => (
                 <Photo
                   key={photo.id}
                   {...photo}
+                  setPhotosGallery={setPhotosGallery}
                 />
               ))}
-              dataLength={photos.results.length}
+              dataLength={photosGallery.results.length}
               loader={<Asset spinner />}
-              hasMore={!!photos.next}
-              next={() => fetchMoreData(photos, setPhotos)}
+              hasMore={!!photosGallery.next}
+              next={() => fetchMoreData(photosGallery, setPhotosGallery)}
             />
           ) : (
             <p>No photos posted yet</p>

@@ -66,7 +66,8 @@ const Event = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/events/${id}/`);
-      history.goBack();
+      history.push(`/profiles/${currentUser.pk}`);
+      
     } catch (err) {
       console.log(err);
     }

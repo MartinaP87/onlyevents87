@@ -28,7 +28,7 @@ const PreferenceCreateForm = (props) => {
         )[0].id
       );
     }
-    setErrors("");
+    setErrors({});
   };
 
   const handleSubmit = async (event) => {
@@ -70,7 +70,7 @@ const PreferenceCreateForm = (props) => {
                   variant="link"
                   eventKey="0"
                   className={styles.Button}
-                  onClick={() => setErrors("")}
+                  onClick={() => setErrors({})}
                 >
                   Add a preference! <i className="fas fa-plus" />
                 </Accordion.Toggle>

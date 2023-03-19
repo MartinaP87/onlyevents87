@@ -17,22 +17,27 @@ import { useRedirect } from "../../../hooks/useRedirect";
 function PhotoCreateForm(props) {
   useRedirect("loggedOut");
 
-  const { id, setPhotos } = props;
+  const { id, setPhotosGallery } = props;
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const [photoData, setPhotoData] = useState({
     title: "",
     image: "",
+    gallery: id
   });
-  const { title, image } = photoData;
+  const { title, image, gallery } = photoData;
 
   const imageInput = useRef(null);
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
     setShow(false);
-    setPhotoData("");
-    setErrors("")
+    setPhotoData({
+      title: "",
+      image: "",
+      gallery: id
+    });
+    setErrors({})
   };
   const handleShow = () => setShow(true);
 
@@ -57,7 +62,7 @@ function PhotoCreateForm(props) {
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("gallery", id);
+    formData.append("gallery", gallery);
     formData.append("image", imageInput.current.files[0]);
     try {
       const { data } = await axiosReq.post(
@@ -66,12 +71,16 @@ function PhotoCreateForm(props) {
       );
       setShow(false);
       history.push(`/events/${id}/`);
-      setPhotos((prevPhotos) => ({
+      setPhotosGallery((prevPhotos) => ({
         ...prevPhotos,
         results: [data, ...prevPhotos.results],
       }));
-      setPhotoData("");
-      setErrors("");
+      setPhotoData({
+        title: "",
+        image: "",
+        gallery: id
+      });
+      setErrors({});
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
