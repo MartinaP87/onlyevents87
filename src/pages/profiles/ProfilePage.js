@@ -137,7 +137,7 @@ function ProfilePage() {
             <Container
               className={`justify-content-center ${appStyles.Content}`}
             >
-              <h3 className="pb-1">{profile?.owner}'s favourites:</h3>
+              <h3 className="pb-1">{profile?.owner}'s favorites:</h3>
               {filteredCategories.map((uniqueCategory) => (
                 <Container className="p-2" key={uniqueCategory}>
                   <h5 className="p-2">{uniqueCategory}</h5>

@@ -212,13 +212,13 @@ const Event = (props) => {
               {content && (
                 <Card.Text>
                   {content}
-                  <hr />
                 </Card.Text>
               )}
             </>
           )}
 
           <div>
+            <hr/>
             {interested_id ? (
               <span onClick={handleUninterested}>
                 <i className={`fas fa-star ${styles.Star}`} />
