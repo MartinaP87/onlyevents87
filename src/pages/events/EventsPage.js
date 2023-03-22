@@ -69,7 +69,7 @@ const EventsPage = ({ message, filter = "" }) => {
             placement="top"
             overlay={
               <Tooltip id={`tooltip-top`}>
-                Search for events by date, title, or name of the user that
+                Search for events by date (Year-Month-Day numbers), title, or name of the user that
                 posted it!
               </Tooltip>
             }
@@ -82,7 +82,7 @@ const EventsPage = ({ message, filter = "" }) => {
       </Col>
 
       <Col className="py-2 p-0 p-lg-2" lg={6}>
-        <Link className="d-none d-md-inline" to={`/events/create`}>
+        <Link name="event create form" className="d-none d-md-inline" to={`/events/create`}>
           <Container className="d-inline-flex justify-content-center px-4">
             <h3 className={`${styles.AddLink} d-flex align-items-center mb-0`}>
               Add the next event!{" "}

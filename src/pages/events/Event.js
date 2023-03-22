@@ -97,7 +97,7 @@ const Event = (props) => {
 
   const handleUninterested = async () => {
     try {
-      axiosRes.delete(`/interested/${interested_id}`);
+      await axiosRes.delete(`/interested/${interested_id}`);
       setEvents((prevEvents) => ({
         ...prevEvents,
         results: prevEvents.results.map((posted_event) => {
@@ -157,7 +157,7 @@ const Event = (props) => {
       <Card className={styles.Event}>
         <Card.Body>
           <Media className="align-item-center justify-content-between">
-            <Link className="d-flex" to={`/profiles/${profile_id}/`}>
+            <Link name="profile" className="d-flex" to={`/profiles/${profile_id}/`}>
               <Avatar src={profile_image} height={55} />
               <p className={styles.Name}>{owner}</p>
             </Link>
@@ -175,7 +175,7 @@ const Event = (props) => {
             </div>
           </Media>
         </Card.Body>
-        <Link to={`/events/${id}/`}>
+        <Link name="event" to={`/events/${id}/`}>
           <Card.Img className={styles.EventImage} src={image} alt={title} />
         </Link>
         <Card.Body>
@@ -261,7 +261,7 @@ const Event = (props) => {
             )}
             {goings_count}
 
-            <Link to={`/events/${id}`}>
+            <Link name="event" to={`/events/${id}`}>
               <i className="far fa-comments" />
             </Link>
             {comments_count}

@@ -63,6 +63,7 @@ const EventGenreCreateForm = (props) => {
             <Card className="border-0">
               <Card.Header className="py-0">
                 <Accordion.Toggle
+                  name="add genre"
                   className={styles.Purple}
                   onClick={() => setErrors("")}
                   as={Button}

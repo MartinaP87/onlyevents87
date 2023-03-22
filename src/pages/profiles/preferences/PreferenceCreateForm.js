@@ -66,6 +66,7 @@ const PreferenceCreateForm = (props) => {
             <Card>
               <Card.Header>
                 <Accordion.Toggle
+                  name="add preference"
                   as={Button}
                   variant="link"
                   eventKey="0"

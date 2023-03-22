@@ -18,12 +18,14 @@ const GoingProfiles = (props) => {
       try {
         const { data } = await axiosReq.get(`/going/?posted_event=${id}`);
         setGoing(data);
+
       } catch (err) {
         console.log(err);
       }
     };
     if (id) {
       fetchData();
+      console.log("GOING")
     }
   }, [id, going_count]);
 
@@ -46,7 +48,7 @@ const GoingProfiles = (props) => {
           />
         ))
       ) : (
-        <Asset src={NoResults} />
+        <Asset className={styles.NoResult} src={NoResults} />
       )}
     </Container>
   );

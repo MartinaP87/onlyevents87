@@ -53,7 +53,7 @@ const Photo = (props) => {
       {photoPage && (
         <Card.Body className="py-1">
           <Media className="align-item-center justify-content-between">
-            <Link to={`/profiles/${profile_id}/`}>
+            <Link name="profile" to={`/profiles/${profile_id}/`}>
               <Avatar src={profile_image} height={55} />
               {owner}
             </Link>
@@ -74,7 +74,7 @@ const Photo = (props) => {
         </Card.Body>
       )}
 
-      <Link to={`/events/galleries/photos/${id}/`}>
+      <Link name={`${title} image`} to={`/events/galleries/photos/${id}/`}>
         <Card.Img className={styles.Photo} src={image} alt={title} />
       </Link>
     </Card>

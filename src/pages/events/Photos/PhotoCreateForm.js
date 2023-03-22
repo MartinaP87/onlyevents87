@@ -148,6 +148,7 @@ function PhotoCreateForm(props) {
                           className={appStyles.Image}
                           src={image}
                           rounded
+                          alt="event related picture"
                         />
                       </figure>
                       <div>

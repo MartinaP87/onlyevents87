@@ -13,7 +13,7 @@ import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
 import Logo from "../assets/logo.png";
-import { Image } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -64,7 +64,7 @@ const NavBar = () => {
       </NavLink>
 
       <NavLink
-        to="/favourites"
+        to="/favorites"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
@@ -133,13 +133,13 @@ const NavBar = () => {
       expanded={expanded}
       expand="lg"
       fixed="top"
-      className={styles.NavBar}
+      className={`${styles.NavBar} py-0`}
     >
       <Container className="mx-0">
         <NavLink exact to="/">
           <Navbar.Brand>
             <Container className={styles.NavbarBrand}>
-              <Image src={Logo} height={70} />
+              <Image src={Logo} height={70} alt="logo"/>
               <h4>Only Events</h4>
             </Container>
           </Navbar.Brand>

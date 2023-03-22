@@ -40,8 +40,12 @@ const Category = (props) => {
               setCategories={setCategories}
               setShowEditForm={setShowEditForm}
             />
+          ) : categoryPage ? (
+            <Link name={cat_name} to={`/categories/${id}/`}>
+              <h1>{cat_name}</h1>
+            </Link>
           ) : (
-            <Link to={`/categories/${id}/`}>
+            <Link name={cat_name} to={`/categories/${id}/`}>
               <h3>{cat_name}</h3>
             </Link>
           )}

@@ -177,6 +177,7 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 ## FEATURES:
 
 ### Navbar
+
 ![Navbar admin](readme-images/navbar_admin.png)
 ![Navbar user](readme-images/navbar_user.png)
 ![Navbar logged-out](readme-images/navbar_logged_out.png)
@@ -193,18 +194,21 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 ### Home page
 
 #### Search bar
+
 ![Search bar](readme-images/search_bar.png)
 
 - It allows the user to search for an event by date, username of who posted the event, and event title;
 - It displays an info icon to communicate to the users the parameters they can use to search for the events.
 
 #### Add event section
+
 ![Add event link](readme-images/add_event.png)
 
 - This section helps the user immediately detect the main functionality of the website;
 - By clicking on the link, the user is sent to the Add Event form.
 
 #### Events section
+
 ![Event link](readme-images/event.png)
 
 - It allows users to visualize all events and their main details;
@@ -213,6 +217,7 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 - When the user clicks on an event, it sends them to the event page.
 
 #### Most popular profiles
+
 ![Popular profiles](readme-images/popular_profiles.png)
 
 - The user can see a list of the most followed profile and access their pages by clicking on the profile image.
@@ -220,6 +225,7 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 ### Event page
 
 #### Gallery section
+
 ![Gallery](readme-images/gallery.png)
 
 - By clicking on the "see the gallery" button, the user can access the gallery and view all pictures in it;
@@ -228,6 +234,7 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 - The Add a photo button redirects the user to the photo form.
 
 #### Event section
+
 ![Event section](readme-images/event_section.png)
 
 - This section displays all details the user needs to attend the event, such as date, time, location, and address;
@@ -235,6 +242,7 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 - If the user is the event owner, they can access the "Add genre" button, which provides a form where the user can select the most suitable option.
 
 #### Genre section
+
 ![Genre section](readme-images/genre.png)
 
 - It displays the genre/s of the event category, providing the user with extra information about the event;
@@ -243,6 +251,7 @@ event has genres, the users that have the same genres in their preference sectio
 - The event owner can delete the genres in this section. 
 
 #### Comment section
+
 ![Comment section](readme-images/comment.png)
 
 - This section displays comments written by users, along with their usernames and how long ago the comments were posted;
@@ -254,6 +263,7 @@ event has genres, the users that have the same genres in their preference sectio
 #### Comment form section
 
 **Create comment form**
+
 ![Comment create form](readme-images/comment_create_form.png)
 
 - This section displays a form that allows the user to leave feedback;
@@ -261,12 +271,14 @@ event has genres, the users that have the same genres in their preference sectio
 - Once the comment is submitted, the message is displayed under the form.
 
 **Edit comment form**
+
 ![Comment edit form](readme-images/comment_edit_form.png)
 
 - This section enables the comment owner to edit the content of the comment;
 - The previous comment is displayed in the form.
 
 #### Going/Interested section
+
 ![Going/Interested section](readme-images/going_interested.png)
 
 These sections display the number and a list of users that clicked on the going/interested button;
@@ -275,13 +287,16 @@ From this section, the user can follow/unfollow other users and view their profi
 
 ### Event forms section
 #### Event create form
+
 ![Event create form](readme-images/event_create_form.png)
+![Event create form errors](readme-images/event_create_form_errors.png)
 
 - This section enables the user to add an event;
 - When the form is not filled correctly, it displays an error message under the relevant field.
 - When the user submits the form successfully, they are redirected to the event page.
 
 #### Event edit form
+
 ![Event edit form](readme-images/event_edit_form.png)
 ![Event edit form errors](readme-images/event_edit_form_errors.png)
 
@@ -291,6 +306,7 @@ From this section, the user can follow/unfollow other users and view their profi
 - When the form is not filled correctly, it displays an error message under the relevant field.
 
 ### Photo page
+
 ![Photo page](readme-images/photo_page.png)
 
 - It provides the user a wider view of the selected photo along with the title, date of upload, profile image, and username of who posted it;
@@ -300,6 +316,7 @@ From this section, the user can follow/unfollow other users and view their profi
 ### Photo forms section
 
 #### Photo create form
+
 ![Photo create form](readme-images/photo_create_form.png)
 ![Photo create form errors](readme-images/photo_create_form_errors.png)
 
@@ -308,6 +325,7 @@ From this section, the user can follow/unfollow other users and view their profi
 - When the user submits the form successfully, they are redirected to the event page.
 
 #### Photo edit form
+
 ![Photo edit form](readme-images/photo_edit_form.png)
 
 - This section enables the photo owner to change the image and edit the photo title;
@@ -317,27 +335,33 @@ From this section, the user can follow/unfollow other users and view their profi
 ### Profile page
 
 #### Profile picture section
+
 ![Profile picture](readme-images/profile_picture.png)
 
 - It displays the profile picture of the user.
 
 #### Edit profile button
+
 ![Edit profile button](readme-images/profile_edit_button.png)
 
 - If the user is the profile owner, it displays a button that opens a dropdown menu to edit the password, username, or profile (bio and image).
 
 **Edit profile form**
+
 ![Edit profile form](readme-images/profile_edit_img_form.png)
 
 - It displays a form to change the image and bio so that the user can update them as they like.
 
 **Edit username form**
+
 ![Edit profile username form](readme-images/profile_edit_username_form.png)
+![Edit profile username form errors](readme-images/profile_edit_username_form_errors.png)
 
 - It displays a form to edit the username;
 - If the changed name is already in use, it displays an error message that doesn't allow the submission.
 
 **Edit password form**
+
 ![Edit profile password form](readme-images/profile_edit_password_form.png)
 
 - This section displays a form to change the password, to allow the user to keep their profile secure;
@@ -347,6 +371,7 @@ From this section, the user can follow/unfollow other users and view their profi
 #### Photo section
 - It displays a button that links to a photos page;
 **Photos page**
+
 ![Photos page](readme-images/photos_page.png)
 
 - It displays all photos posted by the profile owner;
@@ -354,12 +379,15 @@ From this section, the user can follow/unfollow other users and view their profi
 - It displays a button to go back to the profile page.
 
 #### Add a preference section
+
 ![Add a preference section](readme-images/add_preference.png)
 
 - This section displays a button that, when clicked, toggles a form;
 - The form allows the user to select a preference to be then displayed in the profile.
+- If the preference already exists, it displays an error.
 
 #### Favorites section
+
 ![Favorites section](readme-images/favorites.png)
 
 - This section displays a list of the user's favorite genres;
@@ -368,6 +396,7 @@ From this section, the user can follow/unfollow other users and view their profi
 - The user preferences determine the events they see on the Favorite page since the events are filtered according to the user's tastes.
 
 #### Main profile section
+
 ![Main profile section](readme-images/main_profile.png)
 ![Main owner profile section](readme-images/main_profile_owner.png)
 
@@ -384,6 +413,7 @@ From this section, the user can follow/unfollow other users and view their profi
 - If a user tries to access it through the URL, they would be able to see the category list but unable to create, edit or delete categories.
 
 #### Categories list
+
 ![Categories list](readme-images/categories.png)
 
 - This section displays a list of the categories;
@@ -391,25 +421,30 @@ From this section, the user can follow/unfollow other users and view their profi
 
 #### Category forms
 **Category create form**
+
 ![Category create form](readme-images/category_create_form.png)
 ![Category create form with error](readme-images/category_create_form_errors.png)
 
 - The form allows the admin to create new categories;
 - If the admin tries to add a category that already exists, it displays an error message.
 **Category edit form**
+
 ![Category edit form](readme-images/category_edit_form.png)
+![Category edit form error](readme-images/category_edit_form_error.png)
 
 - The form allows the admin to edit the chosen category;
 - If the category already exists, it displays an error.
 
 ### Category Page
 #### Category 
+
 ![Category](readme-images/category.png)
 
 - It displays the name of the category to which the genres belong;
 - It displays a dropdown menu that allows the admin to delete or edit the category.
 
 #### Genres list
+
 ![Genre list](readme-images/genre_list.png)
 
 - This section displays a list of the genres;
@@ -417,12 +452,15 @@ From this section, the user can follow/unfollow other users and view their profi
 
 #### Genre forms
 **Genre create form**
+
 ![Genre create form](readme-images/genre_create_form.png)
 ![Genre create form error](readme-images/genre_create_form_error.png)
 
 - The form allows the admin to create new genres;
 - If the admin tries to add a genre that already exists, it displays an error message.
+
 **Genre edit form**
+
 ![Genre edit form](readme-images/genre_edit_form.png)
 ![Genre edit form error](readme-images/genre_edit_form_error.png)
 

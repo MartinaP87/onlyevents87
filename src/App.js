@@ -43,7 +43,7 @@ function App() {
             path="/feeds"
             render={() => (
               <EventsPage
-                message="No results found. Adjust the search keyword or follow a user."
+                message="No results found. The users you follow haven't posted anything yet."
                 filter={`owner__followed__owner__profile=${profile_id}&ordering=-date&`}
               />
             )}
@@ -53,7 +53,7 @@ function App() {
             path="/interested"
             render={() => (
               <EventsPage
-                message="No results found. Adjust the search keyword or show interest for an event."
+                message="No results found. Show interest for an event."
                 filter={`interesteds__owner__profile=${profile_id}&ordering=-date&`}
               />
             )}
@@ -63,7 +63,7 @@ function App() {
             path="/going"
             render={() => (
               <EventsPage
-                message="No results found. Adjust the search keyword or show that you are going to an event."
+                message="No results found. Show that you are going to an event."
                 filter={`goings__owner__profile=${profile_id}&ordering=-date&`}
               />
             )}
@@ -73,7 +73,7 @@ function App() {
             path="/favorites"
             render={() => (
               <EventsPage
-                message="No results found. Adjust the search keyword or show that you are going to an event."
+                message="No results found. Add preferences in your profile."
                 filter={`event_genres__genre__preference__profile=${profile_id}&ordering=-date&`}
               />
             )}
@@ -125,7 +125,7 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-          <Route render={() => <p>< NotFound/></p>} />
+          <Route render={() => < NotFound/>} />
         </Switch>
       </Container>
     </div>
