@@ -10,7 +10,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory, useParams } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import { Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 function EventEditForm() {
   const [errors, setErrors] = useState({});
@@ -186,7 +186,7 @@ function EventEditForm() {
         </Alert>
       ))}
 
-      <Form.Group controlId="category">
+      <Form.Group className="d-flex" controlId="category">
         <Form.Label className="d-none">Category</Form.Label>
         <Form.Control
           onChange={handleChangeCategory}
@@ -203,12 +203,29 @@ function EventEditForm() {
             </option>
           ))}
         </Form.Control>
+        <OverlayTrigger
+            key="top"
+            placement="top"
+            overlay={
+              <Tooltip id={`tooltip-top`}>
+                If you edit the category, you will delete all genres added to the event.
+              </Tooltip>
+            }
+          >
+            <div className="px-1">
+              <i className={`fas fa-info-circle ${styles.InfoIcon}`} />
+            </div>
+          </OverlayTrigger>
       </Form.Group>
       {errors.category?.map((message, idx) => (
         <Alert key={idx} variant="warning">
           {message}
         </Alert>
       ))}
+
+          
+
+
 
       <Form.Group controlId="location">
         <Form.Label className="d-none">Event location</Form.Label>

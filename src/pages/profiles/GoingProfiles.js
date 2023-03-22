@@ -25,7 +25,7 @@ const GoingProfiles = (props) => {
     if (id) {
       fetchData();
     }
-  }, [id]);
+  }, [id, going_count]);
 
   const goingProfiles = popularProfiles?.results.filter((profile) =>
     going?.results

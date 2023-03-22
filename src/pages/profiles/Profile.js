@@ -19,7 +19,7 @@ const Profile = (props) => {
         mobile && "flex-column"
       }`}
     >
-      <div>
+      <div className="align-self-center">
         <Link className="align-self-center" to={`/profiles/${id}`}>
           <Avatar src={image} height={imageSize} />
         </Link>
@@ -27,7 +27,7 @@ const Profile = (props) => {
       <div
         className={`${styles.WordBreak} ${styles.Usernames} 
         ${!mobile && currentUser && !is_owner && "mx-auto"}
-        ${!mobile && currentUser && is_owner && "mx-lg-0 mx-xl-3"}`}
+        ${!mobile && currentUser && is_owner && "mx-lg-3"}`}
       >
         <strong>{owner}</strong>
       </div>

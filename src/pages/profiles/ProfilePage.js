@@ -170,7 +170,7 @@ function ProfilePage() {
 
   const mainProfileDetails = (
     <>
-      <Row className="mx-1 d-inline-flex text-center">
+      <Row className="mx-1 text-center">
         <Col xs={12} lg={10} className={styles.FollowersBox}>
           <h3 className="m-2">{profile?.owner}</h3>
           <Row className="justify-content-between no-gutters">

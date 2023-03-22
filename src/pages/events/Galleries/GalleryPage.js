@@ -40,7 +40,7 @@ function GalleryPage(props) {
         aria-controls="example-collapse-text"
         aria-expanded={open}
       >
-        See gallery
+        See the gallery
       </Button>
       <Collapse in={open}>
         <Container className={appStyles.Content}>

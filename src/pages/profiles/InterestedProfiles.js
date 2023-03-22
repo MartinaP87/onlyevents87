@@ -25,7 +25,7 @@ const InterestedProfiles = (props) => {
     if (id) {
       fetchData();
     }
-  }, [id]);
+  }, [id, interested_count]);
 
   const interestedProfiles = popularProfiles?.results.filter((profile) =>
     interested?.results
