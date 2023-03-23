@@ -24,7 +24,6 @@ const InterestedProfiles = (props) => {
     };
     if (id) {
       fetchData();
-      console.log("INTERE")
     }
   }, [id, interested_count]);
 

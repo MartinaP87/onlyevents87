@@ -21,6 +21,7 @@ const EventGenreCreateForm = (props) => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
+    setErrors({});
     setSelectValue(e.target.value);
     if (e.target.value !== "") {
       setGenre(
@@ -28,7 +29,6 @@ const EventGenreCreateForm = (props) => {
           (genreToGet) => genreToGet.gen_name === e.target.value
         )[0].id
       );
-      setErrors({});
     }
   };
 

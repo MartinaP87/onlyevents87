@@ -25,7 +25,6 @@ const GoingProfiles = (props) => {
     };
     if (id) {
       fetchData();
-      console.log("GOING")
     }
   }, [id, going_count]);
 

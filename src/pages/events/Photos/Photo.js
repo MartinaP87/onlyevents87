@@ -11,6 +11,7 @@ const Photo = (props) => {
   const {
     id,
     owner,
+    gallery,
     title,
     created_at,
     image,
@@ -31,8 +32,7 @@ const Photo = (props) => {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/events/galleries/photos/${id}/`);
-      history.goBack();
-      
+        history.push(`/events/${gallery}`)
 
       if(setPhotosGallery && setPhotosProfile) {
       setPhotosGallery((prevPhotos) => ({
@@ -53,7 +53,7 @@ const Photo = (props) => {
       {photoPage && (
         <Card.Body className="py-1">
           <Media className="align-item-center justify-content-between">
-            <Link name="profile" to={`/profiles/${profile_id}/`}>
+            <Link className={styles.Pink} name="profile" to={`/profiles/${profile_id}/`}>
               <Avatar src={profile_image} height={55} />
               {owner}
             </Link>

@@ -20,6 +20,7 @@ const PreferenceCreateForm = (props) => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
+    setErrors({});
     setSelectValue(event.target.value);
     if (event.target.value !== "") {
       setPreference(
@@ -28,7 +29,7 @@ const PreferenceCreateForm = (props) => {
         )[0].id
       );
     }
-    setErrors({});
+    
   };
 
   const handleSubmit = async (event) => {
