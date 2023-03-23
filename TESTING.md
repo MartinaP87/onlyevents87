@@ -1,5 +1,10 @@
-## Manual Testing
+# Testing
 
+## Code Validation
+
+![Validator](readme-images/validator.png)
+
+## Manual Testing
 
 ### Browser Compatibility
 
@@ -7,22 +12,28 @@ Browser | Outcome | Pass/Fail |
 --- | --- | --- |
 Google Chrome | No appearance, responsiveness, or functionality issues. | Pass |
 Safari | No appearance, responsiveness, or functionality issues. | Pass |
-Mozilla Firefox | No responsiveness nor functionality issues. | Pass |
+Mozilla Firefox | No appearance, responsiveness, or functionality issues. | Pass |
 Microsoft Edge | No appearance, responsiveness, or functionality issues. | Pass |
 
 
 ### Device Compatibility
 
-Device | Operative System |Outcome | Pass/Fail
---- | --- | --- | --- |
-Dell Optiplex 7060 | Windows 11 | No appearance, responsiveness, or functionality issues. | Pass |
-MacBook Pro 15" | macOS Big Sur | No appearance, responsiveness, or functionality issues. | Pass |
-Dell Latitude 5300 | Windows 10 | No appearance, responsiveness, or functionality issues. | Pass |
-iPad Pro 12.9" | iOS 15 | No appearance, responsiveness, or functionality issues. | Pass |
-iPad Pro 10.5" | iOS 15 |No appearance, responsiveness, or functionality issues. | Pass |
-iPhone XR | iOS 15 |No appearance, responsiveness, or functionality issues. | Pass |
-iPhone 7 | iOS 15 |No appearance, responsiveness, or functionality issues. | Pass |
-
+Device |Outcome | Pass/Fail
+--- | --- | --- |
+iPhone SE | No appearance, responsiveness, or functionality issues. | Pass |
+iPhone XR | No appearance, responsiveness, or functionality issues. | Pass |
+iPhone 12 Pro | No appearance, responsiveness, or functionality issues. | Pass |
+Pixel 5 | No appearance, responsiveness, or functionality issues. | Pass |
+Samsung Galaxy S8+ | No appearance, responsiveness, or functionality issues. | Pass |
+Samsung Galaxy S20 Ultra |No appearance, responsiveness, or functionality issues. | Pass |
+iPad Air | No appearance, responsiveness, or functionality issues. | Pass |
+iPad Mini | No appearance, responsiveness, or functionality issues. | Pass |
+Surface Pro 7 | No appearance, responsiveness, or functionality issues. | Pass |
+SurfaceDuo | No appearance, responsiveness, or functionality issues. | Pass |
+Galaxy Fold | No appearance, responsiveness, or functionality issues. | Pass |
+Samsung Galaxy A51/71 | No appearance, responsiveness, or functionality issues. | Pass |
+Nest Hub | No appearance, responsiveness, or functionality issues. | Pass |
+Nes Hub Max | No appearance, responsiveness, or functionality issues. | Pass |
 
 ### Test Results
 
@@ -265,6 +276,8 @@ Category create form | If the "cancel" button is clicked, it resets the form. | 
 
 #### Category page
 
+Element | Expected Outcome | Pass/Fail |
+--- | --- | --- |
 Category page access | The admin can access it from the navbar. | Pass |
 Category page access | If a user tries to access it through the URL, they can view the category and genre list but can't access the forms. | Pass |
 Category page access | If a logged-out user tries to access it through the URL, they are redirected to the home page.| Pass |
@@ -286,9 +299,29 @@ Genre create form | If the field is blank and the admin tries to submit the form
 Genre create form | If the form is filled correctly, clicking "create will add a new genre to the list. | Pass |
 Genre create form | If the "cancel" button is clicked, it resets the form. | Pass |
 
+#### Feeds page
 
+Element | Expected Outcome | Pass/Fail |
+--- | --- | --- |
+Category page access | The admin can access it from the navbar. | Pass |
 
+#### Favorites page
 
+Element | Expected Outcome | Pass/Fail |
+--- | --- | --- |
+Favorites page | If the user add a preference to their profile, It displays the events that have that genre included in the event page. | Pass |
+Favorites page | If the user deletes a preference form their profile, It doesn't display the events that have the deleted genre included in the event page. | Pass |
 
-TEST PAGES
-- The user preferences determine the events they see on the Favorite page since the events are filtered according to the user's tastes.
+#### Interested page
+
+Element | Expected Outcome | Pass/Fail |
+--- | --- | --- |
+Iterested page | If the user showed interest in an event, the event appears in the Interested page. | Pass |
+Iterested page | If the user removes the interest from an event, the event doesn't appear in the Interested page. | Pass |
+
+#### Going page
+
+Element | Expected Outcome | Pass/Fail |
+--- | --- | --- |
+Going page | If the user clicks "going" (checked calendar) on an event, the event appears in the Going page. | Pass |
+Going page | If the user removes the "going" from an event, the event doesn't appear in the Going page. | Pass |

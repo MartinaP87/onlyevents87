@@ -83,6 +83,7 @@ function ProfilePage() {
     <>
       <Row noGutters className="justify-content-center">
         <Image
+          alt={`${profile?.username}'s image`}
           className={styles.ProfileImage}
           roundedCircle
           src={profile?.image}

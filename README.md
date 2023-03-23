@@ -5,14 +5,91 @@ The purpose of the website is to acknowledge users of events, which they can fil
 The website also helps users socialize through a commenting section that enables them to schedule meet-ups before an event.
 Users can show interest and attendance to events, comment and like others' comments, and post pictures relative to the events. 
 Users can only post pictures on the event page, not on their profile page, as this is not a social media that aims to promote individuals but only events, and they can not like pictures since the purpose of the website is not to encourage or discourage to post photos in base on other users' likes.
-Visit the deployed website here.
+
+Visit the deployed website here - <a href="https://onyevents87.herokuapp.com/" target="_blank" rel="noopener">Only Events</a>.
+
+Visit the deployed API here - <a href="https://onlyevents-drf-api.herokuapp.com/" target="_blank" rel="noopener">Only Events</a>.
+
+You can view the back-end README.md here - <a href="https://github.com/Martinap87/onlyevents-drf-api" target="_blank" rel="noopener">Only Events API README</a>
+
+## Table of Contents
+
+1. [User Experience (UX)](#user-experience-ux)
+    1. [Project Goals](#project-goals)
+    2. [Development process](#development-process)
+    3. [Epics and user stories](#epics-and-user-storie)
+       1. [User stories progress](#user-stories-progress)
+    4. [Structure](#structure)
+    5. [Design planning](#design-planning)
+    6. [Design choices](#design-choices)
+        1. [Color scheme](#color-scheme)
+        2. [Typography](#typography)
+2. [Features](#features)
+   1. [Navbar](#navbar)
+   2. [Event Page](#event-page)
+      1. [Search bar](#search-bar)
+      2. [Add event section](#add-event-section)
+      3. [Events section](#events-section)
+      4. [Most popular profiles](#most-popular-profiles)
+   3. [Event Page](#event-page)
+      1. [Gallery section](#gallery-section)
+      2. [Event section](#event-section)
+      3. [Event genre section](#event-genre-section)
+      4. [Comment section](#comment-section)
+      5. [Comment form section](#comment-form-section)
+      6. [Going/Interested section](#goinginterested-section)
+   4. [Event forms section](#event-forms-section)
+      1. [Event create form](#event-create-form)
+      2. [Event edit form](#event-edit-form)
+   5. [Photo page](#photo-page)
+   6. [Photo forms section](#photo-forms-section)
+      1. [Photo create form](#photo-create-form)
+      2. [Photo edit form](#photo-edit-form)
+   7. [Profile Page](#profile-page)
+      1. [Profile picture section](#profile-picture-section)
+      2. [Edit profile button](#edit-profile-button)
+      3. [Add a preference section](#add-a-preference-section)
+      4. [Favorites section](#favorites-section)
+      5. [Main profile section](#main-profile-section)
+      6. [Profile events section](#profile-events-section)
+      7. [Most popular profiles section](#most-popular-profile-section)
+   8. [Edit profile details forms](#edit-profile-details-forms)
+      1. [Edit profile form](#edit-profile-form)
+      2. [Edit username form](#edit-username-form)
+      3. [edit password form](#edit-password-form)
+   9. [Photos Page](#photos-page)
+   10. [Categories Page](#categories-page)
+      1. [Categories list](#categories-list)
+   11. [Category forms](#category-forms)
+      1. [Category create form](#category-create-form)
+      2. [Category edit form](#category-edit-form)
+   12. [Category Page](#category-page)
+      1. [Category](#category)
+      2. [Genres list](#genres-list)
+   13. [Genre forms](#genre-forms)
+      1. [Genre create form](#genre-create-form)
+      2. [Genre edit form](#genre-edit-form)
+4. [Technologies Used](#technologies-used)
+    1. [Languages](#languages)
+    2. [Libraries and frameworks](#libraries-and-frameworks)
+    3. [NPM packages/dependencies](#npm-packages--dependencies)
+    4. [Other tools](#other-tools)
+5. [Testing](#testing)
+    1. [Go to TESTING.md](https://github.com/martinap87/onlyevents87/blob/main/TESTING.md#onlyevents-testing)
+6. [Deployment](#deployment)
+   1. [Deployment to Heroku](#deployment-to-heroku)
+   2. [Local deployment](#local-deployment)
+8. [Credits](#credits)
+9. [Media](#media)
+
+***
 
 ## User Experience (UX)
 
 ### Project Goals
 
 - Responsive design to make the website accessible on different screen sizes.
-- Structure and layout are easy to understand and provide a positive user experience.
+- The structure and layout are easy to understand and provide a positive user experience.
 - The website design and colors are appealing to the users.
 - Users are offered the opportunity to register an account.
 - Users can create, edit, delete, and retrieve events easily.
@@ -23,34 +100,38 @@ Visit the deployed website here.
 - Users can add, edit and delete photos.
 - Users can add preferences to their profiles.
 - The admin can add, edit, and delete categories and genres.
-- Users are not allowed to perform changes on the categories and genres.
+- Users are not allowed to perform changes to the categories and genres.
 
 ### Development process
+
 The development process of the project has been divided into phases. The first phases aim to build the essential features for a minimal working website, and the last phases include the features that are desirable but not mandatory.
 
 **First Phase**
-- Create, edit and delete events
+
+- Create, edit, and delete events
 - View event list
 - View event page
 - Search event by title, name, or date
-- Create, edit and delete comments
+- Create, edit, and delete comments
 - View comment list
 
 **Second Phase**
+
 - Account registration
 - Display user profile
 - Edit user profile
 - Follow/unfollow profiles
-- Create, edit and delete categories
+- Create, edit, and delete categories
 - View category list
 - View category page
-- Create, edit and delete genres
+- Create, edit, and delete genres
 - View genre list
-- Create, edit and delete event genres
+- Create, edit, and delete event genres
 
 **Third Phase**
-- Create, edit and delete event photos
-- View event photo list
+
+- Create, edit, and delete event photos
+- View the event photo list
 - Create and delete user preferences
 - Like/Unlike comments
 - Show interest/uninterest for an event
@@ -59,33 +140,38 @@ The development process of the project has been divided into phases. The first p
 - Responsive design
 - View profiles that are going/interested in the event page
 
-#### Epics and user stories
+### Epics and user stories
 
 **Epic 1 - Main events page**
+
 - As a logged-in user, I can create events so that other users with my same interests can participate.
-- As an event owner, I can edit and delete my event so that I can make corrections or update my event after it was created.
+- As an event owner, I can edit and delete my event so that I can make corrections or update it after it was created.
 - As a logged-in user, I can view the details of an event so that I can learn more about it.
 - As a user, I can view the events ordered from the farthest in the future so that I can view the events in chronological order.
 - As a user, I can keep scrolling through the events on the site, that are loaded for me automatically so that I don't have to click on "next page".
 - As a user, I can view a navbar from every page so that I can navigate easily between pages.
 
 **Epic 2 - Comments**
+
 - As a logged-in user, I can add comments to an event so that I can share my thoughts about the event.
 - As a logged-in user, I can read comments left by users under events so that I can read what other users think about the events.
 - As a comment owner, I can edit and delete my comment so that I can make corrections after my comment was created.
 
 **Epic 3 - Profiles**
+
 - As a logged-in user, I can edit my profile so that I can change my profile picture, interests, and bio.
 - As a logged-in user, I can update my username and password so that I can change my display name and keep my profile secure.
 - As a logged-in user, I can follow and unfollow other users so that I can see and remove events by specific users in my events feed.
 - As a user, I can see a list of the most followed profiles so that I can see which profiles are popular.
 
 **Epic 4 - User account**
+
 - As a user, I can create a new account so that I can access all the features for signed-up users.
 - As a user, I can sign in to the app so that I can access functionality for logged-in users.
 - As a user, I can tell if I am logged in or not by the look of the navigation bar so that I can log in if I need to.
 
-**Epic 5 - Admin fuctionalities**
+**Epic 5 - Admin functionalities**
+
 - As an admin, I can create categories so that other users can add a category to the event they create.
 - As an admin, I can edit and delete categories so that I can make corrections or update the category after it was created.
 - As an admin, I can view the categories list so that I can see which new categories I can add.
@@ -94,11 +180,13 @@ The development process of the project has been divided into phases. The first p
 - As an admin, I can view the genres list so that I can see which new genres I can add.
 
 **Epic 6 - Photos**
+
 - As a logged-in user, I can post a photo of the event so that users can have an insight into the event.
 - As a photo owner, I can edit or delete my photos so that I can make corrections after the photo was posted.
 - As a logged-in user, I can view a photo list of the event so that I can have a better understanding of the event.
 
 **Epic 7 - User extra functionalities**
+
 - As a user, I can search for events with keywords so that I can find the events I am most interested in.
 - As a logged-in user, I can like comments so that I can show my support and agreement with other users' opinions.
 - As a logged-in user, I can be interested in an event so that I can show my interest in the events that I want to go to.
@@ -111,7 +199,7 @@ The development process of the project has been divided into phases. The first p
 
 #### User stories progress
 
-GitHub projects was used as my project management tool to track user stories. Using a Kanban board helped to focus on specific tasks and track the project progress.
+GitHub Projects was used as my project management tool to track user stories. Using a Kanban board helped me to focus on specific tasks and track the project's progress.
 
 **Sprint 1**
 ![User Stories Progress 1](readme-images/first_sprint.png)
@@ -137,6 +225,7 @@ The website has been organized in a hierarchical tree structure for the user to 
 ![Only Events website map](readme-images/tree.png)
 
 ### Design planning:
+
 The design of the website has been implemented using Balsamiq wireframes. The wireframes allowed me to sketch prototypes of the web pages so that I had a clear visual idea of how the website should have looked like.
 
 **Home Page**
@@ -163,12 +252,14 @@ The design of the website has been implemented using Balsamiq wireframes. The wi
 ### Design choices
 
 #### Color scheme
+
 Due to the versatility of the website, which can display sports events as well as yoga events, art events, or classical music events, finding the appropriate color has revealed a challenging task. The final decision was a gradient of purple tones, which according to color psychology, also represents imagination and creativity and looks quite popular amongst events websites.
 The colors were taken from [Color Adobe](https://color.adobe.com/create/color-wheel), using the Analogous option.
 
 ![Only Events colors](readme-images/colors.png)
 
 #### Typography
+
 The font used for the navigation bar is Poiret One: a geometric font that also appears delicate and attractive.
 Across the site, the font used is Montserrat. This
 typeface achieves high legibility even in small sizes and perpetrates the modern vibes of the website.
@@ -241,7 +332,7 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 - If the user is the event owner, they can access the dropdown menu to delete or edit the event;
 - If the user is the event owner, they can access the "Add genre" button, which provides a form where the user can select the most suitable option.
 
-#### Genre section
+#### Event genre section
 
 ![Genre section](readme-images/genre.png)
 
@@ -286,6 +377,7 @@ It provides the user with information about the popularity of the event;
 From this section, the user can follow/unfollow other users and view their profiles.
 
 ### Event forms section
+
 #### Event create form
 
 ![Event create form](readme-images/event_create_form.png)
@@ -346,37 +438,9 @@ From this section, the user can follow/unfollow other users and view their profi
 
 - If the user is the profile owner, it displays a button that opens a dropdown menu to edit the password, username, or profile (bio and image).
 
-**Edit profile form**
-
-![Edit profile form](readme-images/profile_edit_img_form.png)
-
-- It displays a form to change the image and bio so that the user can update them as they like.
-
-**Edit username form**
-
-![Edit profile username form](readme-images/profile_edit_username_form.png)
-![Edit profile username form errors](readme-images/profile_edit_username_form_errors.png)
-
-- It displays a form to edit the username;
-- If the changed name is already in use, it displays an error message that doesn't allow the submission.
-
-**Edit password form**
-
-![Edit profile password form](readme-images/profile_edit_password_form.png)
-
-- This section displays a form to change the password, to allow the user to keep their profile secure;
-- The new password has to be typed twice to be validated;
-- If the passwords don't match, an error message is displayed.
-
 #### Photo section
+
 - It displays a button that links to a photos page;
-**Photos page**
-
-![Photos page](readme-images/photos_page.png)
-
-- It displays all photos posted by the profile owner;
-- Clicking on the photo redirects the user to the photo page;
-- It displays a button to go back to the profile page.
 
 #### Add a preference section
 
@@ -402,11 +466,43 @@ From this section, the user can follow/unfollow other users and view their profi
 
 - In this section the user can see the username of the profile, the numbers of the events posted, followers and following, and bio.
 
-#### Events section
+#### Profile events section
 - It displays all events posted by the profile owner in the same format as the home page.
 
 #### Most popular profile section
 - Like on the home page, the user can see a list of the most followed profile and access their pages by clicking on the profile image.
+
+### Edit profile details forms
+
+#### Edit profile form
+
+![Edit profile form](readme-images/profile_edit_img_form.png)
+
+- It displays a form to change the image and bio so that the user can update them as they like.
+
+#### Edit username form
+
+![Edit profile username form](readme-images/profile_edit_username_form.png)
+![Edit profile username form errors](readme-images/profile_edit_username_form_errors.png)
+
+- It displays a form to edit the username;
+- If the changed name is already in use, it displays an error message that doesn't allow the submission.
+
+#### Edit password form
+
+![Edit profile password form](readme-images/profile_edit_password_form.png)
+
+- This section displays a form to change the password, to allow the user to keep their profile secure;
+- The new password has to be typed twice to be validated;
+- If the passwords don't match, an error message is displayed.
+
+### Photos page
+
+![Photos page](readme-images/photos_page.png)
+
+- It displays all photos posted by the profile owner;
+- Clicking on the photo redirects the user to the photo page;
+- It displays a button to go back to the profile page.
 
 ### Categories page
 - This page is for admin use only, therefore is not included in the navigation bar for other users;
@@ -419,15 +515,17 @@ From this section, the user can follow/unfollow other users and view their profi
 - This section displays a list of the categories;
 - Every category is a link to the category page;
 
-#### Category forms
-**Category create form**
+### Category forms
+
+#### Category create form
 
 ![Category create form](readme-images/category_create_form.png)
 ![Category create form with error](readme-images/category_create_form_errors.png)
 
 - The form allows the admin to create new categories;
 - If the admin tries to add a category that already exists, it displays an error message.
-**Category edit form**
+
+#### Category edit form
 
 ![Category edit form](readme-images/category_edit_form.png)
 ![Category edit form error](readme-images/category_edit_form_error.png)
@@ -436,6 +534,7 @@ From this section, the user can follow/unfollow other users and view their profi
 - If the category already exists, it displays an error.
 
 ### Category Page
+
 #### Category 
 
 ![Category](readme-images/category.png)
@@ -450,8 +549,9 @@ From this section, the user can follow/unfollow other users and view their profi
 - This section displays a list of the genres;
 - Every genre has its dropdown menu to allow the edit and delete functionalities;
 
-#### Genre forms
-**Genre create form**
+### Genre forms
+
+#### Genre create form
 
 ![Genre create form](readme-images/genre_create_form.png)
 ![Genre create form error](readme-images/genre_create_form_error.png)
@@ -459,10 +559,118 @@ From this section, the user can follow/unfollow other users and view their profi
 - The form allows the admin to create new genres;
 - If the admin tries to add a genre that already exists, it displays an error message.
 
-**Genre edit form**
+#### Genre edit form
 
 ![Genre edit form](readme-images/genre_edit_form.png)
 ![Genre edit form error](readme-images/genre_edit_form_error.png)
 
 - The form allows the admin to edit the chosen genre;
 - If the genre already exists, it displays an error.
+
+## Technologies Used
+
+### Languages
+
+- [JavaScript](https://www.javascript.com/) - A dynamic programming language that's used for web development;
+- [JSX](https://en.wikipedia.org/wiki/JSX_(JavaScript)) - A syntax extension to JavaScript;
+- [CSS3](https://en.wikipedia.org/wiki/CSS) - A style sheet language used for describing the presentation of a document.
+
+## Libraries and frameworks
+
+- [React](https://reactjs.org/) - Advanced front-end JavaScript library for building user interfaces;
+- [Bootstrap](https://getbootstrap.com/) - Popular CSS Framework for developing responsive and mobile-first web apps;
+- [Font Awesome](https://fontawesome.com/) - A font and icon toolkit based on CSS;
+- [Google Fonts](https://fonts.google.com/) - A library of open-source font families.
+
+### NPM packages / dependencies
+
+- [axios](https://www.npmjs.com/package/axios) - HTTP client for making network requests;
+- [jwt-decode](https://jwt.io/) - Library for decoding JWT tokens;
+- [react-bootstrap](https://react-bootstrap.github.io/) - React components for using Bootstrap with React;
+- [react-dom](https://reactjs.org/docs/react-dom.html) - React library for rendering components on the DOM;
+- [react-infinite-scroll-component](https://www.npmjs.com/package/react-infinite-scroll-component) - Component for implementing infinite scrolling in React;
+- [react-modal](https://www.npmjs.com/package/react-modal) - Library for creating modal dialogs in React;
+- [react-paginate](https://www.npmjs.com/package/react-paginate) - Library for creating pagination controls in React;
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom) - Library for routing in single-page applications;
+- [react-scripts](https://www.npmjs.com/package/react-scripts) - Scripts for creating and building React projects with Create React App;
+- [web-vitals](https://web.dev/vitals/) - Library for measuring web performance metrics;
+- [date-fns](https://date-fns.org/) - Library for manipulating JavaScript dates.
+
+
+### Other tools
+
+- [GitHub](https://github.com/) - Used to host and develop the website as well as the user stories.
+- [Heroku](https://dashboard.heroku.com) - Used to deploy the website
+- [Google Chrome DevTools](https://developer.chrome.com/docs/devtools/) - Used to test responsiveness and debug.
+
+## Deployment
+
+### Deployment To Heroku
+
+The project was deployed to [Heroku](https://www.heroku.com). The deployment process is as follows:
+
+Firstly we need to create a new repository in [GitHub](https://github.com/) where our project files will be located.
+
+- Navigate to [GitHub](https://github.com/);
+- Create a new repository with no template
+- Click the Gitpod button to create the empty workspace;
+- Once that’s completed we’ll create the React app, with the command: 
+'npx create-react-app  . --use-npm'.
+- After ‘create react app’ has  finished creating all files,  
+we start the app to check it’s working, using the command:
+'npm start'.
+- To double-check, let’s make a change to our App.js file: remove the React custom header, and replace it with a test text inside the h1 element.  
+Remove the logo import and see if the new text is in the preview.
+- If it is, everything works correctly so we can commit and push those changes up to Github so we can do our first deployment.
+
+Now that our repository is ready to be deployed we can head to Heroku and create a new app.
+
+- Log into Heroku;
+- On the dashboard, click on **New**;
+- Click the **Create new app** button;
+- Name your app by typing the chosen name under **App name**;
+- Select your region and click the **Create app** button;
+
+Now that the app is created, we need to link it to our GitHub repository.
+
+- Click the **Deploy** tab;
+- Click on **GitHub** in the **Deployment method** section;
+- Enter the repository name;
+- Once found, click **Connect**;
+
+Now we can deploy our connected projected.
+
+- Click **Deploy Branch** which will trigger Heroku to start  
+building our application and wait for it to build.
+- Once you see the message that the build succeeded, you can
+click the **open app** button and check it out.
+
+### Local Deployment
+To work on the code from a local device, the steps to clone the repository are as follows:
+
+- In the GitHub repository click the Code button above the list of files;
+- Copy the URL displayed on the clone tab;
+- Open the terminal on your device;
+- Type git clone and paste the URL copied earlier;
+- Press enter.
+
+## Credit:
+
+- [Code Institute](https://codeinstitute.net/)'s  **Moments** walkthrough project: it helped to build the basic structure of the app;
+- [Stackoverflow](https://stackoverflow.com/): helped to understand and resolve bugs;
+- [Grammarly](https://app.grammarly.com/): helped to correct grammar errors.
+
+### Media:
+
+- [Google Fonts](https://fonts.google.com/): Used for the website's fonts;
+- [Font Awesome](https://fontawesome.com/): Used for icons;
+- [Figma](https://www.figma.com/) - Used to create ERD and navigation tree diagram;
+- [Balsamiq](https://balsamiq.com/) - Used to create the website wireframes;
+- [Favicon](https://favicon.io/) - Used to create the favicon;
+- [Fontpair](https://www.fontpair.co/) - Used to choose and pair the website fonts;
+- [Adobe color](https://color.adobe.com/) - Used to create the color palette;
+- [Tiny PNG](https://tinypng.com) - Used to reduce the file size of the images;
+- [Removebg](https://www.remove.bg/) - Used to remove background images;
+- [Pixabay](http://pixabay.com/) and [Pexels](https://www.pexels.com/) - Used to get the images;
+- [Freepick](https://www.freepik.com/) - Used for the logo;
+- [Mockup screen generator](https://ui.dev/amiresponsive?): Used to evaluate the website responsiveness.
