@@ -28,6 +28,7 @@ function SignInForm() {
   const history = useHistory();
 
   const handleChange = (event) => {
+    // It stores the inputs in a variable.
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,
@@ -35,6 +36,8 @@ function SignInForm() {
   };
 
   const handleSubmit = async (event) => {
+    // It posts the log-in details to the API endpoint,
+    // updates the current user and sets a token timestamp.  
     event.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
@@ -72,6 +75,7 @@ function SignInForm() {
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
+                aria-describedby="passwordHelpSignIn"
                 type="password"
                 placeholder="Password"
                 name="password"
@@ -80,6 +84,10 @@ function SignInForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            <Form.Text id="passwordHelpSignIn" muted>
+              For your protection, the username and the password are
+              case-sensitive.
+            </Form.Text>
             {errors.password?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -111,7 +119,9 @@ function SignInForm() {
         <Image
           className={`${appStyles.FillerImage}`}
           alt="sign-in image"
-          src={"https://res.cloudinary.com/dolts3yad/image/upload/v1679479222/media/images/sign-in.jpg"}
+          src={
+            "https://res.cloudinary.com/dolts3yad/image/upload/v1679479222/media/images/sign-in.jpg"
+          }
         />
       </Col>
     </Row>

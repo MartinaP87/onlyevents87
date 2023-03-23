@@ -12,6 +12,8 @@ Visit the deployed API here - <a href="https://onlyevents-drf-api.herokuapp.com/
 
 You can view the back-end README.md here - <a href="https://github.com/Martinap87/onlyevents-drf-api" target="_blank" rel="noopener">Only Events API README</a>
 
+![Responsive](readme-images/responsive.png)
+
 ## Table of Contents
 
 1. [User Experience (UX)](#user-experience-ux)

@@ -9,6 +9,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const CategoriesPage = () => {
+  // It redirects the logged out user to the home page.
   useRedirect("loggedOut");
   const currentUser = useCurrentUser();
   const admin = currentUser?.pk === 1;
@@ -19,6 +20,8 @@ const CategoriesPage = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      // It requests the categories to the API endpoint
+      // and stores them in a variable.
       try {
         const { data } = await axiosReq.get("/categories/");
         setCategories(data);
@@ -26,8 +29,11 @@ const CategoriesPage = () => {
         console.log(err);
       }
     };
-    fetchCategories();
-  }, []);
+    // Make the request only if the user is logged in.
+    if (currentUser) {
+      fetchCategories();
+    }
+  }, [currentUser]);
 
   return (
     <Row className="h-100">

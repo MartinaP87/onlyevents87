@@ -14,12 +14,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const EventsPage = ({ message, filter = "" }) => {
   const [events, setEvents] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -82,7 +84,7 @@ const EventsPage = ({ message, filter = "" }) => {
       </Col>
 
       <Col className="py-2 p-0 p-lg-2" lg={6}>
-        <Link name="event create form" className="d-none d-md-inline" to={`/events/create`}>
+        {currentUser && <Link name="event create form" className="d-none d-md-inline" to={`/events/create`}>
           <Container className="d-inline-flex justify-content-center px-4">
             <h3 className={`${styles.AddLink} d-flex align-items-center mb-0`}>
               Add the next event!{" "}
@@ -91,7 +93,7 @@ const EventsPage = ({ message, filter = "" }) => {
               className={`fas fa-plus-square d-flex px-3 ${styles.AddEvent}`}
             />
           </Container>
-        </Link>
+        </Link>}
 
         {hasLoaded ? (
           <>

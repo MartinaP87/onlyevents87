@@ -22,6 +22,9 @@ const NavBar = () => {
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const handleSignOut = async () => {
+    // It makes a post request to the logout endpoint in the API, 
+    // sets the current user to null and removes
+    // the timestamp from the browser
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
@@ -139,7 +142,7 @@ const NavBar = () => {
         <NavLink exact to="/">
           <Navbar.Brand>
             <Container className={styles.NavbarBrand}>
-              <Image src={Logo} height={70} alt="logo"/>
+              <Image src={Logo} height={70} alt="logo" />
               <h4>Only Events</h4>
             </Container>
           </Navbar.Brand>

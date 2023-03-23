@@ -21,12 +21,16 @@ const CategoryCreateForm = (props) => {
   const { cat_name } = categoryData;
 
   const handleChange = (event) => {
+    // It stores the inputs in a variable
     setCategoryData({
       cat_name: event.target.value,
     });
   };
 
   const handleSubmit = async (event) => {
+    // It posts the new data to the API endpoint, redirects
+    // the user to the categories page, and updates
+    // the categories variable.
     event.preventDefault();
     try {
       const { data } = await axiosReq.post("/categories/", categoryData);
@@ -40,6 +44,7 @@ const CategoryCreateForm = (props) => {
         setErrors(err.response?.data);
       }
     }
+    // It resets the form
     setCategoryData({
       cat_name: "",
     });

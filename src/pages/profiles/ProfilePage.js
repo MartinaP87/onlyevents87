@@ -111,13 +111,13 @@ function ProfilePage() {
               </Container>
             </Col>
           </>
-        ) : (
-          <Button
+        ) : (<>
+          {currentUser && <Button
             className={btnStyles.Button}
             onClick={() => history.push(`/my_photos/${id}`)}
           >
             Photos
-          </Button>
+          </Button>}</>
         )}
       </Row>
     </>

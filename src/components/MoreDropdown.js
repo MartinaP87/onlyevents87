@@ -5,8 +5,9 @@ import styles from "../styles/MoreDropdown.module.css";
 import btnStyle from "../styles/Button.module.css";
 import { useHistory } from "react-router";
 
-// The forwardRef is important!!
-// Dropdown needs access to the DOM node in order to position the Menu
+
+// Through the forwardRef, the Dropdown can access
+// the DOM node to position the Menu.
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   <i
     className="fas fa-ellipsis-v"

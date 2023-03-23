@@ -14,6 +14,9 @@ const Category = (props) => {
   const history = useHistory();
 
   const handleDelete = async () => {
+    // It deletes the category from the database, redirects
+    // the user to the categories page, and updates the 
+    // categories variable.
     try {
       await axiosRes.delete(`/categories/${id}/`);
       history.push("/categories/");

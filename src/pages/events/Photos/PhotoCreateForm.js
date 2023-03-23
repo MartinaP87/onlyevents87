@@ -12,11 +12,8 @@ import { axiosReq } from "../../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
 import { Alert, Modal } from "react-bootstrap";
-import { useRedirect } from "../../../hooks/useRedirect";
 
 function PhotoCreateForm(props) {
-  useRedirect("loggedOut");
-
   const { id, setPhotosGallery } = props;
   const [errors, setErrors] = useState({});
   const history = useHistory();

@@ -27,28 +27,31 @@ function EventPage() {
   const [comments, setComments] = useState({ results: [] });
   const [genres, setGenres] = useState({ results: [] });
   const [gallery, setGallery] = useState({ results: [] });
+  
 
   useEffect(() => {
     const handleMount = async () => {
-      try {
-        const [
-          { data: event },
-          { data: comments },
-          { data: genres },
-          { data: gallery },
-        ] = await Promise.all([
-          axiosReq.get(`/events/${id}`),
-          axiosReq.get(`/comments/?posted_event=${id}`),
-          axiosReq.get(`/events/genres/?event=${id}`),
-          axiosReq.get(`events/galleries/${id}`),
-        ]);
-        setEvent({ results: [event] });
-        setComments(comments);
-        setGallery(gallery);
-        setGenres(genres);
-      } catch (err) {
-        console.log(err);
-      }
+      
+        try {
+          const [
+            { data: event },
+            { data: comments },
+            { data: genres },
+            { data: gallery },
+          ] = await Promise.all([
+            axiosReq.get(`/events/${id}`),
+            axiosReq.get(`/comments/?posted_event=${id}`),
+            axiosReq.get(`/events/genres/?event=${id}`),
+            axiosReq.get(`events/galleries/${id}`),
+          ]);
+          setEvent({ results: [event] });
+          setComments(comments);
+          setGallery(gallery);
+          setGenres(genres);
+        } catch (err) {
+          console.log(err);
+        }
+      
     };
     handleMount();
   }, [id]);
@@ -56,7 +59,7 @@ function EventPage() {
   return (
     <Row className="h-100">
       <Col lg={3} className="d-none d-lg-block">
-        <GalleryPage gallery={gallery} />
+        {currentUser && <GalleryPage gallery={gallery} />}
       </Col>
       <Col className="py-2 p-0 p-lg-2" lg={6}>
         <PopularProfiles mobile />
@@ -131,8 +134,7 @@ function EventPage() {
       </Col>
       {event?.results.length ? (
         <Col lg={3} className="d-none d-lg-block p-0 p-lg-2">
-          <GoingProfiles id={id} 
-          going_count={event.results[0].goings_count} />
+          <GoingProfiles id={id} going_count={event.results[0].goings_count} />
           <InterestedProfiles
             id={id}
             interested_count={event.results[0].interesteds_count}

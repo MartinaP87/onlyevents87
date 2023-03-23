@@ -20,14 +20,15 @@ function GalleryPage(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const { data } = await axiosReq.get(
-          `events/galleries/photos/?gallery__posted_event=${id}`
-        );
-        setPhotosGallery(data);
-      } catch (err) {
-        console.log(err);
-      }
+        try {
+          const { data } = await axiosReq.get(
+            `events/galleries/photos/?gallery__posted_event=${id}`
+          );
+          setPhotosGallery(data);
+        } catch (err) {
+          console.log(err);
+        }
+      
     };
     fetchData();
   }, [id]);

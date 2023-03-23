@@ -9,13 +9,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import Asset from "../../components/Asset";
 import { useHistory, useParams } from "react-router-dom";
-import { useRedirect } from "../../hooks/useRedirect";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PhotosPage() {
-  useRedirect("loggedOut");
   const { id } = useParams();
   const [photosProfile, setPhotosProfile] = useState({ results: [] });
   const history = useHistory();
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +32,9 @@ function PhotosPage() {
   }, [id]);
 
   return (
+    
     <Col className="py-2 p-0 p-lg-2" lg={12}>
+      {currentUser ? (<>
       {photosProfile.results.length ? (
         <>
           <div className="d-inline-flex">
@@ -67,7 +69,7 @@ function PhotosPage() {
             }}
           />
         </>
-      )}
+      )}</>):(<h2>Sign in to view this content!</h2>)}
     </Col>
   );
 }

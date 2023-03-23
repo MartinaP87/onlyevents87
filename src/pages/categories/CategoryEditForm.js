@@ -16,10 +16,13 @@ const CategoryEditForm = (props) => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
+    // It stores the inputs in a variable.
     setCategoryData(event.target.value);
   };
 
   const handleSubmit = async (event) => {
+    // It sends the data to the API endpoint and 
+    // updates the categories variable.
     event.preventDefault();
     try {
       await axiosReq.put(`/categories/${id}/`, { cat_name: categoryData });
@@ -34,6 +37,7 @@ const CategoryEditForm = (props) => {
             : category;
         }),
       }));
+      // It closes the edit form.
       setShowEditForm(false);
     } catch (err) {
       console.log(err);

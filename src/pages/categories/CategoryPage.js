@@ -19,6 +19,8 @@ function CategoryPage() {
   const admin = currentUser?.pk === 1;
 
   useEffect(() => {
+    // It requests the category and its genres to the API
+    // endpoint and updates the category data and genres variables.
     const handleMount = async () => {
       try {
         const [{ data: category }, { data: genres }] = await Promise.all([
@@ -31,8 +33,10 @@ function CategoryPage() {
         console.log(err);
       }
     };
-    handleMount();
-  }, [id]);
+    // It runs the function only if the user is logged in.
+    if (currentUser) {
+    handleMount();}
+  }, [id, currentUser]);
 
   return (
     <Row className="h-100">

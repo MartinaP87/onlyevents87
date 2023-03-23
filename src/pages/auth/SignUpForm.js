@@ -14,6 +14,8 @@ import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
+  // If the user is already logged in and tries to access
+  // the for, they are redirected to the home page.
   useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({
     username: "",
@@ -27,6 +29,7 @@ const SignUpForm = () => {
   const history = useHistory();
 
   const handleChange = (event) => {
+    // It stores the inputs in a variable.
     setSignUpData({
       ...signUpData,
       [event.target.name]: event.target.value,
@@ -34,6 +37,8 @@ const SignUpForm = () => {
   };
 
   const handleSubmit = async (event) => {
+    // It posts the sign up details to the API endpoint
+    // and redirects the user to the sign in page. 
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
@@ -87,6 +92,7 @@ const SignUpForm = () => {
             <Form.Group controlId="password2">
               <Form.Label className="d-none">Confirm password</Form.Label>
               <Form.Control
+                aria-describedby="passwordHelpSignUp"
                 className={styles.Input}
                 type="password"
                 placeholder="Confirm password"
@@ -95,6 +101,10 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            <Form.Text id="passwordHelpSignUp" muted>
+              For your protection, the username and the password are
+              case-sensitive.
+            </Form.Text>
             {errors.password2?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -128,7 +138,9 @@ const SignUpForm = () => {
         <Image
           className={`${appStyles.FillerImage}`}
           alt="sign-up image"
-          src={"https://res.cloudinary.com/dolts3yad/image/upload/v1679479295/media/images/sign-up.jpg"}
+          src={
+            "https://res.cloudinary.com/dolts3yad/image/upload/v1679479295/media/images/sign-up.jpg"
+          }
         />
       </Col>
     </Row>

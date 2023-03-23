@@ -325,3 +325,14 @@ Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
 Going page | If the user clicks "going" (checked calendar) on an event, the event appears in the Going page. | Pass |
 Going page | If the user removes the "going" from an event, the event doesn't appear in the Going page. | Pass |
+
+## Bugs
+
+- When testing the Interested section, I realized that by clicking on the star icon, the number of Interested was updating, but the profiles displayed weren't.
+Using console logs, I realized that the problem was in the HandleUninterest function in Event.js: missing the "await" keyword resulted in inconsistent updates. Adding "await" fixed the issue.
+- When testing the CreateCategoryForm, inputting an existing category name would result in a 400 error but wouldn't display the error message to the user. It was happening because in case of a duplicate, the error.response.data is an object, and to access the value it needs the key. Adding the following code fixed the issue.
+{errors && errors.detail && (
+   <Alert variant="warning">{errors.detail}</Alert>
+)}
+- When a logged-out user was trying to access a restricted area such as the photos page, even though they were redirected to the home page, it would throw the error “Can’t perform a React state update on an unmounted component”.
+To fix the error I wrote an if statement to run the useEffect function only if the current user wasn't null.
