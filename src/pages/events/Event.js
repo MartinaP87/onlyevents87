@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -7,7 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Event.module.css";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import EventGenreCreateForm from "./EventGenres/EventGenreCreateForm";
 import Container from "react-bootstrap/Container";
@@ -41,39 +41,26 @@ const Event = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
-  const [genresToGet, setGenresToGet] = useState({ results: [] });
-
-  useEffect(() => {
-    const fetchGenres = async () => {
-      try {
-        const { data } = await axiosReq.get(
-          `/categories/genres/?category=${category}`
-        );
-        setGenresToGet(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    if (category) {
-      fetchGenres();
-    }
-  }, [category, id, date]);
 
   const handleEdit = () => {
+    // It redirects the user to the event edit page.
     history.push(`/events/${id}/edit`);
   };
 
   const handleDelete = async () => {
+    // It deletes the event and redirects the user to their profile.
     try {
       await axiosRes.delete(`/events/${id}/`);
       history.push(`/profiles/${currentUser.pk}`);
-      
     } catch (err) {
       console.log(err);
     }
   };
 
   const handleInterested = async () => {
+    // It sends the new Interested object to the API endpoint
+    // and updates the interesteds_count of the event
+    // in the events variable.
     try {
       const { data } = await axiosRes.post("/interested/", {
         posted_event: id,
@@ -96,6 +83,9 @@ const Event = (props) => {
   };
 
   const handleUninterested = async () => {
+    // It deletes the Interested object from the database
+    // and updates the interested_count of the event
+    // in the events variable.
     try {
       await axiosRes.delete(`/interested/${interested_id}`);
       setEvents((prevEvents) => ({
@@ -115,6 +105,9 @@ const Event = (props) => {
     }
   };
   const handleGoing = async () => {
+    // It sends the new Going object to the API endpoint
+    // and updates the goings_count of the event
+    // in the events variable.
     try {
       const { data } = await axiosRes.post("/going/", { posted_event: id });
       setEvents((prevEvents) => ({
@@ -133,7 +126,11 @@ const Event = (props) => {
       console.log(err);
     }
   };
+
   const handleNotGoing = async () => {
+    // It deletes the Going object from the database
+    // and updates the going_count of the event
+    // in the events variable.
     try {
       await axiosRes.delete(`/going/${going_id}`);
       setEvents((prevEvents) => ({
@@ -157,7 +154,11 @@ const Event = (props) => {
       <Card className={styles.Event}>
         <Card.Body>
           <Media className="align-item-center justify-content-between">
-            <Link name="profile" className="d-flex" to={`/profiles/${profile_id}/`}>
+            <Link
+              name="profile"
+              className="d-flex"
+              to={`/profiles/${profile_id}/`}
+            >
               <Avatar src={profile_image} height={55} />
               <p className={styles.Name}>{owner}</p>
             </Link>
@@ -209,16 +210,12 @@ const Event = (props) => {
             <>
               {address && <Card.Subtitle>{address}</Card.Subtitle>}
               <hr />
-              {content && (
-                <Card.Text>
-                  {content}
-                </Card.Text>
-              )}
+              {content && <Card.Text>{content}</Card.Text>}
             </>
           )}
 
           <div>
-            <hr/>
+            <hr />
             {interested_id ? (
               <span onClick={handleUninterested}>
                 <i className={`fas fa-star ${styles.Star}`} />
@@ -261,7 +258,7 @@ const Event = (props) => {
             )}
             {goings_count}
 
-            <Link name="event" to={`/events/${id}`}>
+            <Link name={`event ${id}`} to={`/events/${id}`}>
               <i className="far fa-comments" />
             </Link>
             {comments_count}
@@ -273,7 +270,7 @@ const Event = (props) => {
         </Card.Body>
       </Card>
       {is_owner && eventPage && (
-        <EventGenreCreateForm genresToGet={genresToGet} setGenres={setGenres} />
+        <EventGenreCreateForm category={category} setGenres={setGenres} />
       )}
     </Container>
   );

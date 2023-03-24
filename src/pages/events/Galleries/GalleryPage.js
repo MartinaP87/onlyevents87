@@ -20,16 +20,18 @@ function GalleryPage(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-          const { data } = await axiosReq.get(
-            `events/galleries/photos/?gallery__posted_event=${id}`
-          );
-          setPhotosGallery(data);
-        } catch (err) {
-          console.log(err);
-        }
-      
+      // It requests the gallery photos of the event and
+      // stores the data in the photosGallery variable.
+      try {
+        const { data } = await axiosReq.get(
+          `events/galleries/photos/?gallery__posted_event=${id}`
+        );
+        setPhotosGallery(data);
+      } catch (err) {
+        console.log(err);
+      }
     };
+    console.log("chiama gallery data");
     fetchData();
   }, [id]);
 
@@ -53,11 +55,7 @@ function GalleryPage(props) {
           {photosGallery.results.length ? (
             <InfiniteScroll
               children={photosGallery.results.map((photo) => (
-                <Photo
-                  key={photo.id}
-                  {...photo}
-                  setPhotosGallery={setPhotosGallery}
-                />
+                <Photo key={photo.id} {...photo} />
               ))}
               dataLength={photosGallery.results.length}
               loader={<Asset spinner />}

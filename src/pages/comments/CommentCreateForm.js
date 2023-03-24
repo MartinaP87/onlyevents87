@@ -12,10 +12,13 @@ function CommentCreateForm(props) {
   const [content, setContent] = useState("");
 
   const handleChange = (e) => {
+    // It stores the inputs in the content variable.
     setContent(e.target.value);
   };
 
   const handleSubmit = async (e) => {
+    // It posts the content data to the API endpoint and updates
+    // the comments and event variables.
     e.preventDefault();
     try {
       const { data } = await axiosRes.post("/comments/", {
@@ -34,6 +37,7 @@ function CommentCreateForm(props) {
           },
         ],
       }));
+      // It resets the form.
       setContent("");
     } catch (err) {
       console.log(err);

@@ -10,10 +10,13 @@ function CommentEditForm(props) {
   const [formContent, setFormContent] = useState(content);
 
   const handleChange = (event) => {
+    // It stores the inputs in the formContent variable.
     setFormContent(event.target.value);
   };
 
   const handleSubmit = async (event) => {
+    // It sends the comment updates to the API endpoint 
+    // and updates the comments variable.
     event.preventDefault();
     try {
       await axiosRes.put(`/comments/${id}/`, {
@@ -31,6 +34,7 @@ function CommentEditForm(props) {
             : comment;
         }),
       }));
+      // It closes the edit form.
       setShowEditForm(false);
     } catch (err) {
       console.log(err);

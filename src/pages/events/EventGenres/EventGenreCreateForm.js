@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -13,14 +13,37 @@ import Accordion from "react-bootstrap/Accordion";
 import { useHistory, useParams } from "react-router-dom";
 
 const EventGenreCreateForm = (props) => {
-  const { genresToGet, setGenres } = props;
+  const { category, setGenres } = props;
   const history = useHistory();
   const { id } = useParams();
   const [selectValue, setSelectValue] = useState("");
   const [genre, setGenre] = useState("");
   const [errors, setErrors] = useState({});
+  const [genresToGet, setGenresToGet] = useState({ results: [] });
+
+  useEffect(() => {
+    // It requests all the genres of the event category and
+    //stores them in the genresToGet variable.
+    const fetchGenres = async () => {
+      try {
+        const { data } = await axiosReq.get(
+          `/categories/genres/?category=${category}`
+        );
+        setGenresToGet(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (category) {
+      fetchGenres();
+    }
+  }, [category]);
 
   const handleChange = (e) => {
+    // It removes the error message that could be present from
+    // the previous attempt to submit, saves the inputted value 
+    // in the select value variable and if the inputted
+    // value is not empty, it updates the genre variable.
     setErrors({});
     setSelectValue(e.target.value);
     if (e.target.value !== "") {
@@ -33,6 +56,8 @@ const EventGenreCreateForm = (props) => {
   };
 
   const handleSubmit = async (event) => {
+    // It sends the new genre to the API endpoint, redirects the
+    // user to the event page, and updates the genres variable.
     event.preventDefault();
     try {
       const { data } = await axiosReq.post("/events/genres/", {
@@ -51,6 +76,7 @@ const EventGenreCreateForm = (props) => {
         setErrors(err.response?.data);
       }
     }
+    // It resets the input value and the genre variable.
     setSelectValue("");
     setGenre("");
   };

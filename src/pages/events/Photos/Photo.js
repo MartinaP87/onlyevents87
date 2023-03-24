@@ -19,30 +19,21 @@ const Photo = (props) => {
     profile_id,
     profile_image,
     photoPage,
-    setPhotosGallery,
-    setPhotosProfile,
   } = props;
 
   const history = useHistory();
 
   const handleEdit = () => {
+    // It redirects the user to the photo edit page.
     history.push(`/events/galleries/photos/${id}/edit`);
   };
 
   const handleDelete = async () => {
+    // It deletes the photo from the database and redirects
+    // the user to the event page.
     try {
       await axiosRes.delete(`/events/galleries/photos/${id}/`);
-        history.push(`/events/${gallery}`)
-
-      if(setPhotosGallery && setPhotosProfile) {
-      setPhotosGallery((prevPhotos) => ({
-        ...prevPhotos,
-        results: prevPhotos.results.filter((photo) => photo.id !== id),
-      }));
-      setPhotosProfile((prevPhotos) => ({
-        ...prevPhotos,
-        results: prevPhotos.results.filter((photo) => photo.id !== id),
-      }));}
+      history.push(`/events/${gallery}`);
     } catch (err) {
       console.log(err);
     }
@@ -53,7 +44,11 @@ const Photo = (props) => {
       {photoPage && (
         <Card.Body className="py-1">
           <Media className="align-item-center justify-content-between">
-            <Link className={styles.Pink} name="profile" to={`/profiles/${profile_id}/`}>
+            <Link
+              className={styles.Pink}
+              name="profile"
+              to={`/profiles/${profile_id}/`}
+            >
               <Avatar src={profile_image} height={55} />
               {owner}
             </Link>

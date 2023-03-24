@@ -10,6 +10,8 @@ const EventGenre = (props) => {
   const is_owner = currentUser?.username === owner;
 
   const handleDelete = async () => {
+    // It deletes the event genre from the database and
+    // updates the genres variable.
     try {
       await axiosRes.delete(`/events/genres/${id}/`);
       setGenres((prevGenres) => ({

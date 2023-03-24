@@ -50,7 +50,7 @@ function PhotosPage() {
             <InfiniteScroll
               className={styles.Photos}
               children={photosProfile.results.map((photo) => (
-                <Photo key={photo.id} {...photo} setPhotosProfile={setPhotosProfile} photosPage/>
+                <Photo key={photo.id} {...photo} photosPage/>
               ))}
               dataLength={photosProfile.results.length}
               loader={<Asset spinner />}

@@ -14,6 +14,7 @@ const PhotoPage = () => {
 
   useEffect(() => {
     const handleMount = async () => {
+      // It requests the photo data to the API endpoint.
       try {
         const { data } = await axiosReq.get(`/events/galleries/photos/${id}`);
         setPhoto({ results: [data] });

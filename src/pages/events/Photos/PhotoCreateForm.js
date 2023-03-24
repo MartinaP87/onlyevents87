@@ -20,7 +20,7 @@ function PhotoCreateForm(props) {
   const [photoData, setPhotoData] = useState({
     title: "",
     image: "",
-    gallery: id
+    gallery: id,
   });
   const { title, image, gallery } = photoData;
 
@@ -28,17 +28,19 @@ function PhotoCreateForm(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
+    // It closes and resets the form.
     setShow(false);
     setPhotoData({
       title: "",
       image: "",
-      gallery: id
+      gallery: id,
     });
-    setErrors({})
+    setErrors({});
   };
   const handleShow = () => setShow(true);
 
   const handleChangeTitle = (event) => {
+    // It stores the input title in the photoData variable.
     setPhotoData({
       ...photoData,
       title: event.target.value,
@@ -46,6 +48,8 @@ function PhotoCreateForm(props) {
   };
 
   const handleChangeImage = (event) => {
+    // If the user uploads another image, it removes the previous
+    // image URL from the photoData and replaces it with the new one.
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
       setPhotoData({
@@ -56,6 +60,8 @@ function PhotoCreateForm(props) {
   };
 
   const handleSubmit = async (event) => {
+    // It posts all data to the API endpoint, closes the form,
+    // and updates the photosGallery, photoData, and error variables.
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -75,7 +81,7 @@ function PhotoCreateForm(props) {
       setPhotoData({
         title: "",
         image: "",
-        gallery: id
+        gallery: id,
       });
       setErrors({});
     } catch (err) {
@@ -116,9 +122,7 @@ function PhotoCreateForm(props) {
 
   return (
     <>
-      <Button 
-      className={btnStyles.Button}
-      onClick={handleShow}>
+      <Button className={btnStyles.Button} onClick={handleShow}>
         Add a photo!
       </Button>
 

@@ -26,6 +26,9 @@ function PhotoEditForm() {
   const { id } = useParams();
 
   useEffect(() => {
+    // It requests the photo details to the API endpoint and stores them
+    // in the photoData variable if the user is the photo owner, otherwise
+    // redirects the user to the photo page.
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/events/galleries/photos/${id}`);
@@ -52,6 +55,8 @@ function PhotoEditForm() {
   };
 
   const handleChangeImage = (event) => {
+    //If the user uploads another image, it removes the previous
+    // image URL from the photoData and replaces it with the new one.
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
       setPhotoData({
@@ -62,6 +67,8 @@ function PhotoEditForm() {
   };
 
   const handleSubmit = async (event) => {
+    // It posts all data to the API endpoint and redirects
+    // the user to the photo page.
     event.preventDefault();
     const formData = new FormData();
     formData.append("gallery", gallery);
@@ -124,7 +131,12 @@ function PhotoEditForm() {
           >
             <Form.Group className="text-center">
               <figure>
-                <Image className={appStyles.Image} src={image} alt="event related picture" rounded />
+                <Image
+                  className={appStyles.Image}
+                  src={image}
+                  alt="event related picture"
+                  rounded
+                />
               </figure>
               <div>
                 <Form.Label

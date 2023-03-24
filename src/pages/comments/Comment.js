@@ -26,6 +26,8 @@ const Comment = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
 
   const handleDelete = async () => {
+    // It deletes the comment from the database and
+    // updates the event  and comments variables.
     try {
       await axiosRes.delete(`/comments/${id}/`);
       setEvent((prevEvent) => ({
@@ -46,6 +48,8 @@ const Comment = (props) => {
   };
 
   const handleLike = async () => {
+    // It sends the new like object to the API endpoint and updates 
+    // the comments variable and the comment count of the liked comment.
     try {
       const { data } = await axiosRes.post("/likes/", {
         comment: id,
@@ -68,6 +72,8 @@ const Comment = (props) => {
   };
 
   const handleUnlike = async () => {
+    // It deletes the like object from the database and updates 
+    // the comments variable and the comment count of the liked comment.
     try {
       axiosRes.delete(`/likes/${like_id}`);
       setComments((prevComments) => ({
