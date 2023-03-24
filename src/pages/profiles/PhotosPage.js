@@ -18,6 +18,8 @@ function PhotosPage() {
   const currentUser = useCurrentUser();
 
   useEffect(() => {
+    // It requests the profile owner's photos to the API
+    // endpoint and stores them in the photosProfile variable.
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get(
@@ -32,44 +34,48 @@ function PhotosPage() {
   }, [id]);
 
   return (
-    
     <Col className="py-2 p-0 p-lg-2" lg={12}>
-      {currentUser ? (<>
-      {photosProfile.results.length ? (
+      {currentUser ? (
         <>
-          <div className="d-inline-flex">
-            <h1>{photosProfile.results[0].owner}' photos</h1>
-            <i
-              className="fas fa-arrow-circle-left p-3"
-              onClick={() => {
-                history.goBack();
-              }}
-            />
-          </div>
-          <Container className={appStyles.Content}>
-            <InfiniteScroll
-              className={styles.Photos}
-              children={photosProfile.results.map((photo) => (
-                <Photo key={photo.id} {...photo} photosPage/>
-              ))}
-              dataLength={photosProfile.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!photosProfile.next}
-              next={() => fetchMoreData(photosProfile, setPhotosProfile)}
-            />
-          </Container>
+          {photosProfile.results.length ? (
+            <>
+              <div className="d-inline-flex">
+                <h1>{photosProfile.results[0].owner}' photos</h1>
+                <i
+                  className="fas fa-arrow-circle-left p-3"
+                  onClick={() => {
+                    history.goBack();
+                  }}
+                />
+              </div>
+              <Container className={appStyles.Content}>
+                <InfiniteScroll
+                  className={styles.Photos}
+                  children={photosProfile.results.map((photo) => (
+                    <Photo key={photo.id} {...photo} photosPage />
+                  ))}
+                  dataLength={photosProfile.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!photosProfile.next}
+                  next={() => fetchMoreData(photosProfile, setPhotosProfile)}
+                />
+              </Container>
+            </>
+          ) : (
+            <>
+              <p>No photos yet</p>
+              <i
+                className="fas fa-arrow-circle-left p-3"
+                onClick={() => {
+                  history.goBack();
+                }}
+              />
+            </>
+          )}
         </>
       ) : (
-        <>
-          <p>No photos yet</p>
-          <i
-            className="fas fa-arrow-circle-left p-3"
-            onClick={() => {
-              history.goBack();
-            }}
-          />
-        </>
-      )}</>):(<h2>Sign in to view this content!</h2>)}
+        <h2>Sign in to view this content!</h2>
+      )}
     </Col>
   );
 }

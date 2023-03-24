@@ -12,27 +12,26 @@ const GoingProfiles = (props) => {
   const { popularProfiles } = useProfileData();
   const { id, going_count } = props;
   const [going, setGoing] = useState({ results: [] });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axiosReq.get(`/going/?posted_event=${id}`);
-        setGoing(data);
-
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    if (id) {
-      fetchData();
-    }
-  }, [id, going_count]);
-
   const goingProfiles = popularProfiles?.results.filter((profile) =>
     going?.results
       .map((person_going) => person_going.owner)
       .includes(profile.owner)
   );
+
+  useEffect(() => {
+    // It requests the going data to the API endpoint and
+    // stores it in the going variable.
+    const fetchData = async () => {
+      try {
+        const { data } = await axiosReq.get(`/going/?posted_event=${id}`);
+        setGoing(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    // It runs the function only if the id is defined.
+    id && fetchData();
+  }, [id, going_count]);
 
   return (
     <Container className={`${appStyles.Content} mb-3`}>

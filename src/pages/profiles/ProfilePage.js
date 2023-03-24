@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -40,9 +39,6 @@ function ProfilePage() {
   const [preferences, setPreferences] = useState({
     results: [],
   });
-  const [preferenceChoice, setPreferenceChoice] = useState({
-    results: [],
-  });
   const allCategories = preferences.results.map(
     (preference) => preference.category
   );
@@ -52,17 +48,19 @@ function ProfilePage() {
 
   useEffect(() => {
     const fetchData = async () => {
+      // It requests to the API endpoint the profile,
+      // the owner events, and preferences and stores
+      // them respectively in profileData, profileEvents,
+      // and preferences. It sets the hasLoaded variable to true.
       try {
         const [
           { data: pageProfile },
           { data: profileEvents },
           { data: preferences },
-          { data: preferenceChoice },
         ] = await Promise.all([
           axiosReq.get(`/profiles/${id}/`),
           axiosReq.get(`/events/?owner__profile=${id}`),
           axiosReq.get(`/profiles/preferences/?profile=${id}`),
-          axiosReq.get(`/categories/genres/`),
         ]);
         setProfileData((prevState) => ({
           ...prevState,
@@ -70,7 +68,6 @@ function ProfilePage() {
         }));
         setProfileEvents(profileEvents);
         setPreferences(preferences);
-        setPreferenceChoice(preferenceChoice);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -111,13 +108,17 @@ function ProfilePage() {
               </Container>
             </Col>
           </>
-        ) : (<>
-          {currentUser && <Button
-            className={btnStyles.Button}
-            onClick={() => history.push(`/my_photos/${id}`)}
-          >
-            Photos
-          </Button>}</>
+        ) : (
+          <>
+            {currentUser && (
+              <Button
+                className={btnStyles.Button}
+                onClick={() => history.push(`/my_photos/${id}`)}
+              >
+                Photos
+              </Button>
+            )}
+          </>
         )}
       </Row>
     </>
@@ -125,12 +126,7 @@ function ProfilePage() {
   const mainProfileActions = (
     <>
       <Row className="my-3 justify-content-center ">
-        {is_owner && (
-          <PreferenceCreateForm
-            preferenceChoice={preferenceChoice}
-            setPreferences={setPreferences}
-          />
-        )}
+        {is_owner && <PreferenceCreateForm setPreferences={setPreferences} />}
       </Row>
       <Row className="my-3 justify-content-center">
         <>

@@ -11,6 +11,7 @@ import Genre from "../genres/Genre";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function CategoryPage() {
+  // It redirects the logged out user to the home page.
   useRedirect("loggedOut");
   const { id } = useParams();
   const [categoryData, setCategoryData] = useState({ results: [] });
@@ -33,9 +34,9 @@ function CategoryPage() {
         console.log(err);
       }
     };
-    // It runs the function only if the user is logged in.
-    if (currentUser) {
-    handleMount();}
+    // If the user is logged in it runs the function,
+    // otherwise it redirects to the home page.
+    currentUser && handleMount();
   }, [id, currentUser]);
 
   return (

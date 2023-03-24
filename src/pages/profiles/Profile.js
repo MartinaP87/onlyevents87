@@ -21,7 +21,11 @@ const Profile = (props) => {
       }`}
     >
       <div className="align-self-center">
-        <Link name="profile" className="align-self-center" to={`/profiles/${id}`}>
+        <Link
+          name="profile"
+          className="align-self-center"
+          to={`/profiles/${id}`}
+        >
           <Avatar src={image} height={imageSize} />
         </Link>
       </div>
@@ -46,10 +50,8 @@ const Profile = (props) => {
             </Button>
           ) : (
             <Button
-            // ${eventPage && styles.Button}
-              className={` ${btnStyles.Purple} ${
-                btnStyles.Button
-              }`}
+              // ${eventPage && styles.Button}
+              className={` ${btnStyles.Purple} ${btnStyles.Button}`}
               onClick={() => handleFollow(profile)}
             >
               Follow

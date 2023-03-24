@@ -14,6 +14,8 @@ const InterestedProfiles = (props) => {
   const [interested, setInterested] = useState({ results: [] });
 
   useEffect(() => {
+    // It requests the interested data to the API endpoint and
+    // stores it in the interested variable.
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get(`/interested/?posted_event=${id}`);
@@ -22,9 +24,8 @@ const InterestedProfiles = (props) => {
         console.log(err);
       }
     };
-    if (id) {
-      fetchData();
-    }
+    // It runs the function only if the id is defined.
+    id && fetchData();
   }, [id, interested_count]);
 
   const interestedProfiles = popularProfiles?.results.filter((profile) =>

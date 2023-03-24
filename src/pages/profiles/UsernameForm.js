@@ -20,14 +20,15 @@ import appStyles from "../../App.module.css";
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
-
   const history = useHistory();
   const { id } = useParams();
-
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
   useEffect(() => {
+    // If the user is the profile owner, it saves
+    // their username in the username variable,
+    // otherwise, it redirects to the home page.
     if (currentUser?.profile_id?.toString() === id) {
       setUsername(currentUser.username);
     } else {
@@ -36,6 +37,8 @@ const UsernameForm = () => {
   }, [currentUser, history, id]);
 
   const handleSubmit = async (event) => {
+    // It sends the updated data to the API endpoint,
+    // updates the currentUser variable, and redirects to the home page.
     event.preventDefault();
     try {
       await axiosRes.put("/dj-rest-auth/user/", {

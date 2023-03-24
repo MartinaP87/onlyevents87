@@ -14,9 +14,11 @@ import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import { useRedirect } from "../../hooks/useRedirect";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function EventCreateForm() {
   useRedirect("loggedOut");
+  const currentUser = useCurrentUser();
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const [eventData, setEventData] = useState({
@@ -35,6 +37,8 @@ function EventCreateForm() {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      // It requests the categories to the API endpoint and
+      // stores them in the categoriesToGet variable.
       try {
         const { data } = await axiosReq.get("/categories/");
         setCategoriesToGet(data);
@@ -42,10 +46,11 @@ function EventCreateForm() {
         console.log(err);
       }
     };
-    fetchCategories();
-  }, []);
+    currentUser && fetchCategories();
+  }, [currentUser]);
 
   const handleChange = (event) => {
+    // It stores the input data in the eventData variable.
     setEventData({
       ...eventData,
       [event.target.name]: event.target.value,
@@ -53,7 +58,11 @@ function EventCreateForm() {
   };
 
   const handleChangeCategory = (event) => {
-    if (event.target.value !== "select the event category") {
+    // If the input data is not the empty value, it stores
+    // it in the eventData variable, otherwise it sets the
+    // category value to an empty string.
+
+    if (event.target.value !== "") {
       setEventData({
         ...eventData,
         category: categoriesToGet.results.filter(
@@ -69,6 +78,8 @@ function EventCreateForm() {
   };
 
   const handleChangeImage = (event) => {
+    // If the user uploads another image, it removes the previous
+    // image URL from the photoData and replaces it with the new one.
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
       setEventData({
@@ -79,6 +90,8 @@ function EventCreateForm() {
   };
 
   const handleSubmit = async (event) => {
+    // It posts all data to the API endpoint and
+    // redirects to the newly created event's page.
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -142,7 +155,7 @@ function EventCreateForm() {
           value={category.cat_name}
           as="select"
         >
-          <option>select the event category</option>
+          <option value="">select the event category</option>
           {categoriesToGet?.results.map((categoryToGet) => (
             <option key={categoryToGet.id}>{categoryToGet.cat_name}</option>
           ))}
@@ -229,7 +242,12 @@ function EventCreateForm() {
               {image ? (
                 <>
                   <figure>
-                    <Image className={appStyles.Image} src={image} alt={`${title} image`} rounded />
+                    <Image
+                      className={appStyles.Image}
+                      src={image}
+                      alt={`${title} image`}
+                      rounded
+                    />
                   </figure>
                   <div>
                     <Form.Label

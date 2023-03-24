@@ -12,6 +12,7 @@ const Genre = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
 
   const handleDelete = async () => {
+    // It deletes the genre from the database.
     try {
       await axiosRes.delete(`/categories/genres/${id}/`);
 

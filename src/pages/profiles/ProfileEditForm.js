@@ -35,6 +35,9 @@ const ProfileEditForm = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+    // If the component is mounted and the 
+    // user is the profile owner, it requests the profile
+    // data and stores it in the profileData variable.
     const handleMount = async () => {
       if (
         currentUser?.profile_id?.toString() === id &&
@@ -52,12 +55,12 @@ const ProfileEditForm = () => {
         history.push("/");
       }
     };
-
     handleMount();
     componentMounted.current = false;
   }, [currentUser, history, id]);
 
   const handleChange = (event) => {
+    // It stores the input data in the profileData variable.
     setProfileData({
       ...profileData,
       [event.target.name]: event.target.value,
@@ -65,6 +68,9 @@ const ProfileEditForm = () => {
   };
 
   const handleSubmit = async (event) => {
+    // It sends the updated data to the API endpoint, 
+    // updates the currentUser variable, and redirects
+    // to the previous page.
     event.preventDefault();
     const formData = new FormData();
     formData.append("name", name);

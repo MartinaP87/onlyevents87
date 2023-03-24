@@ -16,10 +16,13 @@ const GenreEditForm = (props) => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
+    // It stores the input data in the genresData variable.
     setGenreData(event.target.value);
   };
 
   const handleSubmit = async (event) => {
+    // It sends the genre updates to the API endpoint,
+    // updates the genres variable, and closes the edit form.
     event.preventDefault();
     try {
       await axiosReq.put(`/categories/genres/${id}/`, {

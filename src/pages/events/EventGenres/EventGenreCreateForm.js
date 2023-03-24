@@ -34,14 +34,12 @@ const EventGenreCreateForm = (props) => {
         console.log(err);
       }
     };
-    if (category) {
-      fetchGenres();
-    }
+    category && fetchGenres();
   }, [category]);
 
   const handleChange = (e) => {
     // It removes the error message that could be present from
-    // the previous attempt to submit, saves the inputted value 
+    // the previous attempt to submit, saves the inputted value
     // in the select value variable and if the inputted
     // value is not empty, it updates the genre variable.
     setErrors({});
@@ -91,7 +89,7 @@ const EventGenreCreateForm = (props) => {
                 <Accordion.Toggle
                   name="add genre"
                   className={styles.Purple}
-                  onClick={() => setErrors("")}
+                  onClick={() => setErrors({})}
                   as={Button}
                   variant="link"
                   eventKey="0"

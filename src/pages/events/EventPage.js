@@ -31,7 +31,8 @@ function EventPage() {
 
   useEffect(() => {
     const handleMount = async () => {
-      
+      // It requests the event, comments, event genres, and gallery 
+      // data to the API endpoint and stores it in variables.
         try {
           const [
             { data: event },

@@ -7,6 +7,8 @@ const Preference = (props) => {
   const { id, genre_name, is_owner, setPreferences } = props;
 
   const handleDelete = async () => {
+    // It deletes the preference from the database and
+    // updates the preferences variable.
     try {
       await axiosRes.delete(`/profiles/preferences/${id}/`);
       setPreferences((prevPreferences) => ({

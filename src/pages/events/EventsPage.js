@@ -24,6 +24,9 @@ const EventsPage = ({ message, filter = "" }) => {
   const currentUser = useCurrentUser();
 
   useEffect(() => {
+    // It requests the events to the API endpoint,
+    // filtered by the query received from the search
+    // bar, and stores the results in the events variable.
     const fetchEvents = async () => {
       try {
         const { data } = await axiosReq.get(
@@ -38,13 +41,16 @@ const EventsPage = ({ message, filter = "" }) => {
     setHasLoaded(false);
 
     const timer = setTimeout(() => {
+      // It runs the after 1 sencond.
       fetchEvents();
     }, 1000);
 
     return () => {
+      // It removes the Timeout.
       clearTimeout(timer);
     };
   }, [filter, query, pathname]);
+
   return (
     <Row className="h-100 pt-4">
       <PopularProfiles mobile />
@@ -71,8 +77,8 @@ const EventsPage = ({ message, filter = "" }) => {
             placement="top"
             overlay={
               <Tooltip id={`tooltip-top`}>
-                Search for events by date (Year-Month-Day numbers), title, or name of the user that
-                posted it!
+                Search for events by date (Year-Month-Day numbers), title, or
+                name of the user that posted it!
               </Tooltip>
             }
           >
@@ -84,16 +90,24 @@ const EventsPage = ({ message, filter = "" }) => {
       </Col>
 
       <Col className="py-2 p-0 p-lg-2" lg={6}>
-        {currentUser && <Link name="event create form" className="d-none d-md-inline" to={`/events/create`}>
-          <Container className="d-inline-flex justify-content-center px-4">
-            <h3 className={`${styles.AddLink} d-flex align-items-center mb-0`}>
-              Add the next event!{" "}
-            </h3>
-            <i
-              className={`fas fa-plus-square d-flex px-3 ${styles.AddEvent}`}
-            />
-          </Container>
-        </Link>}
+        {currentUser && (
+          <Link
+            name="event create form"
+            className="d-none d-md-inline"
+            to={`/events/create`}
+          >
+            <Container className="d-inline-flex justify-content-center px-4">
+              <h3
+                className={`${styles.AddLink} d-flex align-items-center mb-0`}
+              >
+                Add the next event!{" "}
+              </h3>
+              <i
+                className={`fas fa-plus-square d-flex px-3 ${styles.AddEvent}`}
+              />
+            </Container>
+          </Link>
+        )}
 
         {hasLoaded ? (
           <>

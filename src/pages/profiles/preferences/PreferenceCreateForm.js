@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -12,14 +12,37 @@ import { Alert, Card } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 
 const PreferenceCreateForm = (props) => {
-  const { preferenceChoice, setPreferences } = props;
+  const { setPreferences } = props;
   const history = useHistory();
   const { id } = useParams();
   const [preference, setPreference] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [errors, setErrors] = useState({});
 
+  const [preferenceChoice, setPreferenceChoice] = useState({
+    results: [],
+  });
+
+  useEffect(() => {
+    // It requests the genres to the API endpoint and
+    // stores them in the preferenceChioice variable.
+    const fetchPreferences = async () => {
+      try {
+        const { data } = await axiosReq.get(`/categories/genres/`);
+        setPreferenceChoice(data);
+        console.log(data)
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    console.log("PREF");
+    fetchPreferences();
+  }, []);
+
   const handleChange = (event) => {
+    // It resets the errors variable, gives the selectValue
+    // variable the input value, and if the input value is not
+    // empty, it updates the preference variable.
     setErrors({});
     setSelectValue(event.target.value);
     if (event.target.value !== "") {
@@ -29,12 +52,13 @@ const PreferenceCreateForm = (props) => {
         )[0].id
       );
     }
-    
   };
 
   const handleSubmit = async (event) => {
+    // It posts the new data to the API endpoint, redirects
+    // to the profile page, updates the preferences variable, and
+    // sets the selectValue and preference variables to an empty string.
     event.preventDefault();
-
     try {
       const { data } = await axiosReq.post("/profiles/preferences/", {
         profile: id,

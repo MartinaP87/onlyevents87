@@ -35,13 +35,16 @@ const UserPasswordForm = () => {
   };
 
   useEffect(() => {
+    // If the user is not the profile owner,
+    // it redirects to the home page.
     if (currentUser?.profile_id?.toString() !== id) {
-      // redirect user if they are not the owner of this profile
       history.push("/");
     }
   }, [currentUser, history, id]);
 
   const handleSubmit = async (event) => {
+    // It sends the updated data to the API endpoint
+    // and redirects to the home page.
     event.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);

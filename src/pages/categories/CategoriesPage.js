@@ -30,9 +30,7 @@ const CategoriesPage = () => {
       }
     };
     // Make the request only if the user is logged in.
-    if (currentUser) {
-      fetchCategories();
-    }
+    currentUser && fetchCategories();
   }, [currentUser]);
 
   return (

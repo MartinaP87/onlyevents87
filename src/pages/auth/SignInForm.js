@@ -37,7 +37,7 @@ function SignInForm() {
 
   const handleSubmit = async (event) => {
     // It posts the log-in details to the API endpoint,
-    // updates the current user and sets a token timestamp.  
+    // updates the current user and sets the token timestamp.  
     event.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);

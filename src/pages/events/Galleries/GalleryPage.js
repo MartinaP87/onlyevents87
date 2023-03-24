@@ -11,14 +11,17 @@ import PhotoCreateForm from "../Photos/PhotoCreateForm";
 import Button from "react-bootstrap/Button";
 import Collapse from "react-bootstrap/Collapse";
 import buttonStyle from "../../../styles/Button.module.css";
+import { useCurrentUser } from "../../../contexts/CurrentUserContext";
 
 function GalleryPage(props) {
   const { id } = useParams();
   const { gallery } = props;
   const [photosGallery, setPhotosGallery] = useState({ results: [] });
   const [open, setOpen] = useState(false);
+  const currentUser = useCurrentUser();
 
-  useEffect(() => {
+
+    useEffect(() => {
     const fetchData = async () => {
       // It requests the gallery photos of the event and
       // stores the data in the photosGallery variable.
@@ -31,20 +34,20 @@ function GalleryPage(props) {
         console.log(err);
       }
     };
-    console.log("chiama gallery data");
     fetchData();
   }, [id]);
+  
 
   return (
     <>
-      <Button
+      {currentUser ? (<Button
         className={`${buttonStyle.Button} my-2`}
         onClick={() => setOpen(!open)}
         aria-controls="example-collapse-text"
         aria-expanded={open}
       >
         See the gallery
-      </Button>
+      </Button>) : (<><h2>Sign in to view this content!</h2></>)}
       <Collapse in={open}>
         <Container className={appStyles.Content}>
           <h2 className="p-2">{gallery.name}</h2>
@@ -68,7 +71,6 @@ function GalleryPage(props) {
         </Container>
       </Collapse>
     </>
-    // </Col>
   );
 }
 

@@ -17,6 +17,8 @@ export const ProfileDataProvider = ({ children }) => {
   const currentUser = useCurrentUser();
 
   useEffect(() => {
+    // It requests the profiles data to the API endpoint
+    // and stores it in the profileData variable.
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
@@ -32,6 +34,8 @@ export const ProfileDataProvider = ({ children }) => {
   }, [currentUser]);
 
   const handleFollow = async (clickedProfile) => {
+    // It posts the follower data to the API endpoint 
+    // and updates the profileData variable.
     try {
       const { data } = await axiosRes.post("/followers/", {
         followed: clickedProfile.id,
@@ -56,6 +60,8 @@ export const ProfileDataProvider = ({ children }) => {
   };
 
   const handleUnfollow = async (clickedProfile) => {
+    // It deletes the follower data to the API endpoint 
+    // and updates the profileData variable.
     try {
       await axiosRes.delete(`/followers/${clickedProfile.following_id}/`);
       setProfileData((prevState) => ({

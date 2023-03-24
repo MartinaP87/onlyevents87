@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/CommentCreateEditForm.module.css";
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
@@ -15,7 +15,7 @@ function CommentEditForm(props) {
   };
 
   const handleSubmit = async (event) => {
-    // It sends the comment updates to the API endpoint 
+    // It sends the comment updates to the API endpoint
     // and updates the comments variable.
     event.preventDefault();
     try {

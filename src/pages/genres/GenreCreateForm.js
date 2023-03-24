@@ -18,10 +18,14 @@ const GenreCreateForm = (props) => {
   const [genreData, setGenreData] = useState("");
 
   const handleChange = (event) => {
+    // It stores the input data in the genreData variable.
     setGenreData(event.target.value);
   };
 
   const handleSubmit = async (event) => {
+    // It posts the data to the API endpoint, updates the
+    // genres variable, redirects to the category page, and
+    // resets the genreData variable.
     event.preventDefault();
     try {
       const { data } = await axiosReq.post("/categories/genres/", {
@@ -72,7 +76,10 @@ const GenreCreateForm = (props) => {
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Purple}`}
-                onClick={() => {setGenreData(""); setErrors({})}}
+                onClick={() => {
+                  setGenreData("");
+                  setErrors({});
+                }}
               >
                 cancel
               </Button>

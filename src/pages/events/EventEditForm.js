@@ -34,6 +34,10 @@ function EventEditForm() {
   const [selectValue, setSelectValue] = useState("");
 
   useEffect(() => {
+    // It requests all event details and categories
+    // and stores them in variables. If the user is
+    // the event owner, it fills the form field with
+    // the data, otherwise redirects to the home page.
     const handleMount = async () => {
       try {
         const [
@@ -81,6 +85,7 @@ function EventEditForm() {
   }, [history, id]);
 
   const handleChange = (event) => {
+    // It stores the inputs in the eventData variable.
     setEventData({
       ...eventData,
       [event.target.name]: event.target.value,
@@ -88,6 +93,7 @@ function EventEditForm() {
   };
 
   const deleteEventGenres = () => {
+    // It deletes the event genres linked to the event.
     eventGenres?.results.forEach((event_genre) => {
       try {
         axiosRes.delete(`/events/genres/${event_genre.id}`);
@@ -99,6 +105,9 @@ function EventEditForm() {
   };
 
   const handleChangeCategory = (event) => {
+    // If the input data is not the empty value, it stores it
+    // in the eventData variable, otherwise it sets the
+    // category value to an empty string.
     deleteEventGenres();
     setSelectValue(event.target.value);
     if (event.target.value !== "") {
@@ -118,6 +127,8 @@ function EventEditForm() {
   };
 
   const handleChangeImage = (event) => {
+    // If the user uploads another image, it removes the previous
+    // image URL from the photoData and replaces it with the new one.
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
       setEventData({
@@ -128,6 +139,8 @@ function EventEditForm() {
   };
 
   const handleSubmit = async (event) => {
+    // It sends the event updates to the API endpoint
+    // and redirects to the event page.
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -204,28 +217,25 @@ function EventEditForm() {
           ))}
         </Form.Control>
         <OverlayTrigger
-            key="top"
-            placement="top"
-            overlay={
-              <Tooltip id={`tooltip-top`}>
-                If you edit the category, you will delete all genres added to the event.
-              </Tooltip>
-            }
-          >
-            <div className="px-1">
-              <i className={`fas fa-info-circle ${styles.InfoIcon}`} />
-            </div>
-          </OverlayTrigger>
+          key="top"
+          placement="top"
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+              If you edit the category, you will delete all genres added to the
+              event.
+            </Tooltip>
+          }
+        >
+          <div className="px-1">
+            <i className={`fas fa-info-circle ${styles.InfoIcon}`} />
+          </div>
+        </OverlayTrigger>
       </Form.Group>
       {errors.category?.map((message, idx) => (
         <Alert key={idx} variant="warning">
           {message}
         </Alert>
       ))}
-
-          
-
-
 
       <Form.Group controlId="location">
         <Form.Label className="d-none">Event location</Form.Label>
@@ -303,7 +313,12 @@ function EventEditForm() {
           >
             <Form.Group className="text-center">
               <figure>
-                <Image className={appStyles.Image} src={image} alt={`${title} image`} rounded />
+                <Image
+                  className={appStyles.Image}
+                  src={image}
+                  alt={`${title} image`}
+                  rounded
+                />
               </figure>
               <div>
                 <Form.Label
