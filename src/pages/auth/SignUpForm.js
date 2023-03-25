@@ -38,7 +38,7 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     // It posts the sign up details to the API endpoint
-    // and redirects the user to the sign in page. 
+    // and redirects the user to the sign in page.
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
@@ -139,7 +139,7 @@ const SignUpForm = () => {
           className={`${appStyles.FillerImage}`}
           alt="sign-up image"
           src={
-            "https://res.cloudinary.com/dolts3yad/image/upload/v1679479295/media/images/sign-up.jpg"
+            "https://res.cloudinary.com/dolts3yad/image/upload/v1679698649/media/images/Sign_up.webp"
           }
         />
       </Col>

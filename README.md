@@ -405,7 +405,6 @@ From this section, the user can follow/unfollow other users and view their profi
 
 - It provides the user a wider view of the selected photo along with the title, date of upload, profile image, and username of who posted it;
 - If the user is the photo owner, they can access the dropdown menu to delete or edit the event;
-- This section provides a button to redirect the user to the previous page.
 
 ### Photo forms section
 
@@ -672,6 +671,7 @@ To work on the code from a local device, the steps to clone the repository are a
 - [Fontpair](https://www.fontpair.co/) - Used to choose and pair the website fonts;
 - [Adobe color](https://color.adobe.com/) - Used to create the color palette;
 - [Tiny PNG](https://tinypng.com) - Used to reduce the file size of the images;
+- [Ezgif](https://ezgif.com/jpg-to-webp): used to convert images.
 - [Removebg](https://www.remove.bg/) - Used to remove background images;
 - [Pixabay](http://pixabay.com/) and [Pexels](https://www.pexels.com/) - Used to get the images;
 - [Freepick](https://www.freepik.com/) - Used for the logo;

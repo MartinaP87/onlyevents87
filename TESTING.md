@@ -62,6 +62,7 @@ Sign up Link | Clicking the link redirects to the account sign up page. | Pass |
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
 Search Bar | Typing in the search bar filters the events on the home page displaying the events of which the keyword is included in the username, title, or date. | Pass |
+Add the next event Link | If the user is not logged in, it doesn't display the link. | Pass |
 Add the next event Link | Clicking the link will redirect the user to the create event form. | Pass |
 Event Card avatar |The avatar and the name of the event owner are displayed at the top of the card. | Pass |
 Event Card avatar | Clicking the link redirects to the event owner profile. | Pass |
@@ -78,6 +79,8 @@ Most followed profile Unfollow button | Clicking the button makes the style and 
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
 See gallery button | Clicking on the button toggles the gallery, showing/hiding the event's photos. | Pass |
+See gallery button | If the user is not logged in, the button doesn't display. | Pass |
+Gallery section | If the user is not logged in and tries to access the page via URL, it displays a message requesting them to log in. | Pass |
 Add a photo button | Clicking on the button redirects the user to the photo create form. | Pass |
 Event dropdown menu icon | It's displayed only if the user is the event owner. | Pass |
 Event dropdown menu icons | Clicking the icon displays an edit and delete icon. | Pass |
@@ -114,6 +117,7 @@ Interested section | If the user clicks again on the interested icon at the bott
 
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
+Event create form | If the user is not logged in, they can't access the form. | Pass |
 Upload image | If the user clicks on the section, it allows the user to upload an image. | Pass |
 Upload image | If the user doesn't upload an image, the form can't be submitted. | Pass |
 Upload image | If the user doesn't upload an image, it displays an error message. | Pass |
@@ -142,6 +146,7 @@ Event create button | If the user clicks the create button, it posts the event u
 
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
+Event edit form | If the user is not the event owner, they can't access the form. | Pass |
 Change | If the user clicks on the "change the image" button, it allows the user to upload a new image. | Pass |
 Upload image | If the user doesn't upload an image and submits the form, the event will have the previous image. | Pass |
 Event title field | If the user doesn't edit the title and submits the form, the event will have the previous title. | Pass |
@@ -184,6 +189,7 @@ Back button | If the user clicks the button, it redirects to the previous page. 
 
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
+Photo create form | If the user is not logged in, they can't access the form. | Pass |
 Upload section | If the user clicks the "click or tap to upload an image" section, it allows them to upload an image. | Pass |
 Upload section | If the user doesn't upload an image and submits the form, it will display an error message. | Pass |
 Photo title | If the user clicks on the photo title field, it allows them to type the title. | Pass |
@@ -195,6 +201,7 @@ Cancel button | If the user clicks "cancel", it won't create a new image and clo
 
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
+Photo edit form | If the user is not the photo owner, they can't access the form. | Pass |
 Upload section | If the user clicks the "change image" section, it allows them to upload a new image. | Pass |
 Upload section | If the user doesn't upload an image and submits the form, it will display the image previously uploaded. | Pass |
 Photo title | If the user clicks on the photo title field, it allows them to edit the title. | Pass |
@@ -211,6 +218,9 @@ Element | Expected Outcome | Pass/Fail |
 Profile picture section | It displays the profile picture of the user. | Pass |
 Edit profile button | If the user is the profile owner, it displays a button that opens a dropdown menu to edit the password, username, or profile (bio and image). | Pass |
 Edit profile button | If the user is not the profile owner, the button doesn't appear. | Pass |
+Photo section | If the user is not logged in, the button doesn't display. | Pass |
+Photo section | If the user is not logged in and tries to access the page via URL, it displays a message requesting them to log in. | Pass |
+Photo section | If the user is not logged in and tries to access the page via URL, it displays a message requesting them to log in. | Pass |
 Photo section | It displays a button that links to the photos page. | Pass |
 Add a preference section | If the user is the owner, this section displays a button that, when clicked, toggles the preference form. | Pass |
 Preference form | If the user clicks a genre and "create", it adds a preference to the profile. | Pass |
@@ -231,6 +241,7 @@ Main profile section | If another user stops following the current user, the cur
 
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
+Edit profile form | If the user is not the profile owner, they can't access the form. | Pass |
 Upload section | If the user clicks the "change image" section, it allows them to upload a new image. | Pass |
 Upload section | If the user doesn't upload an image and submits the form, it will display the image previously uploaded. | Pass |
 Bio | If the user clicks on the bio text field, it allows them to edit the content. | Pass |
@@ -243,6 +254,7 @@ Cancel button | If the user clicks "cancel", it will discharge all changes. | Pa
 
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
+Edit profile form | If the user is not the profile owner, they can't access the form. | Pass |
 Username field | It displays the username of the user. | Pass |
 Username field | If the user edits the username with an existing one and submits the form, it will display an error message. | Pass |
 Save button | If the user edits the username without errors, it updates the profile username. | Pass |
@@ -252,6 +264,7 @@ Cancel button | If the user clicks "cancel", it will discharge all changes. | Pa
 
 Element | Expected Outcome | Pass/Fail |
 --- | --- | --- |
+Edit profile form | If the user is not the profile owner, they can't access the form. | Pass |
 New password field | It allows the user to type a new password. | Pass |
 New password field | If the user leaves this field blank, it will display an error message. | Pass |
 Confirm new password field | It requires the user to retype the same password. | Pass |

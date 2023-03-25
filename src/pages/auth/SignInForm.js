@@ -37,7 +37,7 @@ function SignInForm() {
 
   const handleSubmit = async (event) => {
     // It posts the log-in details to the API endpoint,
-    // updates the current user and sets the token timestamp.  
+    // updates the current user and sets the token timestamp.
     event.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
@@ -120,7 +120,7 @@ function SignInForm() {
           className={`${appStyles.FillerImage}`}
           alt="sign-in image"
           src={
-            "https://res.cloudinary.com/dolts3yad/image/upload/v1679479222/media/images/sign-in.jpg"
+            "https://res.cloudinary.com/dolts3yad/image/upload/v1679698649/media/images/Sign_in.webp"
           }
         />
       </Col>

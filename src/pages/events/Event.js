@@ -258,7 +258,7 @@ const Event = (props) => {
             )}
             {goings_count}
 
-            <Link name={`event ${id}`} to={`/events/${id}`}>
+            <Link name={`event ${title} ${id}`} to={`/events/${id}`}>
               <i className="far fa-comments" />
             </Link>
             {comments_count}

@@ -30,12 +30,10 @@ const PreferenceCreateForm = (props) => {
       try {
         const { data } = await axiosReq.get(`/categories/genres/`);
         setPreferenceChoice(data);
-        console.log(data)
       } catch (err) {
         console.log(err);
       }
     };
-    console.log("PREF");
     fetchPreferences();
   }, []);
 

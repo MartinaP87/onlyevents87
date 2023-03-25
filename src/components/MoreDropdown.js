@@ -5,7 +5,6 @@ import styles from "../styles/MoreDropdown.module.css";
 import btnStyle from "../styles/Button.module.css";
 import { useHistory } from "react-router";
 
-
 // Through the forwardRef, the Dropdown can access
 // the DOM node to position the Menu.
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
@@ -45,13 +44,13 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
         >
           <i className="fas fa-edit" />
         </Dropdown.Item>
-        <Dropdown.Item
-          className={styles.DropdownItem}
-          onClick={handleDelete}
-          aria-label="delete"
-        >
-          <i className="fas fa-trash-alt" />
-        </Dropdown.Item>
+          <Dropdown.Item
+            className={styles.DropdownItem}
+            onClick={handleDelete}
+            aria-label="delete"
+          >
+            <i className="fas fa-trash-alt" />
+          </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

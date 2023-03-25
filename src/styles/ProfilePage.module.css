@@ -15,6 +15,10 @@
   padding-left: 5vw;
 }
 
+.Bio {
+  font-size: 1rem;
+}
+
 .BoxText {
   font-size: 1.2rem;
 }
@@ -44,8 +48,8 @@
   
 @media screen and (max-width: 991px) {
   .ProfileImage {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
   }
 
   .FollowersBox {

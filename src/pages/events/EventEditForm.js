@@ -135,7 +135,8 @@ function EventEditForm() {
         ...eventData,
         image: URL.createObjectURL(event.target.files[0]),
       });
-    }
+      
+    }console.log(image)
   };
 
   const handleSubmit = async (event) => {
@@ -149,10 +150,14 @@ function EventEditForm() {
     formData.append("date", date);
     formData.append("location", location);
     formData.append("address", address);
+
     if (imageInput?.current?.files[0]) {
+      console.log("APPEND", imageInput.current.files[0])
       formData.append("image", imageInput.current.files[0]);
     }
-
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1])
+    }
     try {
       await axiosReq.put(`/events/${id}`, formData);
       history.push(`/events/${id}/`);
