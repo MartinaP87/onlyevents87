@@ -20,8 +20,7 @@ function GalleryPage(props) {
   const [open, setOpen] = useState(false);
   const currentUser = useCurrentUser();
 
-
-    useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       // It requests the gallery photos of the event and
       // stores the data in the photosGallery variable.
@@ -36,18 +35,23 @@ function GalleryPage(props) {
     };
     fetchData();
   }, [id]);
-  
 
   return (
     <>
-      {currentUser ? (<Button
-        className={`${buttonStyle.Button} my-2`}
-        onClick={() => setOpen(!open)}
-        aria-controls="example-collapse-text"
-        aria-expanded={open}
-      >
-        See the gallery
-      </Button>) : (<><h2>Sign in to view this content!</h2></>)}
+      {currentUser ? (
+        <Button
+          className={`${buttonStyle.Button} my-2`}
+          onClick={() => setOpen(!open)}
+          aria-controls="example-collapse-text"
+          aria-expanded={open}
+        >
+          See the gallery
+        </Button>
+      ) : (
+        <>
+          <h2>Sign in to view this content!</h2>
+        </>
+      )}
       <Collapse in={open}>
         <Container className={appStyles.Content}>
           <h2 className="p-2">{gallery.name}</h2>

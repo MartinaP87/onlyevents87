@@ -27,32 +27,30 @@ function EventPage() {
   const [comments, setComments] = useState({ results: [] });
   const [genres, setGenres] = useState({ results: [] });
   const [gallery, setGallery] = useState({ results: [] });
-  
 
   useEffect(() => {
     const handleMount = async () => {
-      // It requests the event, comments, event genres, and gallery 
+      // It requests the event, comments, event genres, and gallery
       // data to the API endpoint and stores it in variables.
-        try {
-          const [
-            { data: event },
-            { data: comments },
-            { data: genres },
-            { data: gallery },
-          ] = await Promise.all([
-            axiosReq.get(`/events/${id}`),
-            axiosReq.get(`/comments/?posted_event=${id}`),
-            axiosReq.get(`/events/genres/?event=${id}`),
-            axiosReq.get(`events/galleries/${id}`),
-          ]);
-          setEvent({ results: [event] });
-          setComments(comments);
-          setGallery(gallery);
-          setGenres(genres);
-        } catch (err) {
-          //console.log(err);
-        }
-      
+      try {
+        const [
+          { data: event },
+          { data: comments },
+          { data: genres },
+          { data: gallery },
+        ] = await Promise.all([
+          axiosReq.get(`/events/${id}`),
+          axiosReq.get(`/comments/?posted_event=${id}`),
+          axiosReq.get(`/events/genres/?event=${id}`),
+          axiosReq.get(`events/galleries/${id}`),
+        ]);
+        setEvent({ results: [event] });
+        setComments(comments);
+        setGallery(gallery);
+        setGenres(genres);
+      } catch (err) {
+        //console.log(err);
+      }
     };
     handleMount();
   }, [id]);

@@ -71,14 +71,15 @@ You can view the back-end README.md here - <a href="https://github.com/Martinap8
    13. [Genre forms](#genre-forms)
       1. [Genre create form](#genre-create-form)
       2. [Genre edit form](#genre-edit-form)
-4. [Technologies Used](#technologies-used)
+4. [Reusable components](#reusable-components)
+5. [Technologies Used](#technologies-used)
     1. [Languages](#languages)
     2. [Libraries and frameworks](#libraries-and-frameworks)
     3. [NPM packages/dependencies](#npm-packages--dependencies)
     4. [Other tools](#other-tools)
-5. [Testing](#testing)
+6. [Testing](#testing)
     1. [Go to TESTING.md](https://github.com/martinap87/onlyevents87/blob/main/TESTING.md#onlyevents-testing)
-6. [Deployment](#deployment)
+7. [Deployment](#deployment)
    1. [Deployment to Heroku](#deployment-to-heroku)
    2. [Local deployment](#local-deployment)
 8. [Credits](#credits)
@@ -567,6 +568,20 @@ From this section, the user can follow/unfollow other users and view their profi
 
 - The form allows the admin to edit the chosen genre;
 - If the genre already exists, it displays an error.
+
+### Reusable components
+
+Some components in the project are displayed on more pages.
+Instead of copying all code into different files, I created a "components" folder to host the reusable components and imported them into the relevant files.
+The purpose of reusing components already built and tested across the application is to speed up and reduce the efforts in the development process; to make it easier to maintain the codebase since it's unlikely the tested components could be causing errors, so in the eventuality of bugs there are little chances it could come from there. Nevertheless, if there is any issue with the component, we will only need to fix it from one place, and it would be fixed automatically for all the pages.
+Reusable components also provide consistency in look and feel across the site resulting in a positive user experience.
+Having to write the components code on every page that required it would have been a repetitive task that would have slowed down the performance of the application and the development process;
+The reusable components are:
+- The Navbar component: it's displayed on every page and shows the list of navigation links. 
+- The MoreDropdown component: displays three dots next to any editable item. When clicked, it shows a menu to edit or delete the relevant items. It's used for events, comments, photos, categories, and genres;
+- The Avatar component: allows the users to display their profile image in the same format, and it's used across the site as a link to the user's profile, more specifically in the comments, most popular profiles, photos, events, and navbar sections.
+- The Asset component: It's used to display an image and a message in the forms to create an event and to create a photo, and to display a loading spinner in the gallery, event, events, profile, photos pages, and in the popular profiles section.
+- The NotFound component: It displays a message when the page doesn't exist. It's used only in App.js but can be reused for other projects.
 
 ## Technologies Used
 

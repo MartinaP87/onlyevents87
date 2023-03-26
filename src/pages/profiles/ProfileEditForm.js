@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory, useParams } from "react-router-dom";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
@@ -8,13 +7,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-
 import { axiosReq } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
@@ -35,7 +32,7 @@ const ProfileEditForm = () => {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    // If the component is mounted and the 
+    // If the component is mounted and the
     // user is the profile owner, it requests the profile
     // data and stores it in the profileData variable.
     const handleMount = async () => {
@@ -68,7 +65,7 @@ const ProfileEditForm = () => {
   };
 
   const handleSubmit = async (event) => {
-    // It sends the updated data to the API endpoint, 
+    // It sends the updated data to the API endpoint,
     // updates the currentUser variable, and redirects
     // to the previous page.
     event.preventDefault();
