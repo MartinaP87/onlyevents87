@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { axiosRes } from "../../../api/axiosDefaults";
 import styles from "../../../styles/Preference.module.css";
 
@@ -18,7 +18,7 @@ const Preference = (props) => {
         ),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -27,9 +27,9 @@ const Preference = (props) => {
       <Container
         className={`${styles.GenreContainer} d-inline-flex px-2 border`}
       >
-        <Container>
+        <Container className="align-self-center">
           {genre_name && (
-            <p className={`${styles.Bold} text-center`}>{genre_name}</p>
+            <p className={`${styles.Bold} text-center mb-0`}>{genre_name}</p>
           )}
         </Container>
         <Container className="text-align-right p-0">

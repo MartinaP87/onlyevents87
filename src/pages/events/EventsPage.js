@@ -8,12 +8,13 @@ import styles from "../../styles/EventsPage.module.css";
 import { useLocation, Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
-import NoResults from "../../assets/no-results.png";
+import NoResults from "../../assets/no-results.webp";
 import Event from "./Event";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
-import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import  Tooltip from "react-bootstrap/Tooltip";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 const EventsPage = ({ message, filter = "" }) => {
@@ -35,7 +36,7 @@ const EventsPage = ({ message, filter = "" }) => {
         setEvents(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     setHasLoaded(false);

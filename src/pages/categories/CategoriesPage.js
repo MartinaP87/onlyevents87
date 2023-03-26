@@ -26,7 +26,7 @@ const CategoriesPage = () => {
         const { data } = await axiosReq.get("/categories/");
         setCategories(data);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     // Make the request only if the user is logged in.

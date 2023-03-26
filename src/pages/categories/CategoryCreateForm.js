@@ -9,7 +9,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 const CategoryCreateForm = (props) => {
   const { setCategories } = props;
@@ -78,11 +78,12 @@ const CategoryCreateForm = (props) => {
             <div className="d-inline">
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Purple}`}
-                onClick={() =>
-                  {setCategoryData({
+                onClick={() => {
+                  setCategoryData({
                     cat_name: "",
-                  }); setErrors({})}
-                }
+                  });
+                  setErrors({});
+                }}
               >
                 cancel
               </Button>

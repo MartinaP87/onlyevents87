@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "../../styles/Comment.module.css";
-import { Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Media from "react-bootstrap/Media";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -43,12 +45,12 @@ const Comment = (props) => {
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
   const handleLike = async () => {
-    // It sends the new like object to the API endpoint and updates 
+    // It sends the new like object to the API endpoint and updates
     // the comments variable and the comment count of the liked comment.
     try {
       const { data } = await axiosRes.post("/likes/", {
@@ -67,12 +69,12 @@ const Comment = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
   const handleUnlike = async () => {
-    // It deletes the like object from the database and updates 
+    // It deletes the like object from the database and updates
     // the comments variable and the comment count of the liked comment.
     try {
       axiosRes.delete(`/likes/${like_id}`);
@@ -89,7 +91,7 @@ const Comment = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 

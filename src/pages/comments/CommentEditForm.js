@@ -37,7 +37,7 @@ function CommentEditForm(props) {
       // It closes the edit form.
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 

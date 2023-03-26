@@ -647,13 +647,28 @@ building our application and wait for it to build.
 click the **open app** button and check it out.
 
 ### Local Deployment
-To work on the code from a local device, the steps to clone the repository are as follows:
+To work on the code from a local device, the steps to fork/clone the repository are as follows:
 
-- In the GitHub repository click the Code button above the list of files;
-- Copy the URL displayed on the clone tab;
-- Open the terminal on your device;
-- Type git clone and paste the URL copied earlier;
-- Press enter.
+**Fork**
+
+- In the top-right corner of the GitHub repository, click Fork;
+- Select an owner for the forked repository;
+- By default, forks are named the same as their upstream repositories, but you can change the name of the fork;
+- Optionally, add a description of your fork;
+- Choose whether to copy only the default branch or all branches to the new fork;
+- Click Create fork.
+
+**Clone**
+
+- In the GitHub repository, above the list of files, click  **Code**;
+- Copy the URL for the repository;
+  - To clone the repository using HTTPS, under "HTTPS", click the copy icon.
+  - To clone the repository using an SSH key, including a certificate issued by your organization's SSH certificate authority, click SSH, then click the copy icon.
+  - To clone a repository using GitHub CLI, click GitHub CLI, then click the copy icon.
+- Open Git Bash.
+- Change the current working directory to the location where you want the cloned directory.
+- Type **git clone**, and then paste the URL you copied earlier.
+- Press **Enter**. Your local clone will be created.
 
 ## Credit:
 

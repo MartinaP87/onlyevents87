@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
-import NoResults from "../../assets/no-results.png";
+import NoResults from "../../assets/no-results.webp";
 import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
@@ -21,7 +21,7 @@ const InterestedProfiles = (props) => {
         const { data } = await axiosReq.get(`/interested/?posted_event=${id}`);
         setInterested(data);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     // It runs the function only if the id is defined.

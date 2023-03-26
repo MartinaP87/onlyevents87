@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+
 import { axiosReq } from "../../api/axiosDefaults";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Category from "./Category";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import GenreCreateForm from "../genres/GenreCreateForm";
 import Genre from "../genres/Genre";
 import { useRedirect } from "../../hooks/useRedirect";
+import { useParams } from "react-router-dom";
 
 function CategoryPage() {
   // It redirects the logged out user to the home page.
@@ -31,7 +32,7 @@ function CategoryPage() {
         setCategoryData({ results: [category] });
         setGenres(genres);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     // If the user is logged in it runs the function,

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
-import NoResults from "../../assets/no-results.png";
+import NoResults from "../../assets/no-results.webp";
 import Asset from "../../components/Asset";
 import styles from "../../styles/GoingInterestedProfiles.module.css";
 
@@ -26,7 +26,7 @@ const GoingProfiles = (props) => {
         const { data } = await axiosReq.get(`/going/?posted_event=${id}`);
         setGoing(data);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     // It runs the function only if the id is defined.

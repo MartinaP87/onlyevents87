@@ -31,7 +31,7 @@ const EventGenreCreateForm = (props) => {
         );
         setGenresToGet(data);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     category && fetchGenres();
@@ -69,7 +69,7 @@ const EventGenreCreateForm = (props) => {
         results: [data, ...prevGenres.results],
       }));
     } catch (err) {
-      console.log(err.response);
+      //console.log(err.response);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

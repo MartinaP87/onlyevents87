@@ -31,7 +31,7 @@ function GalleryPage(props) {
         );
         setPhotosGallery(data);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     fetchData();

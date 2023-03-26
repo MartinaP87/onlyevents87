@@ -40,7 +40,7 @@ function CommentCreateForm(props) {
       // It resets the form.
       setContent("");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 

@@ -53,7 +53,7 @@ const Event = (props) => {
       await axiosRes.delete(`/events/${id}/`);
       history.push(`/profiles/${currentUser.pk}`);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -78,7 +78,7 @@ const Event = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -101,7 +101,7 @@ const Event = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
   const handleGoing = async () => {
@@ -123,7 +123,7 @@ const Event = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -146,7 +146,7 @@ const Event = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
   return (
@@ -258,7 +258,7 @@ const Event = (props) => {
             )}
             {goings_count}
 
-            <Link name={`event ${title} ${id}`} to={`/events/${id}`}>
+            <Link aria-label={`link-to-event-${title}`} to={`/events/${id}`}>
               <i className="far fa-comments" />
             </Link>
             {comments_count}

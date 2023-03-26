@@ -12,7 +12,7 @@ import Avatar from "./Avatar";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/logo.webp";
 import Image from "react-bootstrap/Image";
 
 const NavBar = () => {
@@ -30,7 +30,7 @@ const NavBar = () => {
       setCurrentUser(null);
       removeTokenTimestamp();
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -136,14 +136,14 @@ const NavBar = () => {
       expanded={expanded}
       expand="lg"
       fixed="top"
-      className={`${styles.NavBar} py-0`}
+      className={styles.NavBar}
     >
-      <Container className="mx-0">
+      <Container className="mx-0 px-0">
         <NavLink exact to="/">
           <Navbar.Brand>
             <Container className={styles.NavbarBrand}>
               <Image src={Logo} height={70} alt="logo" />
-              <h4>Only Events</h4>
+              <h4 className="px-2">Only Events</h4>
             </Container>
           </Navbar.Brand>
         </NavLink>

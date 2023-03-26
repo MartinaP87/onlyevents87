@@ -3,7 +3,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../../api/axiosDefaults";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import Photo from "./Photo";
 
 const PhotoPage = () => {
@@ -17,7 +17,7 @@ const PhotoPage = () => {
         const { data } = await axiosReq.get(`/events/galleries/photos/${id}`);
         setPhoto({ results: [data] });
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     handleMount();

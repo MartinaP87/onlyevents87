@@ -2,7 +2,9 @@
     background-image: linear-gradient(to right, #121cff , #B710E8);
     justify-content: center;
     font-family: 'Poiret One', cursive;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    margin: 0px;
+    padding: 0px;
 }
 
 .NavbarBrand {
@@ -14,12 +16,12 @@
 }
 
 .NavLink {
-    padding: 2px;
+    padding: 0rem 0.75rem;
     color: #ffffff;
+    display: grid;
 }
 
 .NavLink:hover {
-  padding: 2px;
   color: #ffffff;
 }
 

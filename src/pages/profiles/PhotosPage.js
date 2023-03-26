@@ -27,7 +27,7 @@ function PhotosPage() {
         );
         setPhotosProfile(data);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     fetchData();

@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Upload from "../../assets/upload.png";
+import Upload from "../../assets/upload.webp";
 import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -12,7 +12,7 @@ import Asset from "../../components/Asset";
 import { axiosReq } from "../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -43,7 +43,7 @@ function EventCreateForm() {
         const { data } = await axiosReq.get("/categories/");
         setCategoriesToGet(data);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     currentUser && fetchCategories();
@@ -105,7 +105,7 @@ function EventCreateForm() {
       const { data } = await axiosReq.post("/events/", formData);
       history.push(`/events/${data.id}/`);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -133,6 +133,7 @@ function EventCreateForm() {
       <Form.Group controlId="date">
         <Form.Label className="d-none">Event date</Form.Label>
         <Form.Control
+          aria-label="event date and time"
           type="datetime-local"
           name="date"
           value={date}
@@ -282,11 +283,9 @@ function EventCreateForm() {
                 {message}
               </Alert>
             ))}
-
-            <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+        <Col sm={12} md={5} lg={4} className="p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>

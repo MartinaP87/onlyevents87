@@ -10,7 +10,7 @@ import btnStyles from "../../../styles/Button.module.css";
 import { axiosReq } from "../../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory, useParams } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 function PhotoEditForm() {
   const [errors, setErrors] = useState({});
@@ -41,7 +41,7 @@ function PhotoEditForm() {
             })
           : history.push(`/events/galleries/photos/${id}/`);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     handleMount();
@@ -81,7 +81,7 @@ function PhotoEditForm() {
       await axiosReq.put(`/events/galleries/photos/${id}/`, formData);
       history.push(`/events/galleries/photos/${id}/`);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

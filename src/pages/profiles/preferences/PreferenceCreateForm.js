@@ -8,7 +8,8 @@ import Accordion from "react-bootstrap/Accordion";
 import styles from "../../../styles/PreferenceCreateForm.module.css";
 import btnStyles from "../../../styles/Button.module.css";
 import { axiosReq } from "../../../api/axiosDefaults";
-import { Alert, Card } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Card from "react-bootstrap/Card";
 import { useHistory, useParams } from "react-router-dom";
 
 const PreferenceCreateForm = (props) => {
@@ -31,7 +32,7 @@ const PreferenceCreateForm = (props) => {
         const { data } = await axiosReq.get(`/categories/genres/`);
         setPreferenceChoice(data);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     fetchPreferences();
@@ -68,7 +69,7 @@ const PreferenceCreateForm = (props) => {
         results: [data, ...prevPreferences.results],
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

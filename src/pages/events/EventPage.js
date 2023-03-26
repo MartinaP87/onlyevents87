@@ -12,7 +12,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 import EventGenre from "./EventGenres/EventGenre";
 import GalleryPage from "./Galleries/GalleryPage";
 import GoingProfiles from "../profiles/GoingProfiles";
@@ -50,7 +50,7 @@ function EventPage() {
           setGallery(gallery);
           setGenres(genres);
         } catch (err) {
-          console.log(err);
+          //console.log(err);
         }
       
     };

@@ -15,7 +15,7 @@ const Category = (props) => {
 
   const handleDelete = async () => {
     // It deletes the category from the database, redirects
-    // the user to the categories page, and updates the 
+    // the user to the categories page, and updates the
     // categories variable.
     try {
       await axiosRes.delete(`/categories/${id}/`);
@@ -27,7 +27,7 @@ const Category = (props) => {
         ),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -44,12 +44,12 @@ const Category = (props) => {
               setShowEditForm={setShowEditForm}
             />
           ) : categoryPage ? (
-            <Link name={cat_name} to={`/categories/${id}/`}>
+            <Link aria-label={cat_name} to={`/categories/${id}/`}>
               <h1>{cat_name}</h1>
             </Link>
           ) : (
-            <Link name={cat_name} to={`/categories/${id}/`}>
-              <h3>{cat_name}</h3>
+            <Link aria-label={cat_name} to={`/categories/${id}/`}>
+              <p>{cat_name}</p>
             </Link>
           )}
         </Media.Body>

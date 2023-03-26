@@ -34,7 +34,7 @@ export const ProfileDataProvider = ({ children }) => {
   }, [currentUser]);
 
   const handleFollow = async (clickedProfile) => {
-    // It posts the follower data to the API endpoint 
+    // It posts the follower data to the API endpoint
     // and updates the profileData variable.
     try {
       const { data } = await axiosRes.post("/followers/", {
@@ -55,12 +55,12 @@ export const ProfileDataProvider = ({ children }) => {
         },
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
   const handleUnfollow = async (clickedProfile) => {
-    // It deletes the follower data to the API endpoint 
+    // It deletes the follower data to the API endpoint
     // and updates the profileData variable.
     try {
       await axiosRes.delete(`/followers/${clickedProfile.following_id}/`);
@@ -79,7 +79,7 @@ export const ProfileDataProvider = ({ children }) => {
         },
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 

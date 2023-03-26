@@ -8,7 +8,7 @@ import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 const GenreEditForm = (props) => {
   const { id, gen_name, setGenres, cat_id, setShowEditForm } = props;

@@ -35,7 +35,7 @@ const Photo = (props) => {
       await axiosRes.delete(`/events/galleries/photos/${id}/`);
       history.push(`/events/${gallery}`);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 

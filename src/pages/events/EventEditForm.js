@@ -10,7 +10,9 @@ import btnStyles from "../../styles/Button.module.css";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory, useParams } from "react-router-dom";
-import { Alert, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 function EventEditForm() {
   const [errors, setErrors] = useState({});
@@ -78,7 +80,7 @@ function EventEditForm() {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     handleMount();
@@ -99,7 +101,7 @@ function EventEditForm() {
         axiosRes.delete(`/events/genres/${event_genre.id}`);
         setEventGenres({ results: [] });
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     });
   };
@@ -135,8 +137,7 @@ function EventEditForm() {
         ...eventData,
         image: URL.createObjectURL(event.target.files[0]),
       });
-      
-    }console.log(image)
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -152,17 +153,13 @@ function EventEditForm() {
     formData.append("address", address);
 
     if (imageInput?.current?.files[0]) {
-      console.log("APPEND", imageInput.current.files[0])
       formData.append("image", imageInput.current.files[0]);
     }
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1])
-    }
     try {
-      await axiosReq.put(`/events/${id}`, formData);
+      await axiosReq.put(`/events/${id}/`, formData);
       history.push(`/events/${id}/`);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -191,6 +188,7 @@ function EventEditForm() {
       <Form.Group controlId="date">
         <Form.Label className="d-none">Event date</Form.Label>
         <Form.Control
+          aria-label="event date and time"
           type="datetime-local"
           name="date"
           className={styles.Input}
@@ -345,11 +343,9 @@ function EventEditForm() {
                 {message}
               </Alert>
             ))}
-
-            <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+        <Col sm={12} md={5} lg={4} className="p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
       </Row>

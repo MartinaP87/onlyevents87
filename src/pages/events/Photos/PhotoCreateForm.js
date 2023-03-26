@@ -1,9 +1,11 @@
 import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Upload from "../../../assets/upload.png";
+import Upload from "../../../assets/upload.webp";
 import styles from "../../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../../App.module.css";
 import btnStyles from "../../../styles/Button.module.css";
@@ -11,7 +13,7 @@ import Asset from "../../../components/Asset";
 import { axiosReq } from "../../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
-import { Alert, Modal } from "react-bootstrap";
+
 
 function PhotoCreateForm(props) {
   const { id, setPhotosGallery } = props;
@@ -85,7 +87,7 @@ function PhotoCreateForm(props) {
       });
       setErrors({});
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

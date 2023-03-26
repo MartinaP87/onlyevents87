@@ -19,7 +19,7 @@ const EventGenre = (props) => {
         results: prevGenres.results.filter((genre) => genre.id !== id),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 

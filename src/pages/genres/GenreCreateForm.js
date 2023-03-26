@@ -9,7 +9,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
-import { Alert } from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
 
 const GenreCreateForm = (props) => {
   const { id, setGenres } = props;
@@ -38,7 +38,7 @@ const GenreCreateForm = (props) => {
         results: [data, ...prevGenres.results],
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

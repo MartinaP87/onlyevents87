@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 import Asset from "../../components/Asset";
-import NoResults from "../../assets/no-results.png";
+import NoResults from "../../assets/no-results.webp";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -70,7 +70,7 @@ function ProfilePage() {
         setPreferences(preferences);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     fetchData();
@@ -87,7 +87,7 @@ function ProfilePage() {
         />
       </Row>
       <Row className="my-3 justify-content-center">
-        {profile?.is_owner ? (
+        {is_owner ? (
           <>
             <Col
               xs={10}
@@ -137,7 +137,7 @@ function ProfilePage() {
               <h3 className="pb-1">{profile?.owner}'s favorites:</h3>
               {filteredCategories.map((uniqueCategory) => (
                 <Container className="p-2" key={uniqueCategory}>
-                  <h5 className="p-2">{uniqueCategory}</h5>
+                  <h4 className="p-2">{uniqueCategory}</h4>
                   <InfiniteScroll
                     children={preferences.results.map((preference) => (
                       <div className={`${styles.Genres}`} key={preference.id}>
