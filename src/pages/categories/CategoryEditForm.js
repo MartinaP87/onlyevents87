@@ -41,7 +41,7 @@ const CategoryEditForm = (props) => {
       // It closes the edit form.
       setShowEditForm(false);
       NotificationManager.success(
-        `You successfully edited ${cat_name} category!`,
+        `You successfully edited the category!`,
         "Category edit",
         3000
       );

@@ -275,6 +275,12 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 ![Navbar admin](readme-images/navbar_admin.png)
 ![Navbar user](readme-images/navbar_user.png)
 ![Navbar logged-out](readme-images/navbar_logged_out.png)
+![Sign up notification](readme-images/notification_sign_in.png)
+![Sign up error notification](readme-images/notification_sign_in_error.png)
+![Sign in notification](readme-images/notification_sign_up.png)
+![Sign in error notification](readme-images/notification_sign_up_error.png)
+![Sign out notification](readme-images/notification_sign_out.png)
+
 
 - The fully responsive navigation bar appears on all pages;
 - It displays differently for admin, logged-in, and logged-out users:
@@ -283,7 +289,8 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 * It displays links to the Home page (through the logo and Home button), Sign In and Sign Up forms for logged-out users.
 - This section will allow the user to easily navigate from page to page across all devices without reverting to the previous page via the ‘back’ button;
 - The icons change color when hovered and clicked, reflecting the current status to provide feedback for a better user experience;
-- When the screen size scales down to 991px, the navbar collapses into a hamburger menu.
+- When the screen size scales down to 991px, the navbar collapses into a hamburger menu;
+- When the user signs in, signs up, or signs out, a notification message is displayed at the top of the page.
 
 ### Home page
 
@@ -331,27 +338,52 @@ The pairing was taken from the pairing section of [Fontpair](https://www.fontpai
 
 ![Event section](readme-images/event_section.png)
 
+![Event delete notification](readme-images/notification_event_delete.png)
+
 - This section displays all details the user needs to attend the event, such as date, time, location, and address;
 - If the user is the event owner, they can access the dropdown menu to delete or edit the event;
+- If the event ownre deletes the event, a notification is displayed;
 - If the user is the event owner, they can access the "Add genre" button, which provides a form where the user can select the most suitable option.
+
+#### Add an event genre section
+
+![Add an event genre section](readme-images/add_event_genre.png)
+
+![Add an event genre notification](readme-images/notification_event_genre_create.png)
+
+![Add an event genre error notification](readme-images/notification_event_genre_create_error.png)
+
+- If the user is the event owner, this section displays a button that, when clicked, toggles a form;
+- The form allows the user to select a genre to be then displayed in the event.
+- When the submission succeeds, a notification is displayed at the top of the page;
+- If the genre already exists, it displays an error;
+- When the submission fails, a notification is displayed at the top of the page.
+
 
 #### Event genre section
 
-![Genre section](readme-images/genre.png)
+![Event genre section](readme-images/genre.png)
+
+![Event genre delete notification](readme-images/notification_event_genre_delete.png)
 
 - It displays the genre/s of the event category, providing the user with extra information about the event;
 - This section is related to user preferences: when an 
 event has genres, the users that have the same genres in their preference section will have the event displayed in their Favorites;
-- The event owner can delete the genres in this section. 
+- The event owner can delete the genres in this section;
+- When the user deletes a genre, it displays a notification of successfull deletion. 
+
 
 #### Comment section
 
 ![Comment section](readme-images/comment.png)
 
+![Comment delete notification](readme-images/notification_comment_delete.png)
+
 - This section displays comments written by users, along with their usernames and how long ago the comments were posted;
 - The comments are ordered by date, with the most recent at the top;
 - This section allows the user easily follow the conversation;
 - If the user is the comment owner, they can access the dropdown menu to delete or edit the comment;
+- When the user deletes a comment, a confirmation notification is displayed;
 - Users can like comments as long as they are logged in and not the comment owner.
 
 #### Comment form section
@@ -360,16 +392,22 @@ event has genres, the users that have the same genres in their preference sectio
 
 ![Comment create form](readme-images/comment_create_form.png)
 
+![Comment create notification](readme-images/notification_comment_create.png)
+
 - This section displays a form that allows the user to leave feedback;
 - Through this section, the user can interact with other users;
-- Once the comment is submitted, the message is displayed under the form.
+- Once the comment is submitted, the message is displayed under the form;
+- When the user post a comment, a notification is displayed at the top of the page.
 
 **Edit comment form**
 
 ![Comment edit form](readme-images/comment_edit_form.png)
 
+![Comment edit notification](readme-images/notification_comment_edit.png)
+
 - This section enables the comment owner to edit the content of the comment;
 - The previous comment is displayed in the form.
+- When the user saves the change, a confirmation notification is displayed.
 
 #### Going/Interested section
 
@@ -384,47 +422,81 @@ From this section, the user can follow/unfollow other users and view their profi
 #### Event create form
 
 ![Event create form](readme-images/event_create_form.png)
+
 ![Event create form errors](readme-images/event_create_form_errors.png)
 
+![Event create notification](readme-images/notification_event_create.png)
+
+![Event create notification error](readme-images/notification_event_create_error.png)
+
 - This section enables the user to add an event;
-- When the form is not filled correctly, it displays an error message under the relevant field.
-- When the user submits the form successfully, they are redirected to the event page.
+- When the form is not filled correctly, it displays an error message under the relevant field;
+- When the form submission fails, a notification is displayed at the top of the page;
+- When the user submits the form successfully, they are redirected to the event page;
+- When the form submission succeeds, a notification is displayed at the top of the page.
 
 #### Event edit form
 
 ![Event edit form](readme-images/event_edit_form.png)
+
 ![Event edit form errors](readme-images/event_edit_form_errors.png)
+
+![Event edit notification](readme-images/notification_event_edit.png)
+
+![Event edit category notification](readme-images/notification_event_genres_delete.png)
+
+![Event edit notification errors](readme-images/notification_event_edit_error.png)
 
 - This section enables the event owner to edit the event;
 - In the form all information about the event is retrieved;
 - It displays an information icon that, when clicked, informs the event owner that by editing the category, it deletes all the genres previously linked to the event.
+- When the event owner edits the category, it displays a message to inform the user that the event genres have been deleted.
 - When the form is not filled correctly, it displays an error message under the relevant field.
+- When the form submission fails, a notification is displayed at the top of the page;
+- When the form submission succeeds, a notification is displayed at the top of the page.
 
 ### Photo page
 
 ![Photo page](readme-images/photo_page.png)
 
+![Photo delete notification](readme-images/notification_photo_delete.png)
+
 - It provides the user a wider view of the selected photo along with the title, date of upload, profile image, and username of who posted it;
 - If the user is the photo owner, they can access the dropdown menu to delete or edit the event;
+- If the user deletes the photo, a notification is displayed at the top of the page to confirm the deletion.
 
 ### Photo forms section
 
 #### Photo create form
 
 ![Photo create form](readme-images/photo_create_form.png)
+
+![Photo create notification](readme-images/notification_photo_create.png)
+
 ![Photo create form errors](readme-images/photo_create_form_errors.png)
+
+![Photo create errors notification](readme-images/notification_photo_create_error.png)
 
 - This section enables the user to add a photo to an event;
 - When the form is not filled correctly, it displays an error message under the relevant field.
+- When the submission fails, a notification is displayed at the top of the page.
 - When the user submits the form successfully, they are redirected to the event page.
+- When the submission succeeds, a notification is displayed at the top of the page.
+
 
 #### Photo edit form
 
 ![Photo edit form](readme-images/photo_edit_form.png)
 
+![Photo edit notification](readme-images/notification_photo_edit.png)
+
+![Photo edit error notification](readme-images/notification_photo_edit_error.png)
+
 - This section enables the photo owner to change the image and edit the photo title;
 - In the form the previous photo information is retrieved;
 - When the form is not filled correctly, it displays an error message under the relevant field.
+- When the submission fails, a notification is displayed at the top of the page.
+- When the submission succeeds, a notification is displayed at the top of the page.
 
 ### Profile page
 
@@ -448,22 +520,32 @@ From this section, the user can follow/unfollow other users and view their profi
 
 ![Add a preference section](readme-images/add_preference.png)
 
+![Add a preference notification](readme-images/notification_preference_create.png)
+
+![Add a preference error notification](readme-images/notification_preference_create_error.png)
+
 - This section displays a button that, when clicked, toggles a form;
 - The form allows the user to select a preference to be then displayed in the profile.
-- If the preference already exists, it displays an error.
+- When the submission succeeds, a notification is displayed at the top of the page;
+- If the preference already exists, it displays an error;
+- When the submission fails, a notification is displayed at the top of the page.
 
 #### Favorites section
 
 ![Favorites section](readme-images/favorites.png)
 
+![Preference delete notification](readme-images/notification_preference_delete.png)
+
 - This section displays a list of the user's favorite genres;
 - If the user is the profile owner, it shows a bin icon next to the preference so the user can delete it;
+- If the profile owner deletes a preference, a notification is displayed;
 - It allows other users to know more about the profile they are currently looking;
 - The user preferences determine the events they see on the Favorite page since the events are filtered according to the user's tastes.
 
 #### Main profile section
 
 ![Main profile section](readme-images/main_profile.png)
+
 ![Main owner profile section](readme-images/main_profile_owner.png)
 
 - In this section the user can see the username of the profile, the numbers of the events posted, followers and following, and bio.
@@ -480,23 +562,38 @@ From this section, the user can follow/unfollow other users and view their profi
 
 ![Edit profile form](readme-images/profile_edit_img_form.png)
 
-- It displays a form to change the image and bio so that the user can update them as they like.
+![Edit profile notification](readme-images/notification_profile_edit.png)
+
+- It displays a form to change the image and bio so that the user can update them as they like;
+- When the form is submitted, a notification is displayed at the top of the page.
 
 #### Edit username form
 
 ![Edit profile username form](readme-images/profile_edit_username_form.png)
+
+![Edit profile username notification](readme-images/
+notification_username_edit.png)
+
 ![Edit profile username form errors](readme-images/profile_edit_username_form_errors.png)
+
+![Edit profile username notification error](readme-images/notification_username_edit_error.png)
 
 - It displays a form to edit the username;
 - If the changed name is already in use, it displays an error message that doesn't allow the submission.
+- When the form is submitted, a notification is displayed at the top of the page.
 
 #### Edit password form
 
 ![Edit profile password form](readme-images/profile_edit_password_form.png)
 
+![Edit profile password notification](readme-images/notification_password_edit.png)
+
+![Edit profile password error notification](readme-images/notification_password_edit_error.png)
+
 - This section displays a form to change the password, to allow the user to keep their profile secure;
 - The new password has to be typed twice to be validated;
 - If the passwords don't match, an error message is displayed.
+- - When the form is submitted, a notification is displayed at the top of the page.
 
 ### Photos page
 
@@ -522,18 +619,31 @@ From this section, the user can follow/unfollow other users and view their profi
 #### Category create form
 
 ![Category create form](readme-images/category_create_form.png)
+
+![Category create notification](readme-images/notification_category_create.png)
+
 ![Category create form with error](readme-images/category_create_form_errors.png)
 
+![Category create error notification](readme-images/notification_category_create_error.png)
+
 - The form allows the admin to create new categories;
-- If the admin tries to add a category that already exists, it displays an error message.
+- If the admin tries to add a category that already exists, it displays an error message;
+- When the form is submitted, a notification is displayed at the top of the page.
 
 #### Category edit form
 
 ![Category edit form](readme-images/category_edit_form.png)
+
+![Category edit notification](readme-images/notification_category_edit.png)
+
 ![Category edit form error](readme-images/category_edit_form_error.png)
 
+![Category edit notification error](readme-images/notification_category_edit_error.png)
+
 - The form allows the admin to edit the chosen category;
-- If the category already exists, it displays an error.
+- If the category already exists, it displays an error;
+- When the form is submitted, a notification is displayed at the top of the page.
+
 
 ### Category Page
 
@@ -541,22 +651,33 @@ From this section, the user can follow/unfollow other users and view their profi
 
 ![Category](readme-images/category.png)
 
+![Category delete notification](readme-images/notification_category_delete.png)
+
 - It displays the name of the category to which the genres belong;
 - It displays a dropdown menu that allows the admin to delete or edit the category.
+- If the admin deletes a category, a notification is displayed at the top of the page.
 
 #### Genres list
 
 ![Genre list](readme-images/genre_list.png)
 
+![Genre delete notification](readme-images/notification_genre_delete.png)
+
 - This section displays a list of the genres;
 - Every genre has its dropdown menu to allow the edit and delete functionalities;
+- If the admin deletes a genre, a notification is displayed at the top of the page.
 
 ### Genre forms
 
 #### Genre create form
 
 ![Genre create form](readme-images/genre_create_form.png)
+
+![Genre create notification](readme-images/notification_genre_create.png)
+
 ![Genre create form error](readme-images/genre_create_form_error.png)
+
+![Genre create error notification](readme-images/notification_genre_create_error.png)
 
 - The form allows the admin to create new genres;
 - If the admin tries to add a genre that already exists, it displays an error message.
@@ -564,10 +685,16 @@ From this section, the user can follow/unfollow other users and view their profi
 #### Genre edit form
 
 ![Genre edit form](readme-images/genre_edit_form.png)
+
+![Genre edit notification](readme-images/notification_genre_edit.png)
+
 ![Genre edit form error](readme-images/genre_edit_form_error.png)
 
+![Genre edit error notification](readme-images/notification_genre_edit_error.png)
+
 - The form allows the admin to edit the chosen genre;
-- If the genre already exists, it displays an error.
+- If the genre already exists, it displays an error;
+- When the admin submits the form, a notification is displayed at the top of the page.
 
 ### Reusable components
 
@@ -611,6 +738,7 @@ The reusable components are:
 - [react-scripts](https://www.npmjs.com/package/react-scripts) - Scripts for creating and building React projects with Create React App;
 - [web-vitals](https://web.dev/vitals/) - Library for measuring web performance metrics;
 - [date-fns](https://date-fns.org/) - Library for manipulating JavaScript dates.
+- [react-notifications](https://www.npmjs.com/package/react-notifications) - Notification component for ReactJS designed to provide snackbar notification messages and notification stacks.
 
 
 ### Other tools

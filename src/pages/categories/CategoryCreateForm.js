@@ -49,7 +49,7 @@ const CategoryCreateForm = (props) => {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
         NotificationManager.error(
-          `Ups! something went wrong when creating the category...`,
+          `Ups! Something went wrong when creating the category...`,
           "Category error",
           3000
         );

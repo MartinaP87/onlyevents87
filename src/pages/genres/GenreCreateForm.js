@@ -48,13 +48,13 @@ const GenreCreateForm = (props) => {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      NotificationManager.error(
+        `Ups! Something went wrong when creating a genre...`,
+        "Genre error",
+        3000
+      );
     }
     setGenreData("");
-    NotificationManager.error(
-      `Ups! Something went wrong when creating a genre...`,
-      "Genre error",
-      3000
-    );
   };
 
   return (

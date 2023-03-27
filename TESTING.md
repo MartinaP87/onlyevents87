@@ -54,8 +54,29 @@ Interested link | Clicking the link redirects to the home page, presenting only 
 Going link | Clicking the link redirects to the home page, presenting only the events the user is going to. | Pass |
 Profile Link | Clicking the link redirects to the user profile page. | Pass |
 Sign out link | Clicking the link redirects to the home page, logging out the user and displaying a different navbar layout. | Pass |
+Sign out link |  When the user clicks Sign Out, it displays a notification with the outcome. | Pass |
 Sign in Link | Clicking the link redirects to the account sign in page. | Pass |
 Sign up Link | Clicking the link redirects to the account sign up page. | Pass |
+
+#### Sign up form
+
+Element | Expected Outcome | Pass/Fail |
+--- | --- | --- |
+Sign up form | If the user is not logged in, they can access the form. | Pass |
+Sign up form | If the user is logged in, they can't access the form. | Pass |
+Sign up form | If the user fills up the form correctly, they are redirected to the sign in form. | Pass |
+Sign up form | If the user doesn't fill up the form correctly, it displays an error message under the relevant field. | Pass |
+Sign up form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
+
+#### Sign in form
+
+Element | Expected Outcome | Pass/Fail |
+--- | --- | --- |
+Sign in form | If the user is not logged in, they can access the form. | Pass |
+Sign in form | If the user is logged in, they can't access the form. | Pass |
+Sign in form | If the user fills up the form correctly, it logs them in. | Pass |
+Sign in form | If the user doesn't fill up the form correctly, it displays an error message under the relevant field. | Pass |
+Sign in form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 
 #### Home Page
 
@@ -93,7 +114,9 @@ Genre form | Selecting a genre and clicking "create" adds a new genre to the eve
 Genre form | Selecting a genre and clicking "create" adds a new genre to the event. | Pass |
 Genre form | Selecting a genre already added and clicking "create" displays an error message. | Pass |
 Genre form | Selecting a "select the event genre" option and clicking "create" displays an error message. | Pass |
+Genre form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Comment create form | Typing a comment and clicking "post" adds the comment. | Pass |
+Comment create form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Comments | All the event comments are displayed in chronological order, with the most recent on top. | Pass |
 Comments | Users can like comments unless they are the comment owner. | Pass |
 Comment dropdown menu | If the user is the comment owner, the dropdown menu is displayed. | Pass |
@@ -102,6 +125,7 @@ Comment dropdown menu | If the user clicks the delete icon, it deletes the comme
 Comment dropdown menu | If the user clicks the edit icon, it opens the edit form with the previous comment. | Pass |
 Comment edit form | If the user edits the comment and clicks "save" it updates the comment. | Pass |
 Comment edit form | If the user edits the comment and clicks "cancel" it discharges the change. | Pass |
+Comment edit form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Going section | It displays the profiles of the users going to the event and their count. | Pass |
 Going section | If the user clicks on the going icon (checked calendar) at the bottom of the event (or event card), the going count increases. | Pass |
 Going section | If the user clicks on the going icon at the bottom of the event (or event card), the user's avatar and name appear in the going section. | Pass |
@@ -141,6 +165,7 @@ Event content field | If the user clicks on the section, it allows them to type 
 Event content field | If the user doesn't input the content, the form can still be submitted. | Pass |
 Event cancel button | If the user clicks the cancel button, it redirects the user to the previous page. | Pass |
 Event create button | If the user clicks the create button, it posts the event unless error messages are displayed. | Pass |
+Event create form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 
 #### Event edit form
 
@@ -171,6 +196,7 @@ Event content field | If the user deletes the content, the form can still be sub
 Event cancel button | If the user clicks the cancel button, it redirects the user to the previous page, discharging the changes. | Pass |
 Event cancel button | If the user clicks the cancel button but has changed the category while on the edit form page, the event genres are still deleted. | Pass |
 Event save button | If the user clicks the "save" button, it posts the event unless error messages are displayed. | Pass |
+Event edit form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 
 #### Photo page
 
@@ -195,6 +221,7 @@ Upload section | If the user doesn't upload an image and submits the form, it wi
 Photo title | If the user clicks on the photo title field, it allows them to type the title. | Pass |
 Photo title | If the user doesn't type the title and submits the form, it will display an error message. | Pass |
 Create button | If the user clicks "create" and the form doesn't have errors, it will create a new photo. | Pass |
+Photo create form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Cancel button | If the user clicks "cancel", it won't create a new image and close the form. | Pass |
 
 #### Photo edit form
@@ -208,6 +235,7 @@ Photo title | If the user clicks on the photo title field, it allows them to edi
 Photo title | If the user doesn't edit the title and submits the form, it will display the previous title. | Pass |
 Photo title | If the user deletes the title and submits the form, it will display an error message. | Pass |
 Save button | If the user clicks "save" and the form doesn't have errors, it will update the photo. | Pass |
+Photo edit form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Cancel button | If the user clicks "cancel", it will discharge all changes. | Pass |
 
 
@@ -226,6 +254,7 @@ Add a preference section | If the user is the owner, this section displays a but
 Preference form | If the user clicks a genre and "create", it adds a preference to the profile. | Pass |
 Preference form | If the user clicks a genre already added and "create", it displays an error message. | Pass |
 Preference form | If the user clicks "select your preference" and "create", it displays an error message. | Pass |
+Preference form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Preference section | It displays a list of the user's favorite genres, organized by category. | Pass |
 Preference section | If the user is the profile owner, it displays a bin icon next to each preference. | Pass |
 Preference section | If the user clicks the bin icon, it deletes the preference. | Pass |
@@ -248,6 +277,7 @@ Bio | If the user clicks on the bio text field, it allows them to edit the conte
 Bio | If the user doesn't edit the bio and submits the form, it will display the previous bio. | Pass |
 Bio | If the user deletes the content and submits the form, it will update the profile. | Pass |
 Save button | If the user clicks "save" and the form doesn't have errors, it will update the profile. | Pass |
+Edit profile form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Cancel button | If the user clicks "cancel", it will discharge all changes. | Pass |
 
 #### Edit username form
@@ -258,6 +288,7 @@ Edit profile form | If the user is not the profile owner, they can't access the 
 Username field | It displays the username of the user. | Pass |
 Username field | If the user edits the username with an existing one and submits the form, it will display an error message. | Pass |
 Save button | If the user edits the username without errors, it updates the profile username. | Pass |
+Edit profile form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Cancel button | If the user clicks "cancel", it will discharge all changes. | Pass |
 
 #### Edit password form
@@ -271,6 +302,7 @@ Confirm new password field | It requires the user to retype the same password. |
 Confirm new password field | If the user leaves this field blank, it will display an error message. | Pass |
 Confirm new password field | If the user doesn't type the same password in both fields, it will display an error message. | Pass |
 Save button | If the user types the passwords without errors, it updates the profile password. | Pass |
+Edit password form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Cancel button | If the user clicks "cancel", it will discharge all changes. | Pass |
 
 #### Categories page
@@ -285,6 +317,7 @@ Category create form | Clicking the input field, the admin can add a new categor
 Category create form | If the category already exists and the admin submits the form, it displays an error message. | Pass |
 Category create form | If the field is blank and the admin tries to submit the form, it displays an error message. | Pass |
 Category create form | If the form is filled correctly, clicking on "create will add a new category to the list". | Pass |
+Category create form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Category create form | If the "cancel" button is clicked, it resets the form. | Pass |
 
 #### Category page
@@ -300,16 +333,19 @@ Category edit form | If the admin edits the category name by typing an existing 
 Category edit form | If the admin deletes the category and submits the form, it will display an error message. | Pass |
 Category edit form | If the admin edits the category without errors, it updates the category name. | Pass |
 Category edit form | If the admin clicks "cancel", it will discharge all changes. | Pass |
+Category edit form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Genres list | It displays the category genres list and their dropdown menus. | Pass |
 Genre edit form | It displays the genre name. | Pass |
 Genrey edit form | If the admin edits the genre name by typing an existing one and submits the form, it will display an error message. | Pass |
 Genre edit form | If the admin deletes the genre and submits the form, it will display an error message. | Pass |
 Genre edit form | If the admin edits the genre without errors, it updates the genre name. | Pass |
 Genre edit form | If the admin clicks "cancel", it will discharge all changes. | Pass |
+Genre edit form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Genre create form | By clicking the input field, the admin can add a new genre. | Pass |
 Genre create form | If the genre already exists and the admin submits the form, it displays an error message. | Pass |
 Genre create form | If the field is blank and the admin tries to submit the form, it displays an error message. | Pass |
 Genre create form | If the form is filled correctly, clicking "create will add a new genre to the list. | Pass |
+Genre create form |  When the form it's submitted, it displays a notification with the outcome. | Pass |
 Genre create form | If the "cancel" button is clicked, it resets the form. | Pass |
 
 #### Feeds page
