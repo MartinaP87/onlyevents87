@@ -12,6 +12,7 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
+import { NotificationManager } from "react-notifications";
 
 const SignUpForm = () => {
   // If the user is already logged in and tries to access
@@ -43,8 +44,18 @@ const SignUpForm = () => {
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
+      NotificationManager.success(
+        `Hi ${username}! You signed up successfully!`,
+        "Sign up",
+        3000
+      );
     } catch (err) {
       setErrors(err.response?.data);
+      NotificationManager.error(
+        `Ups! Something went wrong with your sign-up...`,
+        "Sign up error",
+        3000
+      );
     }
   };
 

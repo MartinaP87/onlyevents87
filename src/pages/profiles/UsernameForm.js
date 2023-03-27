@@ -14,6 +14,7 @@ import {
 
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { NotificationManager } from "react-notifications";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -47,9 +48,19 @@ const UsernameForm = () => {
         username,
       }));
       history.goBack();
+      NotificationManager.success(
+        `You successfully updated your username!`,
+        "Username edit",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       setErrors(err.response?.data);
+      NotificationManager.error(
+        `Ups! Something went wrong when editing your username...`,
+        "Username edit error",
+        3000
+      );
     }
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
+import { NotificationManager } from "react-notifications";
 import { axiosRes } from "../../../api/axiosDefaults";
 import styles from "../../../styles/Preference.module.css";
 
@@ -17,8 +18,18 @@ const Preference = (props) => {
           (preference) => preference.id !== id
         ),
       }));
+      NotificationManager.success(
+        `You successfully deleted the preference!`,
+        "Preference delete",
+        3000
+      );
     } catch (err) {
       //console.log(err);
+      NotificationManager.error(
+        `Ups! Something went wrong when deleting the preference...`,
+        "Preference delete error",
+        3000
+      );
     }
   };
 

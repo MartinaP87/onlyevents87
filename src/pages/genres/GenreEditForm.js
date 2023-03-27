@@ -9,6 +9,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import Alert from "react-bootstrap/Alert";
+import { NotificationManager } from "react-notifications";
 
 const GenreEditForm = (props) => {
   const { id, gen_name, setGenres, cat_id, setShowEditForm } = props;
@@ -41,10 +42,20 @@ const GenreEditForm = (props) => {
         }),
       }));
       setShowEditForm(false);
+      NotificationManager.success(
+        `You successfully edited the genre!`,
+        "Genre edit",
+        3000
+      );
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      NotificationManager.error(
+        `Ups! Something went wrong when editing the genre...`,
+        "Genre edit error",
+        3000
+      );
     }
   };
 

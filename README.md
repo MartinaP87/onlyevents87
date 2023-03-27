@@ -6,7 +6,7 @@ The website also helps users socialize through a commenting section that enables
 Users can show interest and attendance to events, comment and like others' comments, and post pictures relative to the events. 
 Users can only post pictures on the event page, not on their profile page, as this is not a social media that aims to promote individuals but only events, and they can not like pictures since the purpose of the website is not to encourage or discourage to post photos in base on other users' likes.
 
-Visit the deployed website here - <a href="https://onyevents87.herokuapp.com/" target="_blank" rel="noopener">Only Events</a>.
+Visit the deployed website here - <a href="https://onlyevents.herokuapp.com/" target="_blank" rel="noopener">Only Events</a>.
 
 Visit the deployed API here - <a href="https://onlyevents-drf-api.herokuapp.com/" target="_blank" rel="noopener">Only Events</a>.
 

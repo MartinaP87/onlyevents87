@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import { NotificationManager } from "react-notifications";
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
@@ -36,8 +37,18 @@ function CommentEditForm(props) {
       }));
       // It closes the edit form.
       setShowEditForm(false);
+      NotificationManager.success(
+        `You successfully edited the comment!`,
+        "Comment edit",
+        3000
+      );
     } catch (err) {
       //console.log(err);
+      NotificationManager.error(
+        `Ups! Something went wrong when editing the comment...`,
+        "Comment edit error",
+        3000
+      );
     }
   };
 

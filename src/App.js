@@ -20,6 +20,8 @@ import CategoryPage from "./pages/categories/CategoryPage";
 import PhotoPage from "./pages/events/Photos/PhotoPage";
 import PhotoEditForm from "./pages/events/Photos/PhotoEditForm";
 import PhotosPage from "./pages/profiles/PhotosPage";
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer } from "react-notifications";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -27,6 +29,7 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
+      <NotificationContainer />
       <Container className={styles.Main}>
         <Switch>
           <Route

@@ -14,6 +14,7 @@ import {
 } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { NotificationManager } from "react-notifications";
 
 const ProfileEditForm = () => {
   const currentUser = useCurrentUser();
@@ -84,9 +85,19 @@ const ProfileEditForm = () => {
         profile_image: data.image,
       }));
       history.goBack();
+      NotificationManager.success(
+        `You successfully edited your profile!`,
+        "Profile edit",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       setErrors(err.response?.data);
+      NotificationManager.error(
+        `Ups! Something went wrong when editing the profile...`,
+        "Profile edit error",
+        3000
+      );
     }
   };
 

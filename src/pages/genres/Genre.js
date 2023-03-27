@@ -4,6 +4,7 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import GenreEditForm from "./GenreEditForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { NotificationManager } from "react-notifications";
 
 const Genre = (props) => {
   const { gen_name, id, cat_id, setGenres } = props;
@@ -20,8 +21,18 @@ const Genre = (props) => {
         ...prevGenres,
         results: prevGenres.results.filter((genre) => genre.id !== id),
       }));
+      NotificationManager.success(
+        `You successfully deleted the genre!`,
+        "Genre delete",
+        3000
+      );
     } catch (err) {
       //console.log(err);
+      NotificationManager.error(
+        `Ups! Something went wrong when deleting the genre...`,
+        "Genre delete error",
+        3000
+      );
     }
   };
 

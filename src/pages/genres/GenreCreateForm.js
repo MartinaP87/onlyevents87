@@ -10,6 +10,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import { NotificationManager } from "react-notifications";
 
 const GenreCreateForm = (props) => {
   const { id, setGenres } = props;
@@ -37,6 +38,11 @@ const GenreCreateForm = (props) => {
         ...prevGenres,
         results: [data, ...prevGenres.results],
       }));
+      NotificationManager.success(
+        `You successfully created a genre!`,
+        "Genre",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       if (err.response?.status !== 401) {
@@ -44,6 +50,11 @@ const GenreCreateForm = (props) => {
       }
     }
     setGenreData("");
+    NotificationManager.error(
+      `Ups! Something went wrong when creating a genre...`,
+      "Genre error",
+      3000
+    );
   };
 
   return (

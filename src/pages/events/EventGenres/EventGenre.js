@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
+import { NotificationManager } from "react-notifications";
 import { axiosRes } from "../../../api/axiosDefaults";
 import { useCurrentUser } from "../../../contexts/CurrentUserContext";
 import styles from "../../../styles/EventGenre.module.css";
@@ -18,8 +19,18 @@ const EventGenre = (props) => {
         ...prevGenres,
         results: prevGenres.results.filter((genre) => genre.id !== id),
       }));
+      NotificationManager.success(
+        `You successfully deleted a genre from your event!`,
+        "Event genre delete",
+        3000
+      );
     } catch (err) {
       //console.log(err);
+      NotificationManager.error(
+        `Ups! Something went wrong when deleting the genre from your event...`,
+        "Event genre delete error",
+        3000
+      );
     }
   };
 

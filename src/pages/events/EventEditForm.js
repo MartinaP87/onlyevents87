@@ -13,6 +13,7 @@ import { useHistory, useParams } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import { NotificationManager } from "react-notifications";
 
 function EventEditForm() {
   const [errors, setErrors] = useState({});
@@ -100,8 +101,18 @@ function EventEditForm() {
       try {
         axiosRes.delete(`/events/genres/${event_genre.id}`);
         setEventGenres({ results: [] });
+        NotificationManager.info(
+          `The event genres have been deleted`,
+          "Event genres delete",
+          3000
+        );
       } catch (err) {
         //console.log(err);
+        NotificationManager.error(
+          `Ups! Something went wrong when deleting the event genres...`,
+          "Event genres delete error",
+          3000
+        );
       }
     });
   };
@@ -158,11 +169,21 @@ function EventEditForm() {
     try {
       await axiosReq.put(`/events/${id}/`, formData);
       history.push(`/events/${id}/`);
+      NotificationManager.success(
+        `You successfully edited the event!`,
+        "Event edit",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      NotificationManager.error(
+        `Ups! Something went wrong when editing the event...`,
+        "Event edit error",
+        3000
+      );
     }
   };
 

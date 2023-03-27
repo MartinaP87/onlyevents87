@@ -6,6 +6,7 @@ import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { NotificationManager } from "react-notifications";
 
 function CommentCreateForm(props) {
   const { event, setEvent, setComments, profileImage, profile_id } = props;
@@ -39,7 +40,17 @@ function CommentCreateForm(props) {
       }));
       // It resets the form.
       setContent("");
+      NotificationManager.success(
+        `You successfully added a comment!`,
+        "Comment",
+        3000
+      );
     } catch (err) {
+      NotificationManager.error(
+        `Ups! Something went wrong when creating the comment...`,
+        "Comment error",
+        3000
+      );
       //console.log(err);
     }
   };

@@ -12,6 +12,7 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import EventGenreCreateForm from "./EventGenres/EventGenreCreateForm";
 import Container from "react-bootstrap/Container";
 import { format } from "date-fns";
+import { NotificationManager } from "react-notifications";
 
 const Event = (props) => {
   const {
@@ -52,8 +53,18 @@ const Event = (props) => {
     try {
       await axiosRes.delete(`/events/${id}/`);
       history.push(`/profiles/${currentUser.pk}`);
+      NotificationManager.success(
+        `You successfully deleted the event!`,
+        "Event delete",
+        3000
+      );
     } catch (err) {
       //console.log(err);
+      NotificationManager.error(
+        `Ups! Something went wrong when deleting the event...`,
+        "Event delete error",
+        3000
+      );
     }
   };
 

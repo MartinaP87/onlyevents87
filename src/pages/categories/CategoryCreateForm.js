@@ -10,6 +10,7 @@ import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import { NotificationManager } from "react-notifications";
 
 const CategoryCreateForm = (props) => {
   const { setCategories } = props;
@@ -39,9 +40,19 @@ const CategoryCreateForm = (props) => {
         ...prevCategories,
         results: [data, ...prevCategories.results],
       }));
+      NotificationManager.success(
+        `You created a new ${cat_name} category!`,
+        "Category",
+        3000
+      );
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        NotificationManager.error(
+          `Ups! something went wrong when creating the category...`,
+          "Category error",
+          3000
+        );
       }
     }
     // It resets the form

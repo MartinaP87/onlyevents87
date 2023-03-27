@@ -11,6 +11,7 @@ import { axiosReq } from "../../../api/axiosDefaults";
 import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
 import { useHistory, useParams } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 const PreferenceCreateForm = (props) => {
   const { setPreferences } = props;
@@ -68,11 +69,19 @@ const PreferenceCreateForm = (props) => {
         ...prevPreferences,
         results: [data, ...prevPreferences.results],
       }));
+      NotificationManager.success(
+        `You successfully added a preference!`,
+        "Preference"
+      );
     } catch (err) {
       //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      NotificationManager.error(
+        `Ups! Something went wrong when adding a preference...`,
+        "Preference error"
+      );
     }
     setSelectValue("");
     setPreference("");

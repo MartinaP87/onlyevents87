@@ -5,6 +5,7 @@ import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import CategoryEditForm from "./CategoryEditForm";
 import { Link, useHistory } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 const Category = (props) => {
   const { cat_name, id, setCategories, categoryPage } = props;
@@ -26,8 +27,18 @@ const Category = (props) => {
           (category) => category.id !== id
         ),
       }));
+      NotificationManager.success(
+        `You successfully deleted the category!`,
+        "Category delete",
+        3000
+      );
     } catch (err) {
       //console.log(err);
+      NotificationManager.error(
+        `Ups! Something went wrong when deleting the category...`,
+        "Category delete error",
+        3000
+      );
     }
   };
 

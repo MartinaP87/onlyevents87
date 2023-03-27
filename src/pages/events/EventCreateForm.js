@@ -15,6 +15,7 @@ import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { NotificationManager } from "react-notifications";
 
 function EventCreateForm() {
   useRedirect("loggedOut");
@@ -104,11 +105,21 @@ function EventCreateForm() {
     try {
       const { data } = await axiosReq.post("/events/", formData);
       history.push(`/events/${data.id}/`);
+      NotificationManager.success(
+        `You successfully created the ${title} event!`,
+        "Event",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      NotificationManager.error(
+        `Ups! Something went wrong when creating the event...`,
+        "Event error",
+        3000
+      );
     }
   };
 

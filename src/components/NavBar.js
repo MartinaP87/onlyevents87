@@ -14,6 +14,7 @@ import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
 import Logo from "../assets/logo.webp";
 import Image from "react-bootstrap/Image";
+import { NotificationManager } from "react-notifications";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -29,7 +30,17 @@ const NavBar = () => {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp();
+      NotificationManager.success(
+        `Bye for now! You signed out successfully!`,
+        "Sign out",
+        3000
+      );
     } catch (err) {
+      NotificationManager.error(
+        `Ups! Something went wrong with your sign-out...`,
+        "Sign out error",
+        3000
+      );
       //console.log(err);
     }
   };

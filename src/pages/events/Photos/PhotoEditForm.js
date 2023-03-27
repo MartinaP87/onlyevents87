@@ -11,6 +11,7 @@ import { axiosReq } from "../../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory, useParams } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import { NotificationManager } from "react-notifications";
 
 function PhotoEditForm() {
   const [errors, setErrors] = useState({});
@@ -80,11 +81,21 @@ function PhotoEditForm() {
     try {
       await axiosReq.put(`/events/galleries/photos/${id}/`, formData);
       history.push(`/events/galleries/photos/${id}/`);
+      NotificationManager.success(
+        `You successfully edited the ${title} photo!`,
+        "Photo edit",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      NotificationManager.error(
+        `Ups! Something went wrong when editing the photo...`,
+        "Photo edit error",
+        3000
+      );
     }
   };
 

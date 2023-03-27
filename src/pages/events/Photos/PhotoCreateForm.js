@@ -13,6 +13,7 @@ import Asset from "../../../components/Asset";
 import { axiosReq } from "../../../api/axiosDefaults";
 import Image from "react-bootstrap/Image";
 import { useHistory } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 
 function PhotoCreateForm(props) {
@@ -86,11 +87,21 @@ function PhotoCreateForm(props) {
         gallery: id,
       });
       setErrors({});
+      NotificationManager.success(
+        `You successfully added a photo!`,
+        "Photo",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+      NotificationManager.error(
+        `Ups! Something went wrong when adding a photo!`,
+        "Photo error",
+        3000
+      );
     }
   };
 

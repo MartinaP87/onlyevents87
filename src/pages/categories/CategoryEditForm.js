@@ -9,6 +9,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import Alert from "react-bootstrap/Alert";
+import { NotificationManager } from "react-notifications";
 
 const CategoryEditForm = (props) => {
   const { id, cat_name, setCategories, setShowEditForm } = props;
@@ -39,10 +40,20 @@ const CategoryEditForm = (props) => {
       }));
       // It closes the edit form.
       setShowEditForm(false);
+      NotificationManager.success(
+        `You successfully edited ${cat_name} category!`,
+        "Category edit",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        NotificationManager.error(
+          `Ups! Something went wrong when editing the category!`,
+          "Category edit error",
+          3000
+        );
       }
     }
   };

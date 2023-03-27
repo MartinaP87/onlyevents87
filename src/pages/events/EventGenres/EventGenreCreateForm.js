@@ -11,6 +11,7 @@ import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
 import Accordion from "react-bootstrap/Accordion";
 import { useHistory, useParams } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 
 const EventGenreCreateForm = (props) => {
   const { category, setGenres } = props;
@@ -68,10 +69,20 @@ const EventGenreCreateForm = (props) => {
         ...prevGenres,
         results: [data, ...prevGenres.results],
       }));
+      NotificationManager.success(
+        `You successfully added a genre to your event!`,
+        "Event genre",
+        3000
+      );
     } catch (err) {
       //console.log(err.response);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        NotificationManager.error(
+          `Ups! Something went wrong when adding a genre to your event...`,
+          "Event genre error",
+          3000
+        );
       }
     }
     // It resets the input value and the genre variable.

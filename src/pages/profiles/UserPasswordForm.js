@@ -10,6 +10,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { NotificationManager } from "react-notifications";
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -46,9 +47,19 @@ const UserPasswordForm = () => {
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
+      NotificationManager.success(
+        `You successfully edited your password!`,
+        "Password edit",
+        3000
+      );
     } catch (err) {
       //console.log(err);
       setErrors(err.response?.data);
+      NotificationManager.error(
+        `Ups! Something went wrong when editing your password...`,
+        "Password edit error",
+        3000
+      );
     }
   };
 

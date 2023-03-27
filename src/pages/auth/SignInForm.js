@@ -14,6 +14,7 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
+import { NotificationManager } from "react-notifications";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -44,8 +45,18 @@ function SignInForm() {
       setCurrentUser(data.user);
       setTokenTimestamp(data);
       history.goBack();
+      NotificationManager.success(
+        `Hi ${username}! You signed in successfully!`,
+        "Sign in",
+        3000
+      );
     } catch (err) {
       setErrors(err.response?.data);
+      NotificationManager.error(
+        `Ups! Something went wrong with your sign-in...`,
+        "Sign in error",
+        3000
+      );
     }
   };
 

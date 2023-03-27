@@ -6,6 +6,7 @@ import Avatar from "../../../components/Avatar";
 import styles from "../../../styles/Photo.module.css";
 import { axiosRes } from "../../../api/axiosDefaults";
 import { MoreDropdown } from "../../../components/MoreDropdown";
+import { NotificationManager } from "react-notifications";
 
 const Photo = (props) => {
   const {
@@ -34,8 +35,18 @@ const Photo = (props) => {
     try {
       await axiosRes.delete(`/events/galleries/photos/${id}/`);
       history.push(`/events/${gallery}`);
+      NotificationManager.success(
+        `You successfully deleted the photo!`,
+        "Photo delete",
+        3000
+      );
     } catch (err) {
       //console.log(err);
+      NotificationManager.error(
+        `Ups! Something went wrong when deleting the photo!`,
+        "Photo delete error",
+        3000
+      );
     }
   };
 

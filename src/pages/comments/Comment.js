@@ -9,6 +9,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import CommentEditForm from "./CommentEditForm";
+import { NotificationManager } from "react-notifications";
 
 const Comment = (props) => {
   const {
@@ -44,8 +45,18 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
+      NotificationManager.success(
+        `You successfully deleted the comment!`,
+        "Comment delete",
+        3000
+      );
     } catch (err) {
       //console.log(err);
+      NotificationManager.error(
+        `Ups! Something went wrong when deleting the comment...`,
+        "Comment delete error",
+        3000
+      );
     }
   };
 
