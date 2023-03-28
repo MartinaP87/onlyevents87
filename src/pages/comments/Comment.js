@@ -53,7 +53,7 @@ const Comment = (props) => {
     } catch (err) {
       //console.log(err);
       NotificationManager.error(
-        `Ups! Something went wrong when deleting the comment...`,
+        `Oops! Something went wrong when deleting the comment...`,
         "Comment delete error",
         3000
       );

@@ -42,7 +42,7 @@ const UserPasswordForm = () => {
 
   const handleSubmit = async (event) => {
     // It sends the updated data to the API endpoint
-    // and redirects to the home page.
+    // redirects to the home page, and displays a notification,.
     event.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
@@ -56,7 +56,7 @@ const UserPasswordForm = () => {
       //console.log(err);
       setErrors(err.response?.data);
       NotificationManager.error(
-        `Ups! Something went wrong when editing your password...`,
+        `Oops! Something went wrong when editing your password...`,
         "Password edit error",
         3000
       );

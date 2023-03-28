@@ -22,7 +22,8 @@ const CategoryEditForm = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    // It sends the data to the API endpoint and
+    // It sends the data to the API endpoint
+    // displays a notification, and
     // updates the categories variable.
     event.preventDefault();
     try {
@@ -50,7 +51,7 @@ const CategoryEditForm = (props) => {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
         NotificationManager.error(
-          `Ups! Something went wrong when editing the category!`,
+          `Oops! Something went wrong when editing the category!`,
           "Category edit error",
           3000
         );

@@ -61,7 +61,7 @@ const Event = (props) => {
     } catch (err) {
       //console.log(err);
       NotificationManager.error(
-        `Ups! Something went wrong when deleting the event...`,
+        `Oops! Something went wrong when deleting the event...`,
         "Event delete error",
         3000
       );

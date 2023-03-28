@@ -37,7 +37,8 @@ const UsernameForm = () => {
 
   const handleSubmit = async (event) => {
     // It sends the updated data to the API endpoint,
-    // updates the currentUser variable, and redirects to the home page.
+    // updates the currentUser variable, redirects to the home page
+    // and displays a notification.
     event.preventDefault();
     try {
       await axiosRes.put("/dj-rest-auth/user/", {
@@ -57,7 +58,7 @@ const UsernameForm = () => {
       //console.log(err);
       setErrors(err.response?.data);
       NotificationManager.error(
-        `Ups! Something went wrong when editing your username...`,
+        `Oops! Something went wrong when editing your username...`,
         "Username edit error",
         3000
       );

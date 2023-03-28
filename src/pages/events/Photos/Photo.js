@@ -43,7 +43,7 @@ const Photo = (props) => {
     } catch (err) {
       //console.log(err);
       NotificationManager.error(
-        `Ups! Something went wrong when deleting the photo!`,
+        `Oops! Something went wrong when deleting the photo!`,
         "Photo delete error",
         3000
       );

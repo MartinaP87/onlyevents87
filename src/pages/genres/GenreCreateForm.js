@@ -8,14 +8,12 @@ import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { NotificationManager } from "react-notifications";
 
 const GenreCreateForm = (props) => {
   const { id, setGenres } = props;
   const [errors, setErrors] = useState({});
-  const history = useHistory();
   const [genreData, setGenreData] = useState("");
 
   const handleChange = (event) => {
@@ -25,15 +23,14 @@ const GenreCreateForm = (props) => {
 
   const handleSubmit = async (event) => {
     // It posts the data to the API endpoint, updates the
-    // genres variable, redirects to the category page, and
-    // resets the genreData variable.
+    // genres variable, displays a notification, and
+    // resets the errors and genreData variable.
     event.preventDefault();
     try {
       const { data } = await axiosReq.post("/categories/genres/", {
         gen_name: genreData,
         category: id,
       });
-      history.push(`/categories/${id}`);
       setGenres((prevGenres) => ({
         ...prevGenres,
         results: [data, ...prevGenres.results],
@@ -43,13 +40,14 @@ const GenreCreateForm = (props) => {
         "Genre",
         3000
       );
+      setErrors({});
     } catch (err) {
       //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
       NotificationManager.error(
-        `Ups! Something went wrong when creating a genre...`,
+        `Oops! Something went wrong when creating a genre...`,
         "Genre error",
         3000
       );

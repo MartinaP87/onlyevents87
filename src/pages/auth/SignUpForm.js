@@ -38,7 +38,8 @@ const SignUpForm = () => {
   };
 
   const handleSubmit = async (event) => {
-    // It posts the sign up details to the API endpoint
+    // It posts the sign up details to the API endpoint,
+    // displays a notification,
     // and redirects the user to the sign in page.
     event.preventDefault();
     try {
@@ -52,7 +53,7 @@ const SignUpForm = () => {
     } catch (err) {
       setErrors(err.response?.data);
       NotificationManager.error(
-        `Ups! Something went wrong with your sign-up...`,
+        `Oops! Something went wrong with your sign-up...`,
         "Sign up error",
         3000
       );

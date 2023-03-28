@@ -27,7 +27,7 @@ const EventGenre = (props) => {
     } catch (err) {
       //console.log(err);
       NotificationManager.error(
-        `Ups! Something went wrong when deleting the genre from your event...`,
+        `Oops! Something went wrong when deleting the genre from your event...`,
         "Event genre delete error",
         3000
       );

@@ -2,4 +2,10 @@
     margin-top: 5vh;
     background-color: #f4f7f7;
     color: #b710e8;
+    font-weight: bold;
+}
+
+.Image404 {
+    max-width: 30rem;
+    width: -webkit-fill-available;
 }

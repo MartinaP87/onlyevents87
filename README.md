@@ -71,6 +71,7 @@ You can view the back-end README.md here - <a href="https://github.com/Martinap8
    13. [Genre forms](#genre-forms)
       1. [Genre create form](#genre-create-form)
       2. [Genre edit form](#genre-edit-form)
+   14. [Page not found](#page-not-found)
 4. [Reusable components](#reusable-components)
 5. [Technologies Used](#technologies-used)
     1. [Languages](#languages)
@@ -696,6 +697,12 @@ notification_username_edit.png)
 - If the genre already exists, it displays an error;
 - When the admin submits the form, a notification is displayed at the top of the page.
 
+### Page not found
+
+![404 page not found](readme-images/404_page.png)
+
+- If the user inputs a URL not defined, it displays an error message of page not found.
+
 ### Reusable components
 
 Some components in the project are displayed on more pages.
@@ -707,8 +714,7 @@ The reusable components are:
 - The Navbar component: it's displayed on every page and shows the list of navigation links. 
 - The MoreDropdown component: displays three dots next to any editable item. When clicked, it shows a menu to edit or delete the relevant items. It's used for events, comments, photos, categories, and genres;
 - The Avatar component: allows the users to display their profile image in the same format, and it's used across the site as a link to the user's profile, more specifically in the comments, most popular profiles, photos, events, and navbar sections.
-- The Asset component: It's used to display an image and a message in the forms to create an event and to create a photo, and to display a loading spinner in the gallery, event, events, profile, photos pages, and in the popular profiles section.
-- The NotFound component: It displays a message when the page doesn't exist. It's used only in App.js but can be reused for other projects.
+- The Asset component: It's used to display an image and a message in the forms to create an event and to create a photo, and to display a loading spinner in the categories, category, gallery, event, events, profile, photos pages, and in the popular profiles section.
 
 ## Technologies Used
 

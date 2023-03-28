@@ -68,8 +68,8 @@ function PhotoEditForm() {
   };
 
   const handleSubmit = async (event) => {
-    // It posts all data to the API endpoint and redirects
-    // the user to the photo page.
+    // It posts all data to the API endpoint, redirects
+    // the user to the photo page, and displays a notification,.
     event.preventDefault();
     const formData = new FormData();
     formData.append("gallery", gallery);
@@ -92,7 +92,7 @@ function PhotoEditForm() {
         setErrors(err.response?.data);
       }
       NotificationManager.error(
-        `Ups! Something went wrong when editing the photo...`,
+        `Oops! Something went wrong when editing the photo...`,
         "Photo edit error",
         3000
       );

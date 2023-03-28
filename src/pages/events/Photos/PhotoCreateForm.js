@@ -64,7 +64,8 @@ function PhotoCreateForm(props) {
 
   const handleSubmit = async (event) => {
     // It posts all data to the API endpoint, closes the form,
-    // and updates the photosGallery, photoData, and error variables.
+    // and updates the photosGallery, photoData, and error 
+    // variables, and  displays a notification.
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -98,7 +99,7 @@ function PhotoCreateForm(props) {
         setErrors(err.response?.data);
       }
       NotificationManager.error(
-        `Ups! Something went wrong when adding a photo!`,
+        `Oops! Something went wrong when adding a photo!`,
         "Photo error",
         3000
       );

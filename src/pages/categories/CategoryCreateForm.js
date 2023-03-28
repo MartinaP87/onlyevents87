@@ -8,14 +8,12 @@ import styles from "../../styles/EventCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import { NotificationManager } from "react-notifications";
 
 const CategoryCreateForm = (props) => {
   const { setCategories } = props;
   const [errors, setErrors] = useState({});
-  const history = useHistory();
   const [categoryData, setCategoryData] = useState({
     cat_name: "",
   });
@@ -29,13 +27,12 @@ const CategoryCreateForm = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    // It posts the new data to the API endpoint, redirects
-    // the user to the categories page, and updates
-    // the categories variable.
+    // It posts the new data to the API endpoint, updates
+    // the categories variable, displays a notification, and resets the errors variable.
     event.preventDefault();
     try {
       const { data } = await axiosReq.post("/categories/", categoryData);
-      history.push(`/categories/`);
+      
       setCategories((prevCategories) => ({
         ...prevCategories,
         results: [data, ...prevCategories.results],
@@ -45,11 +42,12 @@ const CategoryCreateForm = (props) => {
         "Category",
         3000
       );
+      setErrors({});
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
         NotificationManager.error(
-          `Ups! Something went wrong when creating the category...`,
+          `Oops! Something went wrong when creating the category...`,
           "Category error",
           3000
         );

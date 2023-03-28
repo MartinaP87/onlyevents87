@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-
 import { axiosReq } from "../../api/axiosDefaults";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -10,6 +9,9 @@ import GenreCreateForm from "../genres/GenreCreateForm";
 import Genre from "../genres/Genre";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+import Asset from "../../components/Asset"
 
 function CategoryPage() {
   // It redirects the logged out user to the home page.
@@ -49,14 +51,15 @@ function CategoryPage() {
           categoryPage
         />
         {genres.results.length ? (
-          genres.results.map((genre) => (
-            <Genre
-              key={genre.id}
-              {...genre}
-              setGenres={setGenres}
-              cat_id={id}
-            />
-          ))
+          <InfiniteScroll
+          children={genres.results.map((genre) => (
+            <Genre key={genre.id} {...genre} setGenres={setGenres} cat_id={id}/>
+          ))}
+          dataLength={genres.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!genres.next}
+          next={() => fetchMoreData(genres, setGenres)}
+        />
         ) : (
           <p>No genres in this category yet</p>
         )}

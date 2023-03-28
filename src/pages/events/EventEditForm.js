@@ -96,7 +96,8 @@ function EventEditForm() {
   };
 
   const deleteEventGenres = () => {
-    // It deletes the event genres linked to the event.
+    // It deletes the event genres linked to the event
+    // and displays a notification.
     eventGenres?.results.forEach((event_genre) => {
       try {
         axiosRes.delete(`/events/genres/${event_genre.id}`);
@@ -109,7 +110,7 @@ function EventEditForm() {
       } catch (err) {
         //console.log(err);
         NotificationManager.error(
-          `Ups! Something went wrong when deleting the event genres...`,
+          `Oops! Something went wrong when deleting the event genres...`,
           "Event genres delete error",
           3000
         );
@@ -152,8 +153,8 @@ function EventEditForm() {
   };
 
   const handleSubmit = async (event) => {
-    // It sends the event updates to the API endpoint
-    // and redirects to the event page.
+    // It sends the event updates to the API endpoint,
+    // redirects to the event page and  displays a notification.
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -180,7 +181,7 @@ function EventEditForm() {
         setErrors(err.response?.data);
       }
       NotificationManager.error(
-        `Ups! Something went wrong when editing the event...`,
+        `Oops! Something went wrong when editing the event...`,
         "Event edit error",
         3000
       );

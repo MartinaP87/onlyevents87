@@ -38,7 +38,7 @@ function SignInForm() {
 
   const handleSubmit = async (event) => {
     // It posts the log-in details to the API endpoint,
-    // updates the current user and sets the token timestamp.
+    // updates the current user, displays a notification, and sets the token timestamp.
     event.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
@@ -53,7 +53,7 @@ function SignInForm() {
     } catch (err) {
       setErrors(err.response?.data);
       NotificationManager.error(
-        `Ups! Something went wrong with your sign-in...`,
+        `Oops! Something went wrong with your sign-in...`,
         "Sign in error",
         3000
       );

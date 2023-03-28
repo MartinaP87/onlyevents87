@@ -56,7 +56,8 @@ const EventGenreCreateForm = (props) => {
 
   const handleSubmit = async (event) => {
     // It sends the new genre to the API endpoint, redirects the
-    // user to the event page, and updates the genres variable.
+    // user to the event page, updates the genres variable and
+    // displays a notification.
     event.preventDefault();
     try {
       const { data } = await axiosReq.post("/events/genres/", {
@@ -79,7 +80,7 @@ const EventGenreCreateForm = (props) => {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
         NotificationManager.error(
-          `Ups! Something went wrong when adding a genre to your event...`,
+          `Oops! Something went wrong when adding a genre to your event...`,
           "Event genre error",
           3000
         );

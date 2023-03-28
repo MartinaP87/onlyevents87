@@ -23,7 +23,8 @@ const GenreEditForm = (props) => {
 
   const handleSubmit = async (event) => {
     // It sends the genre updates to the API endpoint,
-    // updates the genres variable, and closes the edit form.
+    // updates the genres variable, closes the edit form
+    // and displays a notification.
     event.preventDefault();
     try {
       await axiosReq.put(`/categories/genres/${id}/`, {
@@ -52,7 +53,7 @@ const GenreEditForm = (props) => {
         setErrors(err.response?.data);
       }
       NotificationManager.error(
-        `Ups! Something went wrong when editing the genre...`,
+        `Oops! Something went wrong when editing the genre...`,
         "Genre edit error",
         3000
       );

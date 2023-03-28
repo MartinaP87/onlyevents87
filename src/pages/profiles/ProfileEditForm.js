@@ -67,8 +67,8 @@ const ProfileEditForm = () => {
 
   const handleSubmit = async (event) => {
     // It sends the updated data to the API endpoint,
-    // updates the currentUser variable, and redirects
-    // to the previous page.
+    // updates the currentUser variable, redirects
+    // to the previous page, and displays a notification.
     event.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
@@ -94,7 +94,7 @@ const ProfileEditForm = () => {
       //console.log(err);
       setErrors(err.response?.data);
       NotificationManager.error(
-        `Ups! Something went wrong when editing the profile...`,
+        `Oops! Something went wrong when editing the profile...`,
         "Profile edit error",
         3000
       );

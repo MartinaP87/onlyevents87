@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../styles/Category.module.css"
 import Media from "react-bootstrap/Media";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
@@ -35,7 +36,7 @@ const Category = (props) => {
     } catch (err) {
       //console.log(err);
       NotificationManager.error(
-        `Ups! Something went wrong when deleting the category...`,
+        `Oops! Something went wrong when deleting the category...`,
         "Category delete error",
         3000
       );

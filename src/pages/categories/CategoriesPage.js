@@ -7,6 +7,9 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Category from "./Category";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+import Asset from "../../components/Asset";
 
 const CategoriesPage = () => {
   // It redirects the logged out user to the home page.
@@ -37,11 +40,21 @@ const CategoriesPage = () => {
     <Row className="h-100">
       <Col className="py-2 p-lg-2" lg={6}>
         <h1>Categories:</h1>
-        {categories?.results.map((category) => (
-          <div key={category.id}>
-            <Category {...category} setCategories={setCategories} />
-          </div>
-        ))}
+        {categories.results.length ? (
+        <InfiniteScroll
+          children={categories?.results.map((category) => (
+            <div key={category.id}>
+              <Category {...category} setCategories={setCategories} />
+            </div>
+          ))}
+          dataLength={categories.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!categories.next}
+          next={() => fetchMoreData(categories, setCategories)}
+        />
+        ) : (
+          <p>No categories yet</p>
+        )}
       </Col>
       <Col lg={6} className="d-lg-block p-0 p-lg-2">
         {admin && (

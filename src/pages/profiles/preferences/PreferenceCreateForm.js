@@ -57,7 +57,8 @@ const PreferenceCreateForm = (props) => {
   const handleSubmit = async (event) => {
     // It posts the new data to the API endpoint, redirects
     // to the profile page, updates the preferences variable, and
-    // sets the selectValue and preference variables to an empty string.
+    // sets the selectValue and preference variables to an empty
+    //  string and displays a notification.
     event.preventDefault();
     try {
       const { data } = await axiosReq.post("/profiles/preferences/", {
@@ -79,7 +80,7 @@ const PreferenceCreateForm = (props) => {
         setErrors(err.response?.data);
       }
       NotificationManager.error(
-        `Ups! Something went wrong when adding a preference...`,
+        `Oops! Something went wrong when adding a preference...`,
         "Preference error"
       );
     }

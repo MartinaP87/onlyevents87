@@ -26,7 +26,7 @@ const Preference = (props) => {
     } catch (err) {
       //console.log(err);
       NotificationManager.error(
-        `Ups! Something went wrong when deleting the preference...`,
+        `Oops! Something went wrong when deleting the preference...`,
         "Preference delete error",
         3000
       );

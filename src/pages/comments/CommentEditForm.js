@@ -16,8 +16,8 @@ function CommentEditForm(props) {
   };
 
   const handleSubmit = async (event) => {
-    // It sends the comment updates to the API endpoint
-    // and updates the comments variable.
+    // It sends the comment updates to the API endpoint,
+    // updates the comments variable, and displays a notification,.
     event.preventDefault();
     try {
       await axiosRes.put(`/comments/${id}/`, {
@@ -45,7 +45,7 @@ function CommentEditForm(props) {
     } catch (err) {
       //console.log(err);
       NotificationManager.error(
-        `Ups! Something went wrong when editing the comment...`,
+        `Oops! Something went wrong when editing the comment...`,
         "Comment edit error",
         3000
       );

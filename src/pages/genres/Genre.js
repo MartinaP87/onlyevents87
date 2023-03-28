@@ -29,7 +29,7 @@ const Genre = (props) => {
     } catch (err) {
       //console.log(err);
       NotificationManager.error(
-        `Ups! Something went wrong when deleting the genre...`,
+        `Oops! Something went wrong when deleting the genre...`,
         "Genre delete error",
         3000
       );

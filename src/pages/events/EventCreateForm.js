@@ -91,8 +91,9 @@ function EventCreateForm() {
   };
 
   const handleSubmit = async (event) => {
-    // It posts all data to the API endpoint and
-    // redirects to the newly created event's page.
+    // It posts all data to the API endpoint,
+    // redirects to the newly created event's page,
+    // and displays a notification.
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -116,7 +117,7 @@ function EventCreateForm() {
         setErrors(err.response?.data);
       }
       NotificationManager.error(
-        `Ups! Something went wrong when creating the event...`,
+        `Oops! Something went wrong when creating the event...`,
         "Event error",
         3000
       );

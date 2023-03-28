@@ -18,7 +18,8 @@ function CommentCreateForm(props) {
   };
 
   const handleSubmit = async (e) => {
-    // It posts the content data to the API endpoint and updates
+    // It posts the content data to the API endpoint,
+    // displays a notification, and updates
     // the comments and event variables.
     e.preventDefault();
     try {
@@ -47,7 +48,7 @@ function CommentCreateForm(props) {
       );
     } catch (err) {
       NotificationManager.error(
-        `Ups! Something went wrong when creating the comment...`,
+        `Oops! Something went wrong when creating the comment...`,
         "Comment error",
         3000
       );
