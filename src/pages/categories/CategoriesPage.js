@@ -7,9 +7,6 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Category from "./Category";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/utils";
-import Asset from "../../components/Asset";
 
 const CategoriesPage = () => {
   // It redirects the logged out user to the home page.
@@ -17,9 +14,7 @@ const CategoriesPage = () => {
   const currentUser = useCurrentUser();
   const admin = currentUser?.pk === 1;
 
-  const [categories, setCategories] = useState({
-    results: [],
-  });
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -35,23 +30,16 @@ const CategoriesPage = () => {
     // Make the request only if the user is logged in.
     currentUser && fetchCategories();
   }, [currentUser]);
-
   return (
     <Row className="h-100">
       <Col className="py-2 p-lg-2" lg={6}>
         <h1>Categories:</h1>
-        {categories.results.length ? (
-        <InfiniteScroll
-          children={categories?.results.map((category) => (
+        {categories.length ? (
+        categories?.map((category) => (
             <div key={category.id}>
               <Category {...category} setCategories={setCategories} />
             </div>
-          ))}
-          dataLength={categories.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!categories.next}
-          next={() => fetchMoreData(categories, setCategories)}
-        />
+          ))
         ) : (
           <p>No categories yet</p>
         )}

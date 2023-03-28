@@ -73,9 +73,9 @@ function ProfilePage() {
         //console.log(err);
       }
     };
+
     fetchData();
   }, [id, setProfileData]);
-
   const mainProfileHeader = (
     <>
       <Row noGutters className="justify-content-center">

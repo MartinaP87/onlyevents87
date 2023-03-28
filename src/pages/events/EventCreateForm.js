@@ -33,7 +33,7 @@ function EventCreateForm() {
   });
   const { title, date, category, location, address, content, image } =
     eventData;
-  const [categoriesToGet, setCategoriesToGet] = useState({ results: [] });
+  const [categoriesToGet, setCategoriesToGet] = useState([]);
   const imageInput = useRef(null);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function EventCreateForm() {
     if (event.target.value !== "") {
       setEventData({
         ...eventData,
-        category: categoriesToGet.results.filter(
+        category: categoriesToGet.filter(
           (categoryToGet) => categoryToGet.cat_name === event.target.value
         )[0].id,
       });
@@ -169,7 +169,7 @@ function EventCreateForm() {
           as="select"
         >
           <option value="">select the event category</option>
-          {categoriesToGet?.results.map((categoryToGet) => (
+          {categoriesToGet?.map((categoryToGet) => (
             <option key={categoryToGet.id}>{categoryToGet.cat_name}</option>
           ))}
         </Form.Control>

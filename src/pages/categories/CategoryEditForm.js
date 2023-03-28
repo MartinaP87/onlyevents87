@@ -28,9 +28,9 @@ const CategoryEditForm = (props) => {
     event.preventDefault();
     try {
       await axiosReq.put(`/categories/${id}/`, { cat_name: categoryData });
-      setCategories((prevCategories) => ({
-        ...prevCategories,
-        results: prevCategories.results.map((category) => {
+      
+      setCategories((prevCategories) => [
+        ...prevCategories.map((category) => {
           return category.id === id
             ? {
                 ...category,
@@ -38,7 +38,7 @@ const CategoryEditForm = (props) => {
               }
             : category;
         }),
-      }));
+      ]);
       // It closes the edit form.
       setShowEditForm(false);
       NotificationManager.success(

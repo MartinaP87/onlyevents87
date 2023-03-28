@@ -17,10 +17,10 @@ const Genre = (props) => {
     try {
       await axiosRes.delete(`/categories/genres/${id}/`);
 
-      setGenres((prevGenres) => ({
-        ...prevGenres,
-        results: prevGenres.results.filter((genre) => genre.id !== id),
-      }));
+      setGenres((prevGenres) => ([
+        ...prevGenres.filter((genre) => genre.id !== id),
+      ]));
+
       NotificationManager.success(
         `You successfully deleted the genre!`,
         "Genre delete",
@@ -34,6 +34,7 @@ const Genre = (props) => {
         3000
       );
     }
+    
   };
 
   return (

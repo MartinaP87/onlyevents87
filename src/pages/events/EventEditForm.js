@@ -29,7 +29,7 @@ function EventEditForm() {
   const { title, date, category, location, address, content, image } =
     eventData;
 
-  const [categoriesToGet, setCategoriesToGet] = useState({ results: [] });
+  const [categoriesToGet, setCategoriesToGet] = useState([]);
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
@@ -65,7 +65,7 @@ function EventEditForm() {
         setEventGenres(eventGenres);
         setCategoriesToGet(categoriesToGet);
         setSelectValue(
-          categoriesToGet.results.filter(
+          categoriesToGet.filter(
             (categoryToGet) => categoryToGet.id === category
           )[0].cat_name
         );
@@ -127,7 +127,7 @@ function EventEditForm() {
     if (event.target.value !== "") {
       setEventData({
         ...eventData,
-        category: categoriesToGet.results.filter(
+        category: categoriesToGet.filter(
           (categoryToGet) => categoryToGet.cat_name === event.target.value
         )[0].id,
       });
@@ -235,7 +235,7 @@ function EventEditForm() {
           as="select"
         >
           <option value="">select the event category</option>
-          {categoriesToGet?.results.map((categoryToGet) => (
+          {categoriesToGet?.map((categoryToGet) => (
             <option key={categoryToGet.id} value={categoryToGet.cat_name}>
               {categoryToGet.cat_name}
             </option>

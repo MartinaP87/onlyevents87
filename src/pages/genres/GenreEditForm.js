@@ -31,9 +31,8 @@ const GenreEditForm = (props) => {
         gen_name: genreData,
         category: cat_id,
       });
-      setGenres((prevGenres) => ({
-        ...prevGenres,
-        results: prevGenres.results.map((genre) => {
+      setGenres((prevGenres) => ([
+        ...prevGenres.map((genre) => {
           return genre.id === id
             ? {
                 ...genre,
@@ -41,7 +40,7 @@ const GenreEditForm = (props) => {
               }
             : genre;
         }),
-      }));
+      ]));
       setShowEditForm(false);
       NotificationManager.success(
         `You successfully edited the genre!`,

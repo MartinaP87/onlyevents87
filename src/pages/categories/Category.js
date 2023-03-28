@@ -17,17 +17,11 @@ const Category = (props) => {
 
   const handleDelete = async () => {
     // It deletes the category from the database, redirects
-    // the user to the categories page, and updates the
-    // categories variable.
+    // the user to the categories page, and displays a notification.
     try {
       await axiosRes.delete(`/categories/${id}/`);
       history.push("/categories/");
-      setCategories((prevCategories) => ({
-        ...prevCategories,
-        results: prevCategories.results.filter(
-          (category) => category.id !== id
-        ),
-      }));
+
       NotificationManager.success(
         `You successfully deleted the category!`,
         "Category delete",

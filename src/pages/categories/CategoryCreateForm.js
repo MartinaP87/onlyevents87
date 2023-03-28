@@ -33,10 +33,14 @@ const CategoryCreateForm = (props) => {
     try {
       const { data } = await axiosReq.post("/categories/", categoryData);
       
-      setCategories((prevCategories) => ({
-        ...prevCategories,
-        results: [data, ...prevCategories.results],
-      }));
+        setCategories((prevCategories) =>([ 
+          data, ...prevCategories
+        ])); 
+
+      // setCategories((prevCategories) => ({
+      //   ...prevCategories,
+      //   results: [data, ...prevCategories.results],
+      // }));
       NotificationManager.success(
         `You created a new ${cat_name} category!`,
         "Category",

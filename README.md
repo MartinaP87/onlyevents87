@@ -714,7 +714,7 @@ The reusable components are:
 - The Navbar component: it's displayed on every page and shows the list of navigation links. 
 - The MoreDropdown component: displays three dots next to any editable item. When clicked, it shows a menu to edit or delete the relevant items. It's used for events, comments, photos, categories, and genres;
 - The Avatar component: allows the users to display their profile image in the same format, and it's used across the site as a link to the user's profile, more specifically in the comments, most popular profiles, photos, events, and navbar sections.
-- The Asset component: It's used to display an image and a message in the forms to create an event and to create a photo, and to display a loading spinner in the categories, category, gallery, event, events, profile, photos pages, and in the popular profiles section.
+- The Asset component: It's used to display an image and a message in the forms to create an event and to create a photo, and to display a loading spinner in the gallery, event, events, profile, photos pages, and in the popular profiles section.
 
 ## Technologies Used
 

@@ -20,7 +20,7 @@ const EventGenreCreateForm = (props) => {
   const [selectValue, setSelectValue] = useState("");
   const [genre, setGenre] = useState("");
   const [errors, setErrors] = useState({});
-  const [genresToGet, setGenresToGet] = useState({ results: [] });
+  const [genresToGet, setGenresToGet] = useState([]);
 
   useEffect(() => {
     // It requests all the genres of the event category and
@@ -47,7 +47,7 @@ const EventGenreCreateForm = (props) => {
     setSelectValue(e.target.value);
     if (e.target.value !== "") {
       setGenre(
-        genresToGet.results.filter(
+        genresToGet.filter(
           (genreToGet) => genreToGet.gen_name === e.target.value
         )[0].id
       );
@@ -112,7 +112,7 @@ const EventGenreCreateForm = (props) => {
               <Accordion.Collapse eventKey="0">
                 <Card.Body>
                   <Form onSubmit={handleSubmit}>
-                    {genresToGet?.results.length && (
+                    {genresToGet?.length && (
                       <Form.Group controlId="genre">
                         <Form.Label className="d-none">Genre</Form.Label>
                         <Form.Control
@@ -126,7 +126,7 @@ const EventGenreCreateForm = (props) => {
                           <option value="" className="d-flex">
                             select the event genre
                           </option>
-                          {genresToGet?.results.map((genreToGet) => (
+                          {genresToGet?.map((genreToGet) => (
                             <option
                               key={genreToGet.id}
                               className="text-align-center"

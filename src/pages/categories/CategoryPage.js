@@ -9,16 +9,13 @@ import GenreCreateForm from "../genres/GenreCreateForm";
 import Genre from "../genres/Genre";
 import { useRedirect } from "../../hooks/useRedirect";
 import { useParams } from "react-router-dom";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/utils";
-import Asset from "../../components/Asset"
 
 function CategoryPage() {
   // It redirects the logged out user to the home page.
   useRedirect("loggedOut");
   const { id } = useParams();
-  const [categoryData, setCategoryData] = useState({ results: [] });
-  const [genres, setGenres] = useState({ results: [] });
+  const [categoryData, setCategoryData] = useState([]);
+  const [genres, setGenres] = useState([]);
   const currentUser = useCurrentUser();
   const admin = currentUser?.pk === 1;
 
@@ -31,7 +28,7 @@ function CategoryPage() {
           axiosReq.get(`/categories/${id}`),
           axiosReq.get(`/categories/genres/?category=${id}`),
         ]);
-        setCategoryData({ results: [category] });
+        setCategoryData([category]);
         setGenres(genres);
       } catch (err) {
         //console.log(err);
@@ -41,25 +38,18 @@ function CategoryPage() {
     // otherwise it redirects to the home page.
     currentUser && handleMount();
   }, [id, currentUser]);
-
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={6}>
         <Category
-          {...categoryData.results[0]}
+          {...categoryData[0]}
           setCategories={setCategoryData}
           categoryPage
         />
-        {genres.results.length ? (
-          <InfiniteScroll
-          children={genres.results.map((genre) => (
+        {genres.length ? (
+          genres.map((genre) => (
             <Genre key={genre.id} {...genre} setGenres={setGenres} cat_id={id}/>
-          ))}
-          dataLength={genres.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!genres.next}
-          next={() => fetchMoreData(genres, setGenres)}
-        />
+          ))
         ) : (
           <p>No genres in this category yet</p>
         )}

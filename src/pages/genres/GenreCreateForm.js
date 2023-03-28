@@ -31,10 +31,10 @@ const GenreCreateForm = (props) => {
         gen_name: genreData,
         category: id,
       });
-      setGenres((prevGenres) => ({
-        ...prevGenres,
-        results: [data, ...prevGenres.results],
-      }));
+      setGenres((prevGenres) => ([
+        data, ...prevGenres
+      ]));
+       
       NotificationManager.success(
         `You successfully created a genre!`,
         "Genre",
@@ -76,7 +76,7 @@ const GenreCreateForm = (props) => {
                 {message}
               </Alert>
             ))}
-            {errors.non_field_errors?.map((message, idx) => (
+            {errors.non_field_errors?.map((idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 This genre already exists.
               </Alert>

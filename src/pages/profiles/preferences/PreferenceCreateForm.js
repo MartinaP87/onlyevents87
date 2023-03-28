@@ -12,7 +12,6 @@ import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
 import { useHistory, useParams } from "react-router-dom";
 import { NotificationManager } from "react-notifications";
-
 const PreferenceCreateForm = (props) => {
   const { setPreferences } = props;
   const history = useHistory();
@@ -21,9 +20,7 @@ const PreferenceCreateForm = (props) => {
   const [selectValue, setSelectValue] = useState("");
   const [errors, setErrors] = useState({});
 
-  const [preferenceChoice, setPreferenceChoice] = useState({
-    results: [],
-  });
+  const [preferenceChoice, setPreferenceChoice] = useState([]);
 
   useEffect(() => {
     // It requests the genres to the API endpoint and
@@ -47,7 +44,7 @@ const PreferenceCreateForm = (props) => {
     setSelectValue(event.target.value);
     if (event.target.value !== "") {
       setPreference(
-        preferenceChoice.results.filter(
+        preferenceChoice.filter(
           (preferenceChoice) => preferenceChoice.gen_name === event.target.value
         )[0].id
       );
@@ -87,7 +84,7 @@ const PreferenceCreateForm = (props) => {
     setSelectValue("");
     setPreference("");
   };
-
+  
   return (
     <>
       <Row>
@@ -118,7 +115,7 @@ const PreferenceCreateForm = (props) => {
                         "d-flex flex-column justify-content-center p-0"
                       }
                     >
-                      {preferenceChoice?.results.length && (
+                      {preferenceChoice?.length && (
                         <Form.Group controlId="preference">
                           <Form.Label className="d-none">Preference</Form.Label>
                           <Form.Control
@@ -131,7 +128,8 @@ const PreferenceCreateForm = (props) => {
                             <option value="" className="d-flex">
                               select your preference
                             </option>
-                            {preferenceChoice?.results.map((genre) => (
+                            
+                            {preferenceChoice?.map((genre) => (
                               <option
                                 className="text-align-center"
                                 key={genre.id}
