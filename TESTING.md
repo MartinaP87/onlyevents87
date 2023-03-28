@@ -35,6 +35,26 @@ Samsung Galaxy A51/71 | No appearance, responsiveness, or functionality issues. 
 Nest Hub | No appearance, responsiveness, or functionality issues. | Pass |
 Nes Hub Max | No appearance, responsiveness, or functionality issues. | Pass |
 
+## Accessibility
+
+Lighthouse in Chrome DevTools has been run to evaluate the color contrast and readability throughout the website. 
+
+### Lighthouse Reports
+
+Page | Lighthouse Report |
+| --- | --- |
+| Home | ![Home Lighthouse report](readme-images/lighthouse_home.png) |
+| Event page| ![Event page Lighthouse report](readme-images/lighthouse_event.png) |
+| Profile page | ![Pofile page Lighthouse report](readme-images/lighthouse_profile.png) |
+| Categories page | ![Categories page Lighthouse report](readme-images/lighthouse_categories.png) |
+| Category page | ![Category page Lighthouse report](readme-images/lighthouse_category.png) |
+| Sign in page | ![Sing in Lighthouse report](readme-images/lighthouse_signin.png) |
+| Sign up page | ![Sign up Lighthouse report](readme-images/lighthouse_signup.png) |
+
+The low score on the performances is mainly due to the javascript bundle size and secondarily to images not being appropriately sized.
+Some accessibility scores are also slightly lower due to the presence of two same forms on a page, even if one of them is not displayed. Since they share the IDs, the Lighthouse reports them as non-unique ids.
+
+
 ### Test Results
 
 #### Navigation bar
