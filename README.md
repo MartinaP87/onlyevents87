@@ -839,4 +839,6 @@ To work on the code from a local device, the steps to fork/clone the repository 
 - [Removebg](https://www.remove.bg/) - Used to remove background images;
 - [Pixabay](http://pixabay.com/) and [Pexels](https://www.pexels.com/) - Used to get the images;
 - [Freepick](https://www.freepik.com/) - Used for the logo;
-- [Mockup screen generator](https://ui.dev/amiresponsive?): Used to evaluate the website responsiveness.
+- [Mockup screen generator](https://ui.dev/amiresponsive?): Used to evaluate the website responsiveness;
+- [Wikipedia](https://en.wikipedia.org/) - Used to write event's contents;
+- [Facebook](https://www.facebook.com/) - Used to find events to add to the homepage.
